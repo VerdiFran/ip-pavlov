@@ -1,7 +1,5 @@
 @import './../../common-scss/variables';
 
-$nav-button-margin: 18px;
-
 .headerContainer {
     width: 100%;
     height: $header-height;
@@ -27,15 +25,4 @@ $nav-button-margin: 18px;
     width: 350px;
     height: $header-height;
     filter: drop-shadow(3px 3px 5px $shadow-color);
-}
-
-.navPanelContainer {
-    display: flex;
-    flex-direction: row;
-    margin-right: $nav-button-margin;
-}
-
-.navButton {
-    display: inline-block;
-    margin: auto $nav-button-margin;
 }

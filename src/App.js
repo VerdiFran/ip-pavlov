@@ -1,7 +1,8 @@
 import './App.css'
 import Header from './components/Header/Header'
+import {BrowserRouter, withRouter} from 'react-router-dom'
 
-function App() {
+const App = () => {
     return (
         <div className="App">
             <Header/>
@@ -9,4 +10,14 @@ function App() {
     )
 }
 
-export default App
+const AppContainer = withRouter(App)
+
+const MainApp = () => {
+    return (
+        <BrowserRouter>
+            <AppContainer/>
+        </BrowserRouter>
+    )
+}
+
+export default MainApp

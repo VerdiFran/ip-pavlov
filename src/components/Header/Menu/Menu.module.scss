@@ -1,0 +1,12 @@
+@import './../../../common-scss/variables';
+
+.navPanelContainer {
+    display: flex;
+    flex-direction: row;
+    margin-right: $nav-button-margin;
+}
+
+.navButton {
+    display: inline-block;
+    margin: auto $nav-button-margin;
+}
