@@ -9,14 +9,16 @@ import styles from './Header.module.scss'
 const Header = () => {
     return (
         <div className={styles.headerContainer}>
-            <div className={styles.logoContainer}>ИП Павлов</div>
-            <div className={styles.navPanelContainer}>
+            <div className={styles.logoContainer}>
+                <div className={styles.headerPolygon}><span>ИП Павлов</span></div>
+            </div>
+            <nav className={styles.navPanelContainer}>
                 <div className={styles.navButton}>Главная</div>
                 <div className={styles.navButton}>О компании</div>
                 <div className={styles.navButton}>Каталог</div>
                 <div className={styles.navButton}>Контакты</div>
                 <div className={styles.navButton}>Партнеры</div>
-            </div>
+            </nav>
         </div>
     )
 }

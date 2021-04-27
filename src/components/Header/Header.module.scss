@@ -1,15 +1,41 @@
-.headerContainer {
+@import './../../common-scss/variables';
 
+$nav-button-margin: 18px;
+
+.headerContainer {
+    width: 100%;
+    height: $header-height;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $background-color;
+    box-shadow: 0 3px 5px $shadow-color;
+}
+
+.headerPolygon {
+    shape-outside: polygon(0 0, 350px 0, 250px 60px, 0 60px);
+    clip-path: polygon(0 0, 350px 0, 250px 60px, 0 60px);
+    width: 350px;
+    height: $header-height;
+    padding: 13px 0 0 50px;
+    background: linear-gradient(to right, $main-color, $dark-main-color);
+    color: $main-font-color;
+    font-size: 24px;
 }
 
 .logoContainer {
-
+    width: 350px;
+    height: $header-height;
+    filter: drop-shadow(3px 3px 5px $shadow-color);
 }
 
 .navPanelContainer {
-
+    display: flex;
+    flex-direction: row;
+    margin-right: $nav-button-margin;
 }
 
 .navButton {
-
+    display: inline-block;
+    margin: auto $nav-button-margin;
 }
