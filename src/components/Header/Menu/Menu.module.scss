@@ -7,6 +7,42 @@
 }
 
 .navButton {
-    display: inline-block;
     margin: auto $nav-button-margin;
+}
+
+.navButton a {
+    position: relative;
+    color: $main-font-color;
+    font-weight: 400;
+    text-decoration: none;
+
+    &::before {
+        content: attr(data-text);
+        transition: 0.5s;
+        color: $hover-link-color;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 0;
+        overflow: hidden;
+    }
+
+    &:hover {
+        &::before {
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+
+    &:active {
+        &::before {
+            color: $active-link-color;
+        }
+    }
+}
+
+.active {
+
 }
