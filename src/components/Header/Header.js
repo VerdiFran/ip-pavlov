@@ -1,6 +1,7 @@
 import React from 'react'
 import Menu from './Menu/Menu'
 import styles from './Header.module.scss'
+import ContactUs from './ContactUs/ContactUs'
 
 /**
  * Header component with logo and navigation panel
@@ -14,6 +15,7 @@ const Header = () => {
                 <div className={styles.headerPolygon}><span>ИП Павлов</span></div>
             </div>
             <Menu/>
+            <ContactUs/>
         </div>
     )
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from './ContactUs.module.scss'
+import ContactUsForm from './ContuctUsForm/ContactUsForm'
+import useVisible from '../../../hooks/useVisible'
 
 /**
  * Component with button and opening question from
@@ -7,11 +9,18 @@ import styles from './ContactUs.module.scss'
  * @constructor
  */
 const ContactUs = () => {
+    const {ref, isVisible, setIsVisible} = useVisible(false)
+
     return (
         <div>
-            <div className={styles.contactUsPolygon}>
+            <div className={styles.contactUsPolygon} onClick={() => setIsVisible(!isVisible)}>
                 <span>Связаться с нами</span>
             </div>
+            {
+                isVisible && <div ref={ref}>
+                    <ContactUsForm/>
+                </div>
+            }
         </div>
     )
 }
