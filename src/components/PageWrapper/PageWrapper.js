@@ -10,12 +10,10 @@ import styles from './PageWrapper.module.scss'
 const PageWrapper = (props) => {
     return (
         <div>
-            <div className={styles.pageWrapper}>
-                <div className={styles.border}/>
-                <div className={styles.border}/>
-            </div>
-            <div className={styles.contentWrapper}>
-                {props.children}
+            <div className={styles.pageWrapper} id="pageWrapper">
+                <div className={styles.contentWrapper} id="contentWrapper">
+                    <div className={styles.content}>{props.children}</div>
+                </div>
             </div>
         </div>
     )
