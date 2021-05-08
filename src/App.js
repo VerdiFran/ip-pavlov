@@ -1,12 +1,10 @@
 import './App.css'
-import PageWrapper from './components/PageWrapper/PageWrapper'
+import Home from './components/Home/Home'
 
 function App() {
     return (
         <div className="App">
-            <PageWrapper>
-
-            </PageWrapper>
+            <Home/>
         </div>
     )
 }
