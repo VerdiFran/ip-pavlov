@@ -1,0 +1,108 @@
+@import "src/common-scss/variables";
+
+.aboutSiteSection {
+    min-height: 560px;
+    display: grid;
+    grid-template-rows: 75% 25%;
+    grid-template-columns: 60% 40%;
+    grid-template-areas:
+        "info box"
+        "distributors box";
+    justify-content: center;
+    align-items: center;
+}
+
+.infoText {
+    grid-area: info;
+    width: 580px;
+
+    p {
+        font-size: 20px;
+        line-height: 24px;
+    }
+}
+
+.heading {
+    font-size: 36px;
+}
+
+.catalogButton {
+    width: 146px;
+    height: 40px;
+    margin: 10px 0 10px 10px;
+    padding: 2px 30px 8px;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: center;
+    text-decoration: none;
+    color: $logo-font-color;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: $main-color;
+    cursor: pointer;
+}
+
+.distributorsContainer {
+    grid-area: distributors;
+    width: 700px;
+    position: relative;
+    left: -60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.productsInBox {
+    grid-area: box;
+    width: 100%;
+    height: 100%;
+}
+
+.productsContainer {
+    position: absolute;
+}
+
+.product {
+    position: absolute;
+
+    &:first-of-type {
+        top: 120px;
+        left: 50px;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
+        transform: rotate(-18deg);
+    }
+    &:nth-of-type(2) {
+        top: 50px;
+        left: 150px;
+        right: 0;
+        bottom: 0;
+        z-index: 7;
+        transform: rotate(-6deg);
+    }
+    &:nth-of-type(3) {
+        top: 130px;
+        left: 210px;
+        right: 0;
+        bottom: 0;
+        z-index: 6;
+        transform: rotate(10deg);
+    }
+    &:last-of-type {
+        top: 80px;
+        left: 316px;
+        right: 0;
+        bottom: 0;
+        z-index: 8;
+        transform: rotate(20deg);
+    }
+}
+
+.box {
+    position: absolute;
+    top: 250px;
+    margin-left: 24px;
+    z-index: 10;
+}

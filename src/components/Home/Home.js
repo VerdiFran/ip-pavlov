@@ -1,6 +1,8 @@
 import React from 'react'
-import AboutCompany from './AboutCompany/AboutCompany'
+import BlockWrapper from '../BlockWrapper/BlockWrapper'
+import AboutSite from './AboutSite/AboutSite'
 import PageWrapper from '../PageWrapper/PageWrapper'
+import AboutCompany from './AboutCompany/AboutCompany'
 
 /**
  * Home page
@@ -10,7 +12,12 @@ import PageWrapper from '../PageWrapper/PageWrapper'
 const Home = () => {
     return (
         <PageWrapper>
-            <AboutCompany/>
+            <BlockWrapper wrapperType="grey">
+                <AboutSite/>
+            </BlockWrapper>
+            <BlockWrapper wrapperType="light" dividerType="short">
+                <AboutCompany/>
+            </BlockWrapper>
         </PageWrapper>
     )
 }

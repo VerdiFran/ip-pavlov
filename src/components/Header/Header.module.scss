@@ -4,6 +4,8 @@
     width: 100%;
     height: $header-height;
     display: flex;
+    position: relative;
+    z-index: 32;
     flex-direction: row;
     justify-content: space-between;
     background-color: $background-color;

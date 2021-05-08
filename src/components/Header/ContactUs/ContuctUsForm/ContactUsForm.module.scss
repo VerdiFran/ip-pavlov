@@ -5,6 +5,8 @@
     height: 300px;
     padding: 20px;
     box-sizing: border-box;
+    z-index: 32;
+    background-color: $background-color;
     box-shadow: 0 3px 5px $shadow-color;
 
     div:not(:last-child) {
