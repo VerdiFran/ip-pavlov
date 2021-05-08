@@ -1,0 +1,12 @@
+@import './common-scss/variables';
+
+.heading {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $main-color;
+    font-size: 24px;
+}
+
+.simpleText {
+    font-size: 18px;
+}
