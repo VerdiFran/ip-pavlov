@@ -8,6 +8,40 @@
     width: 240px;
     height: auto;
     max-height: 500px;
+    padding: 0;
     background-color: $background-color;
     box-shadow: 3px 3px 5px $shadow-color;
+}
+
+.submenuItems {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.submenuItem {
+    a {
+        width: 100%;
+        min-height: 44px;
+        padding: 2px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        line-height: 20px;
+        font-size: 16px;
+        text-transform: uppercase;
+
+        &:hover {
+            background-color: $second-color;
+        }
+        &:active {
+            background-color: $active-link-bcg-color;
+        }
+    }
+
+    &.special a {
+        color: $main-color;
+        font-weight: bold;
+    }
 }
