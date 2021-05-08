@@ -17,9 +17,9 @@ import styles from './AboutSite.module.scss'
  */
 const AboutSite = () => {
     return (
-        <section>
+        <section className={styles.aboutSiteSection}>
             <div className={styles.infoText}>
-                <h1>ОПТОВАЯ И РОЗНИЧНАЯ ПРОДАЖА ПРОДУКТОВ ПИТАНИЯ</h1>
+                <h1 className={styles.heading}>ОПТОВАЯ И РОЗНИЧНАЯ ПРОДАЖА ПРОДУКТОВ ПИТАНИЯ</h1>
                 <p>
                     В нашем магазине вы можете заказать продукты питания оптом и в розницу.
                 </p>
@@ -38,11 +38,11 @@ const AboutSite = () => {
                 <img src={barko} alt='Барко' width="140px"/>
             </div>
             <div className={styles.productsInBox}>
-                <div className={styles.distributorsProductsContainer}>
-                    <img src={bearProduct} alt='' width="166px"/>
-                    <img src={goldenSeedProduct} alt='' width="92px"/>
-                    <img src={barkoProduct} alt='' width="134px"/>
-                    <img src={idealProduct} alt='' width="84px"/>
+                <div className={styles.productsContainer}>
+                    <img src={bearProduct} alt='' width="166px" className={styles.product}/>
+                    <img src={goldenSeedProduct} alt='' width="92px" className={styles.product}/>
+                    <img src={barkoProduct} alt='' width="134px" className={styles.product}/>
+                    <img src={idealProduct} alt='' width="84px" className={styles.product}/>
                 </div>
                 <img src={box} alt='' width="400px" className={styles.box}/>
             </div>

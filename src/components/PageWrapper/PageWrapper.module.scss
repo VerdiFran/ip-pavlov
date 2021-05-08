@@ -8,23 +8,40 @@ $border-margin: 61px;
     height: 100%;
     margin: -3px auto auto auto;
     position: relative;
-    border-width: 3px;
-    border-style: solid;
-    border-image:
-            repeating-linear-gradient(
-                            to bottom,
-                            $second-color 6px,
-                            $second-color 32px,
-                            transparent 32px,
-                            transparent 52px
-            );
-    border-image-width: 100% 4px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 30;
+        clip-path: polygon(
+                        0 0,
+                        2px 0,
+                        2px 2px,
+                        2px 100%,
+                        calc(100% - 2px) 100%,
+                        calc(100% - 2px) 2px,
+                        2px 2px,
+                        100% 0,
+                        100% 100%,
+                        0 100%,
+                        0 0
+        );
+
+        background-image: repeating-linear-gradient(to bottom,
+                $second-color 0px,
+                $second-color 12px,
+                transparent 12px,
+                transparent 22px);
+    }
 }
 
 .contentWrapper {
     position: relative;
     margin: 0;
-    z-index: -10;
 }
 
 .content {
