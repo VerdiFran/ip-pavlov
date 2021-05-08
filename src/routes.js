@@ -1,0 +1,5 @@
+export const TO_HOME = '/'
+export const TO_ABOUT_COMPANY = '/company'
+export const TO_CATALOG = '/catalog'
+export const TO_CONTACTS = '/contacts'
+export const TO_PARTNERS = '/partners'

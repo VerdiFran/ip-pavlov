@@ -1,14 +1,23 @@
 import './App.css'
-import PageWrapper from './components/PageWrapper/PageWrapper'
+import Header from './components/Header/Header'
+import {BrowserRouter, withRouter} from 'react-router-dom'
 
-function App() {
+const App = () => {
     return (
         <div className="App">
-            <PageWrapper>
-
-            </PageWrapper>
+            <Header/>
         </div>
     )
 }
 
-export default App
+const AppContainer = withRouter(App)
+
+const MainApp = () => {
+    return (
+        <BrowserRouter>
+            <AppContainer/>
+        </BrowserRouter>
+    )
+}
+
+export default MainApp

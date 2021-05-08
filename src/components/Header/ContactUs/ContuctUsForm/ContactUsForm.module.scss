@@ -1,0 +1,32 @@
+@import './../../../../common-scss/variables';
+
+.formContainer {
+    width: 270px;
+    height: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 5px $shadow-color;
+
+    div:not(:last-child) {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+}
+
+.extraMessage {
+    color: $main-color;
+}
+
+.fieldContainer {
+    width: 100%;
+
+    & > * {
+        width: 100%;
+    }
+}
+
+.questionField {
+    height: 50px;
+    resize: none;
+}
