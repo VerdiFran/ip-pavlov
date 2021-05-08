@@ -1,7 +1,9 @@
 import Header from './components/Header/Header'
 import {BrowserRouter, withRouter} from 'react-router-dom'
-import './App.scss'
+import './App.css'
 import Home from './components/Home/Home'
+import store from './redux/store'
+import {Provider} from 'react-redux'
 
 const App = () => {
     return (
@@ -17,7 +19,9 @@ const AppContainer = withRouter(App)
 const MainApp = () => {
     return (
         <BrowserRouter>
-            <AppContainer/>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
         </BrowserRouter>
     )
 }
