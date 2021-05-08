@@ -1,0 +1,13 @@
+@import '../../../../common-scss/variables';
+
+.submenuContainer {
+    position: absolute;
+    margin-top: 60px;
+    align-self: flex-start;
+    margin-left: -80px;
+    width: 240px;
+    height: auto;
+    max-height: 500px;
+    background-color: $background-color;
+    box-shadow: 3px 3px 5px $shadow-color;
+}

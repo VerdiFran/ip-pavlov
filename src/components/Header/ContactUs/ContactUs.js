@@ -9,7 +9,7 @@ import useVisible from '../../../hooks/useVisible'
  * @constructor
  */
 const ContactUs = () => {
-    const {ref, isVisible, setIsVisible} = useVisible(false)
+    const {ref, isVisible, setIsVisible} = useVisible(false, 'click')
 
     return (
         <div>
