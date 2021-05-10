@@ -1,6 +1,7 @@
-import CarouselSlider from "../common/CarouselSlider/CarouselSlider";
+import CarouselSlider from '../common/CarouselSlider/CarouselSlider'
 import styles from './SalesLeaders.module.scss'
-import {useRef, useState, useEffect} from "react";
+import {useRef, useState, useEffect} from 'react'
+import AnotherSalesLeadersContainer from './AnotherSalesLeaders/AnotherSalesLeadersContainer'
 
 /**
  * Component with sales leaders.
@@ -17,6 +18,7 @@ const SalesLeaders = (props) => {
     const [circleSize, setCircleSize] = useState('0px')
     const [categoryIconsVisibility, setCategoryIconsVisibility] = useState('hidden')
     const [fallingIconVisibility, setFallingIconVisibility] = useState('visible')
+    const [currentLeader, setCurrentLeader] = useState(0)
 
     let inTranslation = false
 
@@ -54,54 +56,62 @@ const SalesLeaders = (props) => {
     }
 
     const firstImage = props.images[0]
+    const anotherLeaders = props.leaders.filter((element, idx) => idx !== currentLeader )
 
-    return (
-        <div>
-            <div ref={containerFallIcon} className={styles.dropIconContainer}>
-                <div className={styles.dropIconGrid}>
-                    <img
-                        ref={fallingIcon}
-                        style={{top: fallingIconY, visibility: fallingIconVisibility}}
-                        className={styles.dropIcon}
-                        src={firstImage ? URL.createObjectURL(firstImage.image) : ''}
-                        alt={'drop'}
-                    />
+    return (<>
+            <h1 className={"heading"}>лидеры продаж</h1>
+            <div>
+                <div ref={containerFallIcon} className={styles.dropIconContainer}>
+                    <div className={styles.dropIconGrid}>
+                        <img
+                            ref={fallingIcon}
+                            style={{top: fallingIconY, visibility: fallingIconVisibility}}
+                            className={styles.dropIcon}
+                            src={firstImage ? URL.createObjectURL(firstImage.image) : ''}
+                            alt={'drop'}
+                        />
+                    </div>
+                </div>
+                <div className={styles.salesLeadersSliderContainer} ref={containerWithSlider}>
+                    <CarouselSlider
+                        current={currentLeader}
+                        setCurrent={(value) => setCurrentLeader(value)}
+                    >
+                        {props.leaders.map((leader) => {
+                                const image = props.images.find(image => image.leaderId === leader.id) || ''
+                                return (
+                                    <div className={styles.salesLeadersSlide}>
+                                        <div className={styles.salesLeaderInfo}>
+                                            <div className={styles.salesLeaderDescription}>
+                                                {leader.product.description}
+                                            </div>
+                                            <div className={styles.salesLeaderProducer}>
+                                                Производитель: {leader.product.producer.name}
+                                            </div>
+                                        </div>
+                                        <div style={{width: circleSize, height: circleSize}} className={styles.circle}/>
+                                        <img
+                                            style={{visibility: categoryIconsVisibility}}
+                                            ref={(image) => {
+                                                if (!anyCategoryIcon.current && image) {
+                                                    anyCategoryIcon.current = image
+                                                }
+                                            }}
+                                            className={styles.salesLeaderCategoryIcon}
+                                            src={image ? URL.createObjectURL(image.image) : ''}
+                                            alt={'category'}
+                                        />
+                                    </div>
+                                )
+                            }
+                        )}
+                    </CarouselSlider>
+                </div>
+                <div className={styles.anotherSalesLeaders}>
+                    <AnotherSalesLeadersContainer leaders={anotherLeaders}/>
                 </div>
             </div>
-            <h1 className={"heading"}>лидеры продаж</h1>
-            <div  ref={containerWithSlider}>
-                <CarouselSlider>
-                    {props.leaders.map((leader) => {
-                            const image = props.images.find(image => image.leaderId === leader.id) || ''
-                            return (
-                                <div className={styles.salesLeadersContainer}>
-                                    <div className={styles.salesLeaderInfo}>
-                                        <div className={styles.salesLeaderDescription}>
-                                            {leader.product.description}
-                                        </div>
-                                        <div className={styles.salesLeaderProducer}>
-                                            Производитель: {leader.product.producer.name}
-                                        </div>
-                                    </div>
-                                    <div style={{width: circleSize, height: circleSize}} className={styles.circle}/>
-                                    <img
-                                        style={{visibility: categoryIconsVisibility}}
-                                        ref={(image) => {
-                                            if (!anyCategoryIcon.current && image) {
-                                                anyCategoryIcon.current = image
-                                            }
-                                        }}
-                                        className={styles.salesLeaderCategoryIcon}
-                                        src={image ? URL.createObjectURL(image.image) : ''}
-                                        alt={'category'}
-                                    />
-                                </div>
-                            )
-                        }
-                    )}
-                </CarouselSlider>
-            </div>
-        </div>
+        </>
     )
 }
 

@@ -1,6 +1,6 @@
 import Carousel, { arrowsPlugin } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
-import Arrow from "./Arrow/Arrow";
+import Arrow from './Arrow/Arrow'
 
 /**
  * Our custom carrousel slider.
@@ -19,6 +19,8 @@ const CarouselSlider = (props) => {
                     }
                 }
             ]}
+            value={props.current}
+            onChange={slideNumber => props.setCurrent(slideNumber) }
         >
             {props.children}
         </Carousel>
