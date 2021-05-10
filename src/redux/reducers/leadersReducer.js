@@ -1,4 +1,4 @@
-import {salesLeadersApi} from "../../api/salesLeadersApi";
+import {salesLeadersApi} from '../../api/salesLeadersApi'
 
 const SET_LEADERS = 'SET-LEADERS'
 

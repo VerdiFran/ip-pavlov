@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux'
-import leadersReducer from "./reducers/leadersReducer";
-import thunk from "redux-thunk";
+import leadersReducer from './reducers/leadersReducer'
+import thunk from 'redux-thunk'
 
 const reducers = combineReducers({
     leadersReducer

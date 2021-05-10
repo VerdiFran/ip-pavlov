@@ -1,4 +1,4 @@
-import CarouselSlider from '../common/CarouselSlider/CarouselSlider'
+import CarouselSlider from '../../common/CarouselSlider/CarouselSlider'
 import styles from './SalesLeaders.module.scss'
 import {useRef, useState, useEffect} from 'react'
 import AnotherSalesLeadersContainer from './AnotherSalesLeaders/AnotherSalesLeadersContainer'
@@ -52,11 +52,11 @@ const SalesLeaders = (props) => {
     })
 
     if (props.images.length !== props.leaders.length || !props.leaders.length) {
-        return <div>loading</div>
+        return <div/>
     }
 
-    const firstImage = props.images[0]
-    const anotherLeaders = props.leaders.filter((element, idx) => idx !== currentLeader )
+    const firstImage = props.images.find(image => image.leaderId === props.leaders[0].id)
+    const anotherLeaders = props.leaders.filter((element, idx) => idx !== currentLeader)
 
     return (<>
             <h1 className={"heading"}>лидеры продаж</h1>

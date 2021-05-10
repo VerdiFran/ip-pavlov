@@ -1,4 +1,4 @@
-import {instanceForDownloadFile} from "./instances";
+import {instanceForDownloadFile} from './instances'
 
 /**
  * API for images upload/download.

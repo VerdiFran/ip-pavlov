@@ -1,7 +1,7 @@
 import styles from './AnotherSalesLeaders.module.scss'
 import Arrow from './Arrow/Arrow'
 import DropDawnMenu from './DropdownMenu/DropDawnMenu'
-import {useState} from "react"
+import {useState} from 'react'
 
 /**
  * Component with button for open drop down menu with another sales leaders.

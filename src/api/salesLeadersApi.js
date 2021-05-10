@@ -1,4 +1,4 @@
-import {instance} from "./instances";
+import {instance} from './instances'
 
 /**
  * API for sales leaders.

@@ -1,6 +1,6 @@
 import Header from './components/Header/Header'
 import {BrowserRouter, withRouter} from 'react-router-dom'
-import './App.css'
+import './App.scss'
 import Home from './components/Home/Home'
 import store from './redux/store'
 import {Provider} from 'react-redux'

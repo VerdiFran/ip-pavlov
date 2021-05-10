@@ -1,10 +1,10 @@
-import {getSalesLeaders} from "../../utils/selectors/salesLeadersSelectors";
+import {getSalesLeaders} from "../../../utils/selectors/salesLeadersSelectors";
 import {compose} from 'redux'
-import {connect} from "react-redux";
-import {downloadLeaders} from "../../redux/reducers/leadersReducer";
-import SalesLeaders from "./SalesLeaders";
-import { useEffect, useState} from "react";
-import {imagesApi} from "../../api/imagesApi";
+import {connect} from 'react-redux'
+import {downloadLeaders} from '../../../redux/reducers/leadersReducer'
+import SalesLeaders from './SalesLeaders'
+import { useEffect, useState} from 'react';
+import {imagesApi} from '../../../api/imagesApi'
 
 const mapStateToProps = (state) => ({
     leaders: getSalesLeaders(state)
