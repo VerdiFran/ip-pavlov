@@ -2,8 +2,8 @@ import React from 'react'
 import styles from './Menu.module.scss'
 import {NavLink} from 'react-router-dom'
 import {TO_ABOUT_COMPANY, TO_CATALOG, TO_CONTACTS, TO_HOME, TO_PARTNERS} from '../../../routes'
-import CatalogSubmenuCatalog from './CatalogSubmenu/CatalogSubmenuContainer'
 import useVisible from '../../../hooks/useVisible'
+import CatalogSubmenuContainer from './CatalogSubmenu/CatalogSubmenuContainer'
 
 /**
  * Menu component
@@ -37,7 +37,7 @@ const Menu = () => {
                     data-text="Каталог"
                 >Каталог</NavLink>
                 {
-                    isVisible && <CatalogSubmenuCatalog/>
+                    isVisible && <CatalogSubmenuContainer/>
                 }
             </div>
             <div className={styles.navButton}>

@@ -7,20 +7,12 @@ import {NavLink} from 'react-router-dom'
  * @returns {JSX.Element}
  * @constructor
  */
-const CatalogSubmenu = ({categories}) => {
-    const items = [
-        {
-            title: 'скачать прайс-лист',
-            special: true,
-            path: '/'
-        }
-    ].concat(categories || [])
-
+const CatalogSubmenu = ({submenuItems}) => {
     return (
         <div className={styles.submenuContainer}>
             <ul className={styles.submenuItems}>
                 {
-                    items.map(item => {
+                    submenuItems.map(item => {
                         const classes = [styles.submenuItem]
 
                         if (item?.special) {
@@ -28,7 +20,11 @@ const CatalogSubmenu = ({categories}) => {
                         }
 
                         return <li className={classes.join(' ')}>
-                            <NavLink to={item.path}>{item.title}</NavLink>
+                            {
+                                item.path
+                                    ? <NavLink to={item.path}>{item.title}</NavLink>
+                                    : item.action && <button onClick={item.action}>{item.title}</button>
+                            }
                         </li>
                     })
                 }
