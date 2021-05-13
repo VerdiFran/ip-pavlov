@@ -10,7 +10,7 @@ import {NavLink} from 'react-router-dom'
 const CatalogSubmenu = ({submenuItems}) => {
     return (
         <div className={styles.submenuContainer}>
-            <ul className={styles.submenuItems}>
+            <div className={styles.submenuItems}>
                 {
                     submenuItems.map(item => {
                         const classes = [styles.submenuItem]
@@ -19,16 +19,16 @@ const CatalogSubmenu = ({submenuItems}) => {
                             classes.push(styles.special)
                         }
 
-                        return <li className={classes.join(' ')}>
+                        return <div className={classes.join(' ')}>
                             {
                                 item.path
                                     ? <NavLink to={item.path}>{item.title}</NavLink>
                                     : item.action && <button onClick={item.action}>{item.title}</button>
                             }
-                        </li>
+                        </div>
                     })
                 }
-            </ul>
+            </div>
         </div>
     )
 }
