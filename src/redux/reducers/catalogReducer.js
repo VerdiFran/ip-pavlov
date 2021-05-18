@@ -55,7 +55,52 @@ export const downloadCategories = () => async (dispatch) => {
                     id: 6,
                     routeName: 'bakaleya',
                     name: 'Бакалея'
-                }
+                },
+                {
+                    id: 4,
+                    routeName: 'konservi',
+                    name: 'Консервы'
+                },
+                {
+                    id: 5,
+                    routeName: 'maslo',
+                    name: 'Масло'
+                },
+                {
+                    id: 6,
+                    routeName: 'bakaleya',
+                    name: 'Бакалея'
+                },
+                {
+                    id: 4,
+                    routeName: 'konservi',
+                    name: 'Консервы'
+                },
+                {
+                    id: 5,
+                    routeName: 'maslo',
+                    name: 'Масло'
+                },
+                {
+                    id: 6,
+                    routeName: 'bakaleya',
+                    name: 'Бакалея'
+                },
+                {
+                    id: 4,
+                    routeName: 'konservi',
+                    name: 'Консервы'
+                },
+                {
+                    id: 5,
+                    routeName: 'maslo',
+                    name: 'Масло'
+                },
+                {
+                    id: 6,
+                    routeName: 'bakaleya',
+                    name: 'Бакалея'
+                },
             ])
         }, 1000)
     })

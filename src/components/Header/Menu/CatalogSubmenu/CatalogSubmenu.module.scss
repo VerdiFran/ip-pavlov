@@ -15,14 +15,15 @@
 }
 
 .submenuItems {
+    max-height: 100%;
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
 }
 
 .submenuItem {
+
     a, button {
         width: 240px;
         min-height: 44px;
@@ -47,7 +48,7 @@
         }
     }
 
-    &.special a {
+    &.special * {
         color: $main-color;
         font-weight: bold;
     }
