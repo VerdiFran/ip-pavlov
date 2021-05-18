@@ -1,0 +1,39 @@
+@import "../../../common-scss/variables";
+
+.categoriesContainer {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.categoryContainer {
+    margin: 4px;
+    height: 112px;
+}
+
+.categoryImage {
+    position: relative;
+    float: right;
+    top: -60px;
+    transform: translateX(50%);
+}
+
+.categoryNameBlock {
+    position: relative;
+    box-sizing: border-box;
+    width: 214px;
+    height: 92px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    background-color: $second-color;
+    box-shadow: 3px 3px 5px $shadow-color;
+}
+
+.categoryName {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $main-font-color;
+}
