@@ -9,7 +9,7 @@
 }
 
 .categoryContainer {
-    margin: 4px;
+    margin: 0;
     height: 112px;
 }
 
@@ -29,11 +29,37 @@
     display: flex;
     align-items: center;
     background-color: $second-color;
-    box-shadow: 3px 3px 5px $shadow-color;
+    box-shadow: 0 4px 4px $shadow-color;
 }
 
 .categoryName {
     font-weight: bold;
     text-transform: uppercase;
     color: $main-font-color;
+}
+
+.toCatalogButton {
+    width: 214px;
+    height: 36px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: $second-color;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 4px $shadow-color;
+}
+
+.categoryNameBlock, .toCatalogButton {
+    -webkit-user-select: none;
+    cursor: pointer;
+    transition-duration: 200ms;
+
+    &:hover {
+        background-color: darken($second-color, 5);
+    }
+    &:active {
+        transform: scale(0.97);
+    }
 }

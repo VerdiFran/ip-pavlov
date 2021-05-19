@@ -25,6 +25,7 @@ const CatalogSection = ({categories}) => {
                     ))
                 }
             </div>
+            <button className={styles.toCatalogButton}>к другим категориям</button>
         </div>
     )
 }
