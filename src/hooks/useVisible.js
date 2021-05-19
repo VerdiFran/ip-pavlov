@@ -3,9 +3,10 @@ import {useEffect, useRef, useState} from 'react'
 /**
  * Hook that set visible and hide element if user clicked outside
  * @param initialIsVisible
+ * @param eventType
  * @returns {{ref: React.MutableRefObject<null>, setIsVisible: (value: unknown) => void, isVisible: unknown}}
  */
-const useVisible = (initialIsVisible) => {
+const useVisible = (initialIsVisible, eventType) => {
     const [isVisible, setIsVisible] = useState(initialIsVisible)
     const ref = useRef(null)
 
@@ -16,9 +17,9 @@ const useVisible = (initialIsVisible) => {
     }
 
     useEffect(() => {
-        document.addEventListener('click', handleClickOutside, true)
+        document.addEventListener(eventType, handleClickOutside, true)
         return () => {
-            document.removeEventListener('click', handleClickOutside, true)
+            document.removeEventListener(eventType, handleClickOutside, true)
         }
     }, [])
 
