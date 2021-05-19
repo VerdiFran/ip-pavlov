@@ -1,0 +1,77 @@
+@import "src/common-scss/variables";
+
+.salesLeadersContainer {
+  width: 100%;
+  padding: 10px 70px;
+  display: grid;
+  grid-template-columns: 70% auto;
+  grid-template-rows: 70% auto;
+  grid-template-areas:
+          "desc icon"
+          "desc icon";
+}
+
+.dropIconContainer {
+  padding: 0 112px;
+  height: 0;
+}
+
+.dropIconGrid {
+  display: grid;
+  position: relative;
+  alignment: center;
+  bottom: 270px;
+  grid-template-columns: 70% auto;
+  grid-template-areas:
+          ". dropIcon";
+}
+
+.dropIcon {
+  width: 250px;
+  height: 250px;
+  position: relative;
+  transition: all 0.4s ease-in-out;
+  transform: rotate(-10deg);
+  grid-area: dropIcon;
+  align-self: center;
+  justify-self: center;
+  z-index: 10;
+}
+
+.salesLeaderInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  grid-area: desc
+}
+
+.salesLeaderDescription {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.salesLeaderProducer {
+  font-size: 14px;
+}
+
+.salesLeaderCategoryIcon {
+  width: 250px;
+  height: 250px;
+  transform: rotate(-10deg);
+  grid-area: icon;
+  align-self: center;
+  justify-self: center;
+}
+
+.circle {
+  grid-area: icon;
+  align-self: center;
+  justify-self: center;
+  shape-outside: circle(40%);
+  shape-margin: 1rem;
+  clip-path: circle(40%);
+  background: $second-color;
+  transition: all .2s;
+  transition-delay: 0.35s;
+}

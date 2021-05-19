@@ -4,6 +4,7 @@ import AboutSite from './AboutSite/AboutSite'
 import PageWrapper from '../PageWrapper/PageWrapper'
 import AboutCompany from './AboutCompany/AboutCompany'
 import CatalogSectionContainer from './CatalogSection/CatalogSectionContainer'
+import SalesLeadersContainer from './SalesLeaders/SalesLeadersContainer'
 
 /**
  * Home page
@@ -15,6 +16,9 @@ const Home = () => {
         <PageWrapper>
             <BlockWrapper wrapperType="grey">
                 <AboutSite/>
+            </BlockWrapper>
+            <BlockWrapper wrapperType="light" dividerType="long">
+                <SalesLeadersContainer/>
             </BlockWrapper>
             <BlockWrapper wrapperType="dark" dividerType="long">
                 <CatalogSectionContainer/>
