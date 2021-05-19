@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from './CatalogSection.module.scss'
+import {NavLink} from 'react-router-dom'
+import {TO_CATALOG} from '../../../routes'
 
 /**
  * Section in Home page with categories from catalog
@@ -14,18 +16,20 @@ const CatalogSection = ({categories}) => {
                 {
                     categories.map(category => (
                         <div className={styles.categoryContainer}>
-                            <div className={styles.categoryNameBlock}>
+                            <NavLink to={category.path}>
+                                <div className={styles.categoryNameBlock}>
                                 <span
                                     className={styles.categoryName}
                                     style={{fontSize: category.title.length > 30 ? '16px' : '20px'}}
                                 >{category.title}</span>
-                            </div>
+                                </div>
+                            </NavLink>
                             <img src="" alt="" height="80px" className={styles.categoryImage}/>
                         </div>
                     ))
                 }
             </div>
-            <button className={styles.toCatalogButton}>к другим категориям</button>
+            <NavLink to={TO_CATALOG} className={styles.toCatalogButton}>к другим категориям</NavLink>
         </div>
     )
 }

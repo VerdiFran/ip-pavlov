@@ -11,6 +11,10 @@
 .categoryContainer {
     margin: 0;
     height: 112px;
+
+    a {
+        text-decoration: none;
+    }
 }
 
 .categoryImage {
@@ -39,16 +43,20 @@
 }
 
 .toCatalogButton {
+    display: block;
+    box-sizing: border-box;
     width: 214px;
     height: 36px;
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 8px 20px;
     background-color: $second-color;
     border: none;
     outline: none;
     font-size: 14px;
     font-weight: bold;
+    color: $main-font-color;
     box-shadow: 0 4px 4px $shadow-color;
+    text-decoration: none;
 }
 
 .categoryNameBlock, .toCatalogButton {
