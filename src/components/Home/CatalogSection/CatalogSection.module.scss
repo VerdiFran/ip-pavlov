@@ -1,0 +1,73 @@
+@import "../../../common-scss/variables";
+
+.categoriesContainer {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.categoryContainer {
+    margin: 0;
+    height: 112px;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.categoryImage {
+    position: relative;
+    float: right;
+    top: -60px;
+    transform: translateX(50%);
+}
+
+.categoryNameBlock {
+    position: relative;
+    box-sizing: border-box;
+    width: 214px;
+    height: 92px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    background-color: $second-color;
+    box-shadow: 0 4px 4px $shadow-color;
+}
+
+.categoryName {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $main-font-color;
+}
+
+.toCatalogButton {
+    display: block;
+    box-sizing: border-box;
+    width: 214px;
+    height: 36px;
+    margin-top: 20px;
+    padding: 8px 20px;
+    background-color: $second-color;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: $main-font-color;
+    box-shadow: 0 4px 4px $shadow-color;
+    text-decoration: none;
+}
+
+.categoryNameBlock, .toCatalogButton {
+    -webkit-user-select: none;
+    cursor: pointer;
+    transition-duration: 200ms;
+
+    &:hover {
+        background-color: darken($second-color, 5);
+    }
+    &:active {
+        transform: scale(0.97);
+    }
+}
