@@ -59,47 +59,47 @@ export const downloadCategories = () => async (dispatch) => {
                 {
                     id: 4,
                     routeName: 'konservi',
-                    name: 'Консервы'
+                    name: 'Мясные консервы'
                 },
                 {
                     id: 5,
                     routeName: 'maslo',
-                    name: 'Масло'
+                    name: 'Овощные консервы'
                 },
                 {
                     id: 6,
                     routeName: 'bakaleya',
-                    name: 'Бакалея'
+                    name: 'Шоколад'
                 },
                 {
                     id: 4,
                     routeName: 'konservi',
-                    name: 'Консервы'
+                    name: 'Хозтовары'
                 },
                 {
                     id: 5,
                     routeName: 'maslo',
-                    name: 'Масло'
+                    name: 'Дрожжи'
                 },
                 {
                     id: 6,
                     routeName: 'bakaleya',
-                    name: 'Бакалея'
+                    name: 'Чай и кофе'
                 },
                 {
                     id: 4,
                     routeName: 'konservi',
-                    name: 'Консервы'
+                    name: 'Крупы и мука'
                 },
                 {
                     id: 5,
                     routeName: 'maslo',
-                    name: 'Масло'
+                    name: 'Маслины'
                 },
                 {
                     id: 6,
                     routeName: 'bakaleya',
-                    name: 'Бакалея'
+                    name: 'Молочная продукция'
                 },
             ])
         }, 1000)

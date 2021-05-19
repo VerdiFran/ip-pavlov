@@ -6,18 +6,7 @@ import styles from './CatalogSection.module.scss'
  * @returns {JSX.Element}
  * @constructor
  */
-const CatalogSection = () => {
-    const categories = [
-        'РАСТИТЕЛЬНОЕ МАСЛО',
-        'МЯСНЫЕ КОНСЕРВЫ',
-        'ДРОЖЖИ, ПЕКАРНЫЕ ПОРОШКИ И КОНЦЕНТРАТЫ',
-        'ЧАЙ И КОФЕ',
-        'КРУПЫ И МУКА',
-        'МАКАРОННЫЕ ИЗДЕЛИЯ',
-        'МАСЛИНЫ',
-        'МОЛОЧНАЯ ПРОДУКЦИЯ'
-    ]
-
+const CatalogSection = ({categories}) => {
     return (
         <div>
             <h1 className="heading">Каталог товаров</h1>
@@ -28,8 +17,8 @@ const CatalogSection = () => {
                             <div className={styles.categoryNameBlock}>
                                 <span
                                     className={styles.categoryName}
-                                    style={{fontSize: category.length > 30 ? '16px' : '20px'}}
-                                >{category}</span>
+                                    style={{fontSize: category.title.length > 30 ? '16px' : '20px'}}
+                                >{category.title}</span>
                             </div>
                             <img src="" alt="" height="80px" className={styles.categoryImage}/>
                         </div>
