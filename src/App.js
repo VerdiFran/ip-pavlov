@@ -59,11 +59,13 @@ const AppContainer = compose(
 )(App)
 
 const MainApp = () => {
-    return <BrowserRouter>
-        <Provider store={store}>
-            <AppContainer/>
-        </Provider>
-    </BrowserRouter>
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    )
 }
 
 export default MainApp
