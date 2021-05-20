@@ -8,7 +8,8 @@ import store from './redux/store'
 import {compose} from 'redux'
 import {getInitialized} from './utils/selectors/appSelectors'
 import {initializeApp} from './redux/reducers/appReducer'
-import {useEffect} from 'react'
+import React, {useEffect} from 'react'
+import Footer from './components/Footer/Footer'
 
 const App = ({initialized, initializeApp}) => {
     useEffect(() => {
@@ -45,6 +46,7 @@ const App = ({initialized, initializeApp}) => {
                     render={() => <div>contacts</div>}
                 />
             </Switch>
+            <Footer/>
         </div>
     )
 }

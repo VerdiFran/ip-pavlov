@@ -17,7 +17,7 @@ const Home = () => {
             <BlockWrapper wrapperType="grey">
                 <AboutSite/>
             </BlockWrapper>
-            <BlockWrapper wrapperType="light" dividerType="long">
+            <BlockWrapper wrapperType="light" dividerType="short">
                 <SalesLeadersContainer/>
             </BlockWrapper>
             <BlockWrapper wrapperType="dark" dividerType="long">
