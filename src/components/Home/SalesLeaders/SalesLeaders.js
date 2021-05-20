@@ -23,7 +23,7 @@ const SalesLeaders = (props) => {
     let inTranslation = false
 
     useEffect(() => {
-        if (containerWithSlider.current) {
+        if (containerWithSlider.current && anyCategoryIcon.current) {
 
             const options = {
                 root: null,
@@ -51,10 +51,6 @@ const SalesLeaders = (props) => {
         }
     })
 
-    if (props.images.length !== props.leaders.length || !props.leaders.length) {
-        return <div/>
-    }
-
     const firstImage = props.images.find(image => image.leaderId === props.leaders[0].id)
     const anotherLeaders = props.leaders.filter((element, idx) => idx !== currentLeader)
 
@@ -76,7 +72,7 @@ const SalesLeaders = (props) => {
                 <div className={styles.salesLeadersSliderContainer} ref={containerWithSlider}>
                     <CarouselSlider
                         current={currentLeader}
-                        setCurrent={(value) => setCurrentLeader(value)}
+                        setCurrent={setCurrentLeader}
                     >
                         {props.leaders.map((leader) => {
                                 const image = props.images.find(image => image.leaderId === leader.id) || ''
