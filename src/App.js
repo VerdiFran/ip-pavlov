@@ -9,7 +9,7 @@ import {compose} from 'redux'
 import {getInitialized} from './utils/selectors/appSelectors'
 import {initializeApp} from './redux/reducers/appReducer'
 import {useEffect} from 'react'
-import CatalogPage from './components/CatalogPage/CatalogPage'
+import CatalogPageContainer from './components/CatalogPage/CatalogPageContainer'
 
 const App = ({initialized, initializeApp}) => {
     useEffect(() => {
@@ -31,7 +31,7 @@ const App = ({initialized, initializeApp}) => {
                 />
                 <Route
                     path={`${routes.TO_CATALOG}`}
-                    render={() => <CatalogPage/>}
+                    render={() => <CatalogPageContainer/>}
                 />
                 <Route
                     path={`${routes.TO_CATALOG}/:category`}
