@@ -3,19 +3,22 @@ import PageWrapper from '../PageWrapper/PageWrapper'
 import CatalogHeaderContainer from './CatalogHeader/CatalogHeaderContainer'
 import ListWrapper from './ListWrapper/ListWrapper'
 import Product from '../common/Product/Product'
+import CategoryCard from './CategoryCard/CategoryCard'
 
 /**
  * Page with catalog
  * @returns {JSX.Element}
  * @constructor
  */
-const CatalogPage = ({products}) => {
+const CatalogPage = ({categories, products}) => {
     return (
         <PageWrapper>
             <CatalogHeaderContainer/>
             <ListWrapper title="категории">
                 {
-
+                    categories.map(category =>
+                        <CategoryCard categoryInfo={category} key={category.id}/>
+                    )
                 }
             </ListWrapper>
             <ListWrapper title="товары">

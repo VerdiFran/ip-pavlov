@@ -1,0 +1,43 @@
+@import '../../../common-scss/variables';
+
+.categoryCard {
+    width: 170px;
+    height: 190px;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: $second-color;
+    box-shadow: 0 4px 4px $shadow-color;
+
+    a {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-rows: 110px auto;
+        grid-template-areas:
+                'image'
+                'title';
+        justify-content: center;
+        text-decoration: none;
+    }
+}
+
+.categoryImageContainer {
+    grid-area: image;
+    display: flex;
+    justify-content: center;
+}
+
+.categoryImage {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.categoryName {
+    grid-area: title;
+    font-size: 16px;
+    color: $main-font-color;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+}
