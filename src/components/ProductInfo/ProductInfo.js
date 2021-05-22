@@ -2,8 +2,10 @@ import styles from './ProductInfo.module.scss'
 import test from '../../assets/images/distributorsProducts/bearProduct.png'
 import {useRef} from 'react'
 
-const ProductInfo = ({productInfoVisible, onClose}) => {
-
+/**
+ * Component with information about product.
+ */
+const ProductInfo = ({productIsLoading, product, productInfoVisible, onClose}) => {
     const backgroundRef = useRef()
 
     const modalStyle = {
@@ -24,14 +26,17 @@ const ProductInfo = ({productInfoVisible, onClose}) => {
             onClick={handleBackgroundClick}
         >
             <div className={styles.modalContainer}>
-                <div className={styles.productImageContainer}>
-                    <img src={test} alt="product"/>
-                </div>
-                <div className={styles.productInfoContainer}>
-                    <span className={styles.productDescription}>Test</span>
-                    <span className={styles.producer}>Производитель: </span>
-                    <span className={styles.price}>test</span>
-                </div>
+                {!productIsLoading && <>
+                    <div className={styles.productImageContainer}>
+                        <img src={test} alt="product"/>
+                    </div>
+                    <div className={styles.productInfoContainer}>
+                        <span className={styles.productDescription}>{product?.description}</span>
+                        <span className={styles.producer}>Производитель: {product?.producer?.name}</span>
+                        <span className={styles.price}>{product?.price}₽</span>
+                    </div>
+                </>
+                }
             </div>
         </div>
     )
