@@ -5,11 +5,11 @@
     margin-top: 40px;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .categoryContainer {
-    margin: 0;
+    margin: 0 20px 0 0;
     height: 112px;
 
     a {

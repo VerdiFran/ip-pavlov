@@ -30,6 +30,7 @@ export const downloadCategories = () => async (dispatch) => {
     const {data} = await catalogAPI.getCategoriesNames()
 
     dispatch(setCategories(data.map(category => ({
+        id: category.id,
         title: category.name,
         path: `/categories/${category.routeName}`
     }))))
