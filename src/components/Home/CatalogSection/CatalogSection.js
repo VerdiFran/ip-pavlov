@@ -15,7 +15,7 @@ const CatalogSection = ({categories}) => {
             <div className={styles.categoriesContainer}>
                 {
                     categories.map(category => (
-                        <div className={styles.categoryContainer}>
+                        <div className={styles.categoryContainer} key={category.id}>
                             <NavLink to={category.path}>
                                 <div className={styles.categoryNameBlock}>
                                 <span
