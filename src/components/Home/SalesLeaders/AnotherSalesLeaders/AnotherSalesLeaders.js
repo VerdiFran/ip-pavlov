@@ -6,8 +6,9 @@ import {useState} from 'react'
 /**
  * Component with button for open drop down menu with another sales leaders.
  * @param leaders Another leaders.
+ * @param onSelect On leader selected.
  */
-const AnotherSalesLeaders = ({leaders}) => {
+const AnotherSalesLeaders = ({leaders, onSelect}) => {
     const [dropDawnVisibility, setDropDawnVisibility] = useState(false)
 
     return (
@@ -26,6 +27,7 @@ const AnotherSalesLeaders = ({leaders}) => {
             <DropDawnMenu
                 visibility={dropDawnVisibility}
                 leaders={leaders}
+                onSelect={onSelect}
             />
         </div>
     )
