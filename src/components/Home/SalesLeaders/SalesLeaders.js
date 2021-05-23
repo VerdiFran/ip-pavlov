@@ -1,13 +1,13 @@
 import CarouselSlider from '../../common/CarouselSlider/CarouselSlider'
 import styles from './SalesLeaders.module.scss'
 import {useRef, useState, useEffect} from 'react'
-import AnotherSalesLeadersContainer from './AnotherSalesLeaders/AnotherSalesLeadersContainer'
+import ProductInfo from '../../ProductInfo/ProductInfo'
+import AnotherSalesLeaders from './AnotherSalesLeaders/AnotherSalesLeaders'
 
 /**
  * Component with sales leaders.
- * @param props Properties.
  */
-const SalesLeaders = (props) => {
+const SalesLeaders = ({leaders, categoryImages, productImages}) => {
 
     const containerWithSlider = useRef(null)
     const containerFallIcon = useRef(null)
@@ -19,6 +19,11 @@ const SalesLeaders = (props) => {
     const [categoryIconsVisibility, setCategoryIconsVisibility] = useState('hidden')
     const [fallingIconVisibility, setFallingIconVisibility] = useState('visible')
     const [currentLeader, setCurrentLeader] = useState(0)
+
+    const [productVisible, setProductVisible] = useState(false)
+    const [selectedLeaderId, setSelectedLeaderId] = useState(0)
+    const [selectedProduct, setSelectedProduct] = useState(null)
+    const [selectedProductImage, setSelectedProductImage] = useState(null)
 
     let inTranslation = false
 
@@ -51,11 +56,20 @@ const SalesLeaders = (props) => {
         }
     })
 
-    const firstImage = props.images.find(image => image.leaderId === props.leaders[0].id)
-    const anotherLeaders = props.leaders.filter((element, idx) => idx !== currentLeader)
+    useEffect(() => {
+        if (!selectedLeaderId) {
+            return
+        }
+
+        setSelectedProduct(leaders?.find(leader => leader.id === selectedLeaderId)?.product)
+        setSelectedProductImage(productImages?.find(image => image.leaderId === selectedLeaderId)?.image)
+    }, [selectedLeaderId])
+
+    const firstImage = categoryImages.find(image => image.leaderId === leaders[0].id)
+    const anotherLeaders = leaders.filter((element, idx) => idx !== currentLeader)
 
     return (
-        <>
+        <div>
             <h1 className={"heading"}>лидеры продаж</h1>
             <div>
                 <div ref={containerFallIcon} className={styles.dropIconContainer}>
@@ -74,10 +88,16 @@ const SalesLeaders = (props) => {
                         current={currentLeader}
                         setCurrent={setCurrentLeader}
                     >
-                        {props.leaders.map((leader) => {
-                                const image = props.images.find(image => image.leaderId === leader.id) || ''
+                        {leaders.map((leader) => {
+                                const image = categoryImages.find(image => image.leaderId === leader.id) || ''
                                 return (
-                                    <div className={styles.salesLeadersSlide}>
+                                    <div
+                                        className={styles.salesLeadersSlide}
+                                        onClick={() => {
+                                            setProductVisible(true)
+                                            setSelectedLeaderId(leader.id)
+                                        }}
+                                    >
                                         <div className={styles.salesLeaderInfo}>
                                             <div className={styles.salesLeaderDescription}>
                                                 {leader.product.description}
@@ -105,10 +125,24 @@ const SalesLeaders = (props) => {
                     </CarouselSlider>
                 </div>
                 <div className={styles.anotherSalesLeaders}>
-                    <AnotherSalesLeadersContainer leaders={anotherLeaders}/>
+                    <AnotherSalesLeaders
+                        leaders={anotherLeaders}
+                        onSelect={(id) => {
+                            setSelectedLeaderId(id)
+                            setProductVisible(true)
+                        }}
+                    />
                 </div>
             </div>
-        </>
+            {productVisible && <ProductInfo
+                product={selectedProduct}
+                productImage={selectedProductImage}
+                productInfoVisible={productVisible}
+                onClose={() => {
+                    setProductVisible(false)
+                }}
+            />}
+        </div>
     )
 }
 

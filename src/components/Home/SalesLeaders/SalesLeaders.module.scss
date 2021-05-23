@@ -10,13 +10,18 @@
 
 .salesLeadersSlide {
   width: 100%;
-  padding: 10px 0;
+  margin: 10px 0;
   display: grid;
   grid-template-columns: 70% auto;
   grid-template-rows: auto auto;
   grid-template-areas:
-          "desc icon"
           "desc icon";
+  cursor: pointer;
+  transition-duration: 0.2s;
+
+  &:hover {
+    transform: scale(0.98);
+  }
 }
 
 .dropIconContainer {
