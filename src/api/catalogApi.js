@@ -18,6 +18,9 @@ const catalogAPI = {
         }
 
         return instance.get('products', config)
+    },
+    getPartners() {
+        return instance.get('partners')
     }
 }
 

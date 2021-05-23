@@ -17,3 +17,5 @@ export const getEightRandomCategories = (state) => {
 
     return shuffle(categories).slice(0, 8)
 }
+
+export const getPartners = (state) => state.catalog.partners

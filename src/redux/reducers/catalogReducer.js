@@ -3,20 +3,21 @@ import {imagesApi} from '../../api/imagesApi'
 
 const SET_CATEGORIES = 'SET-CATEGORIES'
 const SET_CATEGORY_IMAGE = 'SET-CATEGORY-IMAGE'
+const SET_PARTNERS = 'SET-PARTNERS'
 
 const initialState = {
-    categories: []
+    categories: [],
+    partners: []
 }
 
 const catalogReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_CATEGORIES: {
+        case SET_CATEGORIES:
             return {
                 ...state,
                 categories: action.categories
             }
-        }
-        case SET_CATEGORY_IMAGE : {
+        case SET_CATEGORY_IMAGE:
             return {
                 ...state,
                 categories: state.categories.map(category => {
@@ -28,7 +29,11 @@ const catalogReducer = (state = initialState, action) => {
                         : category
                 })
             }
-        }
+        case SET_PARTNERS:
+            return {
+                ...state,
+                partners: action.partners
+            }
         default: {
             return state
         }
@@ -37,6 +42,7 @@ const catalogReducer = (state = initialState, action) => {
 
 const setCategories = (categories) => ({type: SET_CATEGORIES, categories})
 const setCategoryImage = (image) => ({type: SET_CATEGORY_IMAGE, image})
+const setPartners = (partners) => ({type: SET_PARTNERS, partners})
 
 /**
  * Get categories from server and set categoryMenuItem to state
@@ -63,6 +69,16 @@ export const downloadCategoriesImages = () => (dispatch, getState) => {
         imagesApi.downloadImage(category.imageId, 'Categories')
             .then(result => dispatch(setCategoryImage({categoryId: category.id, image: result})))
     })
+}
+
+/**
+ * Get partners and set it to state
+ * @returns {function(*): Promise<void>}
+ */
+export const downloadPartners = () => async (dispatch) => {
+    const {data} = await catalogAPI.getPartners()
+
+    dispatch(setPartners(data))
 }
 
 export default catalogReducer
