@@ -9,6 +9,15 @@ const catalogAPI = {
         }
 
         return instance.get('categories', config)
+    },
+    getProducts() {
+        const config = {
+            params: {
+
+            }
+        }
+
+        return instance.get('products', config)
     }
 }
 

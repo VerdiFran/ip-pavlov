@@ -1,60 +1,46 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import CatalogPage from './CatalogPage'
 import {connect} from 'react-redux'
 import {getCategories} from '../../utils/selectors/catalogSelectors'
-import bearProduct from '../../assets/images/distributorsProducts/bearProduct.png'
+import catalogAPI from '../../api/catalogApi'
+import {imagesApi} from '../../api/imagesApi'
 
 const mapStateToProps = (state) => ({
     categories: getCategories(state)
 })
 
 const CatalogPageContainer = ({categories}) => {
-    const products = [
-        {
-            id: 0,
-            description: 'СОУС СОЕВЫЙ пикантный ТМ "Медведь любимый" 200/24 (бут.груша)',
-            quantity: 1,
-            price: 15.20,
-            image: bearProduct
-        },
-        {
-            id: 1,
-            description: 'СОУС СОЕВЫЙ пикантный ТМ "Медведь любимый" 200/24 (бут.груша)',
-            quantity: 1,
-            price: 15.20,
-            image: bearProduct
-        },
-        {
-            id: 2,
-            description: 'СОУС СОЕВЫЙ пикантный ТМ "Медведь любимый" 200/24 (бут.груша)',
-            quantity: 1,
-            price: 15.20,
-            image: bearProduct
-        },
-        {
-            id: 3,
-            description: 'СОУС СОЕВЫЙ пикантный ТМ "Медведь любимый" 200/24 (бут.груша)',
-            quantity: 1,
-            price: 15.20,
-            image: bearProduct
-        },
-        {
-            id: 4,
-            description: 'СОУС СОЕВЫЙ пикантный ТМ "Медведь любимый" 200/24 (бут.груша)',
-            quantity: 1,
-            price: 15.20,
-            image: bearProduct
-        },
-        {
-            id: 5,
-            description: 'СОУС СОЕВЫЙ пикантный ТМ "Медведь любимый" 200/24 (бут.груша) СОУС СОЕВЫЙ пикантный ТМ "Медведь любимый" 200/24 (бут.груша)',
-            quantity: 1,
-            price: 15.20,
-            image: bearProduct
-        }
-    ]
+    const [products, setProducts] = useState([])
+    const [productsImages, setProductsImages] = useState({})
 
-    return <CatalogPage categories={categories} products={products}/>
+    const downloadProducts = async () => {
+        const {data: {content}} = await catalogAPI.getProducts()
+        setProducts(content)
+    }
+
+    const downloadProductsImages = () => {
+        if (products.length) {
+            products.forEach(product => {
+                imagesApi.downloadImage(product.image.id, 'Products')
+                    .then(result => setProductsImages(prev =>
+                        ({
+                            ...prev,
+                            [`${product.id}`]: result
+                        })
+                    ))
+            })
+        }
+    }
+
+    useEffect(() => {
+        downloadProducts()
+    }, [])
+
+    useEffect(() => {
+        downloadProductsImages()
+    }, [products])
+
+    return <CatalogPage categories={categories} products={products} productsImages={productsImages}/>
 }
 
 export default connect(mapStateToProps)(CatalogPageContainer)

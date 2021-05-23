@@ -10,7 +10,7 @@ import CategoryCard from './CategoryCard/CategoryCard'
  * @returns {JSX.Element}
  * @constructor
  */
-const CatalogPage = ({categories, products}) => {
+const CatalogPage = ({categories, products, productsImages}) => {
     return (
         <PageWrapper>
             <CatalogHeaderContainer/>
@@ -24,7 +24,13 @@ const CatalogPage = ({categories, products}) => {
             <ListWrapper title="товары">
                 {
                     products.map(product =>
-                        <Product productInfo={product} key={product.id}/>
+                        <Product
+                            productInfo={{
+                                ...product,
+                                image: productsImages[product.id] || null
+                            }}
+                            key={product.id}
+                        />
                     )
                 }
             </ListWrapper>
