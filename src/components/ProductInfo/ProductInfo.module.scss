@@ -11,11 +11,23 @@
   align-items: center;
   background-color: $product-info-background-color;
   z-index: 35;
+  animation: show 0.2s;
+}
+
+@keyframes show {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+@keyframes hide {
+  from {opacity: 1}
+  to {opacity: 0}
 }
 
 .modalContainer {
   width: 450px;
   height: 580px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,8 +49,8 @@
 }
 
 .productImage {
-  max-width: 512px;
-  max-height: 512px;
+  width: auto;
+  height: auto;
 }
 
 .productInfoContainer {
