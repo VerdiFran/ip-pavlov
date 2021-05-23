@@ -1,11 +1,10 @@
 import styles from './ProductInfo.module.scss'
-import test from '../../assets/images/distributorsProducts/bearProduct.png'
 import {useRef} from 'react'
 
 /**
  * Component with information about product.
  */
-const ProductInfo = ({productIsLoading, product, productInfoVisible, onClose}) => {
+const ProductInfo = ({product, productInfoVisible, onClose, productImage}) => {
     const backgroundRef = useRef()
 
     const modalStyle = {
@@ -25,18 +24,16 @@ const ProductInfo = ({productIsLoading, product, productInfoVisible, onClose}) =
             className={styles.modalBackground}
             onClick={handleBackgroundClick}
         >
-            <div className={styles.modalContainer}>
-                {!productIsLoading && <>
-                    <div className={styles.productImageContainer}>
-                        <img src={test} alt="product"/>
-                    </div>
-                    <div className={styles.productInfoContainer}>
-                        <span className={styles.productDescription}>{product?.description}</span>
-                        <span className={styles.producer}>Производитель: {product?.producer?.name}</span>
-                        <span className={styles.price}>{product?.price}₽</span>
-                    </div>
-                </>
-                }
+            <div style={modalStyle} className={styles.modalContainer}>
+                <div className={styles.productImageContainer}>
+                    <img className={styles.productImage} src={productImage ? URL.createObjectURL(productImage) : ''}
+                         alt="product"/>
+                </div>
+                <div className={styles.productInfoContainer}>
+                    <span className={styles.productDescription}>{product?.description}</span>
+                    <span className={styles.producer}>Производитель: {product?.producer?.name}</span>
+                    <span className={styles.price}>{product?.price}₽</span>
+                </div>
             </div>
         </div>
     )
