@@ -27,7 +27,11 @@ const CategoryCard = ({categoryInfo: {title, path, image}}) => {
         <div className={styles.categoryCard}>
             <NavLink to={path}>
                 <div className={styles.categoryImageContainer}>
-                    <img src={image} alt="" className={styles.categoryImage}/>
+                    <img
+                        src={image ? URL.createObjectURL(image) : ''}
+                        alt=""
+                        className={styles.categoryImage}
+                    />
                 </div>
                 <div
                     className={styles.categoryName}

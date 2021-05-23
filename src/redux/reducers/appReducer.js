@@ -1,4 +1,4 @@
-import {downloadCategories} from './catalogReducer'
+import {downloadCategories, downloadCategoriesImages} from './catalogReducer'
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 
@@ -27,6 +27,8 @@ export const initializeApp = () => async (dispatch) => {
 
     Promise.all([promise])
         .then(() => dispatch(initializedSuccess()))
+
+    dispatch(downloadCategoriesImages())
 }
 
 export default appReducer
