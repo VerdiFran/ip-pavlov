@@ -7,12 +7,22 @@ const mapStateToProps = (state) => ({
     partners: getPartners(state)
 })
 
-const CatalogHeaderContainer = ({partners, searchTerm, isSearching, setSearchTerm, handleSearch}) => {
+const CatalogHeaderContainer = (props) => {
+    const {
+        partners,
+        searchTerm,
+        isSearching,
+        setSearchTerm,
+        setProducerIds,
+        handleSearch
+    } = props
+
     return <CatalogHeader
         manufacturers={partners}
         searchTerm={searchTerm}
         isSearching={isSearching}
         setSearchTerm={setSearchTerm}
+        setProducerIds={setProducerIds}
         handleSearch={handleSearch}
     />
 }

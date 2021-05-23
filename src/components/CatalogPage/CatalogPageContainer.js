@@ -18,8 +18,10 @@ const CatalogPageContainer = ({categories}) => {
     const [isSearching, setIsSearching] = useState(false)
     const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
-    const downloadProducts = async (name) => {
-        const {data: {content}} = await catalogAPI.getProducts(name)
+    const [producerIds, setProducerIds] = useState([])
+
+    const downloadProducts = async (name, producerIds) => {
+        const {data: {content}} = await catalogAPI.getProducts(name, producerIds)
         setProducts(content)
     }
 
@@ -43,8 +45,8 @@ const CatalogPageContainer = ({categories}) => {
 
     useEffect(() => {
         setIsSearching(true)
-        downloadProducts(debouncedSearchTerm).then(() => setIsSearching(false))
-    }, [debouncedSearchTerm])
+        downloadProducts(debouncedSearchTerm, producerIds).then(() => setIsSearching(false))
+    }, [debouncedSearchTerm, producerIds])
 
     useEffect(() => {
         downloadProductsImages()
@@ -57,6 +59,7 @@ const CatalogPageContainer = ({categories}) => {
         searchTerm={searchTerm}
         isSearching={isSearching}
         setSearchTerm={setSearchTerm}
+        setProducerIds={setProducerIds}
         handleSearch={(searchTerm) => downloadProducts(searchTerm)}
     />
 }

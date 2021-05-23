@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './CatalogHeader.module.scss'
 import filtersImage from '../../../assets/images/filters.png'
 
@@ -7,12 +7,20 @@ import filtersImage from '../../../assets/images/filters.png'
  * @returns {JSX.Element}
  * @constructor
  */
-const CatalogHeader = ({manufacturers, searchTerm, setSearchTerm, handleSearch}) => {
+const CatalogHeader = ({manufacturers, searchTerm, setSearchTerm, setProducerIds, handleSearch}) => {
     const [filtersIsOpened, setFiltersIsOpened] = useState(true)
 
     const [manufacturersActive, setManufacturersActive] = useState(
         Object.fromEntries(manufacturers.map(manufacturer => [manufacturer.id, false]))
     )
+
+    useEffect(() => {
+        setProducerIds(Object
+            .entries(manufacturersActive)
+            .filter(manufacturer => manufacturer[1] === true)
+            .map(manufacturer => manufacturer[0])
+        )
+    }, [manufacturersActive])
 
     const toggleCheckbox = (manufacturerId) => {
         setManufacturersActive({

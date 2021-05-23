@@ -10,13 +10,25 @@ import CategoryCard from './CategoryCard/CategoryCard'
  * @returns {JSX.Element}
  * @constructor
  */
-const CatalogPage = ({categories, products, productsImages, searchTerm, isSearching, setSearchTerm, handleSearch}) => {
+const CatalogPage = (props) => {
+    const {
+        categories,
+        products,
+        productsImages,
+        searchTerm,
+        isSearching,
+        setSearchTerm,
+        setProducerIds,
+        handleSearch
+    } = props
+
     return (
         <PageWrapper>
             <CatalogHeaderContainer
                 searchTerm={searchTerm}
                 isSearching={isSearching}
                 setSearchTerm={setSearchTerm}
+                setProducerIds={setProducerIds}
                 handleSearch={handleSearch}
             />
             <ListWrapper title="категории">
