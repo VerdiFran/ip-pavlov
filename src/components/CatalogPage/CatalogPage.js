@@ -10,10 +10,15 @@ import CategoryCard from './CategoryCard/CategoryCard'
  * @returns {JSX.Element}
  * @constructor
  */
-const CatalogPage = ({categories, products, productsImages}) => {
+const CatalogPage = ({categories, products, productsImages, searchTerm, isSearching, setSearchTerm, handleSearch}) => {
     return (
         <PageWrapper>
-            <CatalogHeaderContainer/>
+            <CatalogHeaderContainer
+                searchTerm={searchTerm}
+                isSearching={isSearching}
+                setSearchTerm={setSearchTerm}
+                handleSearch={handleSearch}
+            />
             <ListWrapper title="категории">
                 {
                     categories.map(category =>

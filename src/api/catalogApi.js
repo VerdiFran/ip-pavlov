@@ -10,10 +10,10 @@ const catalogAPI = {
 
         return instance.get('categories', config)
     },
-    getProducts() {
+    getProducts(name) {
         const config = {
             params: {
-
+                name
             }
         }
 

@@ -7,7 +7,7 @@ import filtersImage from '../../../assets/images/filters.png'
  * @returns {JSX.Element}
  * @constructor
  */
-const CatalogHeader = ({manufacturers}) => {
+const CatalogHeader = ({manufacturers, searchTerm, setSearchTerm, handleSearch}) => {
     const [filtersIsOpened, setFiltersIsOpened] = useState(true)
 
     const [manufacturersActive, setManufacturersActive] = useState(
@@ -24,8 +24,19 @@ const CatalogHeader = ({manufacturers}) => {
     return (
         <div className={styles.catalogHeader}>
             <div className={styles.searchContainer}>
-                <input className={styles.searchField}/>
-                <button className={styles.searchButton}>Поиск</button>
+                <input
+                    className={styles.searchField}
+                    value={searchTerm}
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value)
+                    }}
+                />
+                <button
+                    className={styles.searchButton}
+                    onClick={() => {
+                        handleSearch(searchTerm)
+                    }}
+                >Поиск</button>
             </div>
             <div className={styles.filtersContainer}>
                 <div
