@@ -9,6 +9,13 @@ const catalogAPI = {
         }
 
         return instance.get('categories', config)
+    },
+    /**
+     * GET request to receive partners
+     * @returns {Promise}
+     */
+    getPartners() {
+        return instance.get('partners')
     }
 }
 

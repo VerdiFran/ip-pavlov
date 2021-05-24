@@ -1,0 +1,20 @@
+@import "src/common-scss/variables";
+
+.partnerName {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.partnerCard {
+    width: 200px;
+    height: 100px;
+    padding: 4px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $second-color;
+    box-shadow: 0 4px 4px $shadow-color;
+}

@@ -10,6 +10,7 @@ import {getInitialized} from './utils/selectors/appSelectors'
 import {initializeApp} from './redux/reducers/appReducer'
 import React, {useEffect} from 'react'
 import Footer from './components/Footer/Footer'
+import AboutCompany from './components/AboutCompany/AboutCompany'
 
 const App = ({initialized, initializeApp}) => {
     useEffect(() => {
@@ -35,7 +36,7 @@ const App = ({initialized, initializeApp}) => {
                 />
                 <Route
                     path={routes.TO_ABOUT_COMPANY}
-                    render={() => <div>about company</div>}
+                    render={() => <AboutCompany/>}
                 />
                 <Route
                     path={routes.TO_PARTNERS}
