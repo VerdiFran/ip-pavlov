@@ -7,13 +7,16 @@ import Partner from './Partner/Partner'
  */
 const Partners = ({partners}) => {
     return (
-        <div className={styles.partnersContainer}>
-            {
-                partners.map(partner =>
-                    <Partner name={partner.name}/>
-                )
-            }
-        </div>
+        <>
+            <h1 className="heading">наши партнеры</h1>
+            <div className={styles.partnersContainer}>
+                {
+                    partners.map(partner =>
+                        <Partner name={partner.name}/>
+                    )
+                }
+            </div>
+        </>
     )
 }
 
