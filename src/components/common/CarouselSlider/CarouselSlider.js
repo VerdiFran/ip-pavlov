@@ -1,4 +1,4 @@
-import Arrow from './Arrow/Arrow'
+import Arrow from '../Arrow/Arrow'
 import {fadeInLeft, fadeInRight, fadeOutLeft, fadeOutRight} from 'react-animations'
 import Radium, {StyleRoot} from 'radium'
 import styles from './CarouselSlider.module.scss'
