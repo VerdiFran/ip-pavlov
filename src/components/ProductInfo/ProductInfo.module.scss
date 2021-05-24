@@ -19,11 +19,6 @@
   to {opacity: 1}
 }
 
-@keyframes hide {
-  from {opacity: 1}
-  to {opacity: 0}
-}
-
 .modalContainer {
   width: 450px;
   height: 580px;
@@ -71,7 +66,7 @@
 }
 
 .price {
-  align-self: end;
+  align-self: flex-end;
   font-size: 25px;
 }
 
