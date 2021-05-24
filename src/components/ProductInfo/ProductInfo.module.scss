@@ -1,0 +1,73 @@
+@import "src/common-scss/variables";
+
+.modalBackground {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $product-info-background-color;
+  z-index: 35;
+  animation: show 0.2s;
+}
+
+@keyframes show {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.modalContainer {
+  width: 450px;
+  height: 580px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: $second-color;
+  z-index: 40;
+}
+
+.productImageContainer {
+  width: 85%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 150px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 4px $shadow-color;
+}
+
+.productImage {
+  width: auto;
+  height: auto;
+}
+
+.productInfoContainer {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.productDescription {
+  font-size: 24px;
+  font-weight: bold;
+  color: #002A5A;
+}
+
+.producer {
+  font-size: 18px;
+}
+
+.price {
+  align-self: flex-end;
+  font-size: 25px;
+}
+
+

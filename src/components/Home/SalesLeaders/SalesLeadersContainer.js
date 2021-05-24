@@ -15,24 +15,40 @@ const mapStateToProps = (state) => ({
  * @param props Properties.
  */
 const SalesLeadersContainer = (props) => {
-    const [images, setImages] = useState([])
+    const [categoryImages, setCategoryImages] = useState([])
+    const [productImages, setProductImages] = useState([])
+    const [leadersIsLoaded, setLeadersIsLoaded] = useState(false)
 
     useEffect(() => {
         props.downloadLeaders()
+            .then(() => {
+                setLeadersIsLoaded(true)
+            })
     }, [])
 
     useEffect(() => {
-        if (props.leaders) {
+        if (leadersIsLoaded) {
             props.leaders.forEach(leader => {
                 imagesApi.downloadImage(leader.product.category.icon.id, 'Categories')
                     .then((result) => {
-                        setImages(prev => [...prev, {leaderId: leader.id, image: result}])
+                        setCategoryImages(prev => [...prev, {leaderId: leader.id, image: result}])
+                    })
+            })
+
+            props.leaders.forEach(leader => {
+                imagesApi.downloadImage(leader.product.id, 'Products')
+                    .then((result) => {
+                        setProductImages(prev => [...prev, {leaderId: leader.id, image: result}])
                     })
             })
         }
-    }, [props.leaders])
+    }, [leadersIsLoaded])
 
-    return <SalesLeaders leaders={props.leaders} images={images}/>
+    return <SalesLeaders
+        leaders={props.leaders}
+        categoryImages={categoryImages}
+        productImages={productImages}
+    />
 }
 
 export default compose(

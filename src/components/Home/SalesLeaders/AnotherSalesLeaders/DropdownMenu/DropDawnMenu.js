@@ -4,8 +4,9 @@ import styles from './DropDawnMenu.module.scss'
  * Another sales leaders drop down menu.
  * @param visibility Menu visibility.
  * @param leaders Leaders to show in menu.
+ * @param onSelect On leader select.
  */
-const DropDawnMenu = ({visibility, leaders}) => {
+const DropDawnMenu = ({visibility, leaders, onSelect}) => {
 
     return (
         <div
@@ -16,7 +17,7 @@ const DropDawnMenu = ({visibility, leaders}) => {
                 {
                     leaders.map(leader => {
                         return (
-                            <li className={styles.dropDawnItem}>
+                            <li onClick={() => onSelect(leader.id)} className={styles.dropDawnItem}>
                                 <span className={styles.dropDownText}>{leader.product.description}</span>
                             </li>
                         )
