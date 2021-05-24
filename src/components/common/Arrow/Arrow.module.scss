@@ -1,12 +1,11 @@
-@import "src/common-scss/variables";
+@import "../../../common-scss/variables";
 
 .arrow {
-  display: block;
   cursor: pointer;
   position: relative;
   transition: transform .1s;
-  width: 42px;
-  height: 92px;
+  width: 100%;
+  height: 100%;
 
   $transition-time: .15s;
 

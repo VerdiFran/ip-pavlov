@@ -25,9 +25,19 @@
 }
 
 .leftArrow {
+  height: 100%;
+  width: 100%;
   grid-area: leftArrow;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
 
 .rightArrow {
+  height: 100%;
+  width: 100%;
   grid-area: rightArrow;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
