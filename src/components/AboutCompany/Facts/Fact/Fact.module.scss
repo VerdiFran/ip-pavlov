@@ -1,0 +1,25 @@
+
+.factContainer {
+  display: grid;
+  grid-template-columns: 70% auto;
+  grid-template-areas: "desc image";
+  box-sizing: border-box;
+  justify-items: center;
+  align-items: center;
+}
+
+.factDescription {
+  grid-area: desc;
+  padding-right: 20px;
+  font-size: 18px;
+  text-align: justify;
+}
+
+.factImage {
+  max-height: 256px;
+  max-width: 256px;
+  object-fit: contain;
+  width: 100%;
+  grid-area: image;
+  justify-self: flex-end;
+}
