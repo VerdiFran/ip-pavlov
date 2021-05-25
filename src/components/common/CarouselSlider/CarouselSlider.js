@@ -36,11 +36,11 @@ const animation = {
  * @param props Properties
  */
 const CarouselSlider = (props) => {
-
     const [previous, setPrevious] = useState(0)
     const [currentAnimation, setCurrentAnimation] = useState(null)
     const [previousAnimation, setPreviousAnimation] = useState(null)
     const [animationStarted, setAnimationStarted] = useState(false)
+    const [innerCurrent, setInnerCurrent] = useState(0)
 
     const leftClickConfig = {
         previousAnimation: animation.fadeOutRight,
@@ -56,15 +56,25 @@ const CarouselSlider = (props) => {
             currentSlide === 0 ? props.children.length - 1 : currentSlide - 1
     }
 
+    const handleSetCurrent = (value) => {
+        if (props.current) {
+            props.setCurrent(value)
+        } else {
+            setInnerCurrent(value)
+        }
+    }
+
+    const handleGetCurrent = () => props.current || innerCurrent
+
     const handleClick = (config) => {
 
         if (animationStarted) {
             return
         }
 
-        setPrevious(props.current)
+        setPrevious(handleGetCurrent())
         setPreviousAnimation(config.previousAnimation)
-        props.setCurrent(config.nextSlide(props.current))
+        handleSetCurrent(config.nextSlide(handleGetCurrent()))
         setCurrentAnimation(config.currentAnimation)
         setAnimationStarted(true)
         setTimeout(() => {
@@ -82,7 +92,7 @@ const CarouselSlider = (props) => {
                 </div>
                 <div className={styles.slide}>
                     <div className={styles.item} style={currentAnimation}>
-                        {props.children[props.current]}
+                        {props.children[handleGetCurrent()]}
                     </div>
                     {animationStarted &&
                     (
