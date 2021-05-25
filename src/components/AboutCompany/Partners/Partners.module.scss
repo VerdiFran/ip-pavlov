@@ -1,3 +1,9 @@
+@import "src/common-scss/variables";
+
+.partnersBlock {
+  display: flex;
+  flex-direction: column;
+}
 
 .partnersContainer {
   display: grid;
@@ -5,6 +11,22 @@
   justify-items: center;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-  position: relative;
-  top: 20px;
+  padding: 20px 0;
+}
+
+.anotherPartnersButton {
+  height: 36px;
+  width: 170px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: $main-font-color;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  background-color: $second-color;
+  box-shadow: 0 4px 4px $shadow-color;
 }

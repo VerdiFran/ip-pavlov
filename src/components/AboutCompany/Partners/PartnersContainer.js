@@ -7,14 +7,11 @@ import Partners from './Partners'
  */
 const PartnersContainer = () => {
     const [partners, setPartners] = useState([])
-    const numberPartnersToShow = 5
 
     useEffect(() => {
         catalogAPI.getPartners()
             .then((result) => {
-                const sliceLength = result.data.length < numberPartnersToShow ? result.data.length
-                    : numberPartnersToShow
-                setPartners( result.data.slice(0, sliceLength))
+                setPartners(result.data)
             })
     }, [])
 
