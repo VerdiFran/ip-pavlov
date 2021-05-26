@@ -22,7 +22,7 @@ const HowToFindUs = () => {
                 </div>
                 <div className={styles.box}>
                     <div className={styles.map}>
-                        <Map/>
+                        <Map mapContainerId={'how-to-find-map'}/>
                     </div>
                 </div>
             </div>

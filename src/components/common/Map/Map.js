@@ -5,9 +5,7 @@ import DG from '2gis-maps'
 /**
  * Component with map.
  */
-const Map = () => {
-    const mapContainerId = 'map-container'
-
+const Map = ({mapContainerId}) => {
     useEffect(() => {
         const map = DG.map(mapContainerId, {
             'center': [54.98, 82.89],
