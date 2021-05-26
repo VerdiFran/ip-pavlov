@@ -8,16 +8,13 @@
 .partnersContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  justify-items: center;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   padding: 20px 0;
 }
 
-.anotherPartnersButton {
+.partnersDetailsButton {
   height: 36px;
-  width: 170px;
-  padding: 0 20px;
   display: flex;
   justify-content: center;
   align-items: center;
