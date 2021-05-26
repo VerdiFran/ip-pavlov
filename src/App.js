@@ -11,6 +11,7 @@ import {initializeApp} from './redux/reducers/appReducer'
 import React, {useEffect} from 'react'
 import Footer from './components/Footer/Footer'
 import AboutCompany from './components/AboutCompany/AboutCompany'
+import Contacts from './components/Contacts/Contacts'
 
 const App = ({initialized, initializeApp}) => {
     useEffect(() => {
@@ -44,7 +45,7 @@ const App = ({initialized, initializeApp}) => {
                 />
                 <Route
                     path={routes.TO_CONTACTS}
-                    render={() => <div>contacts</div>}
+                    render={() => <Contacts/>}
                 />
             </Switch>
             <Footer/>
