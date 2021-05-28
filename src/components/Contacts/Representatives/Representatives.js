@@ -1,7 +1,13 @@
 import Map from '../../common/Map/Map'
 import * as coords from './coords'
 import {useState} from 'react'
+import styles from './Representatives.module.scss'
+import Representative from './Representative/Representative'
 
+/**
+ * Component that contains information about sales representatives and their location on map.
+ * @param representatives List of sales representatives.
+ */
 const Representatives = ({representatives}) => {
     const [currentDistrict, setCurrentDistrict] = useState(null)
 
@@ -9,12 +15,12 @@ const Representatives = ({representatives}) => {
     const districtsNames = [...new Set(representatives.map(representative => representative.region))]
 
     const polygons = districtsNames.map((name, idx) => {
-        const districtRepresentatives = representatives.filter(representative => representative.region === name)
+        const agents = representatives.filter(representative => representative.region === name)
         const coordinates = coords.districtsCoordinates.get(name) ?? null
         const polygon = {
             description: {
                 id: idx,
-                representatives: districtRepresentatives,
+                agents,
                 style: {color: colors[idx % colors.length]}
             },
             coordinates: coordinates?.split(' ')?.map(pair => {
@@ -32,9 +38,28 @@ const Representatives = ({representatives}) => {
         return polygon
     })
 
-    return polygons?.length && <div style={{width: '1000px', height: '1000px'}}>
-        <Map polygons={polygons} mapContainerId={'representatives-map'}/>
-    </div>
+    return polygons?.length &&
+        (
+            <div className={styles.representativesContainer}>
+                <div className={styles.map}>
+                    <Map zoom={10} polygons={polygons} mapContainerId={'representatives-map'}/>
+                </div>
+                {polygons.map((polygon, idx) => {
+                    const style = {
+                        justifySelf: idx % 2 === 0 ? 'end' : 'start'
+                    }
+                    return (
+                        <div style={style} className={`rep${idx + 1}`}>
+                            <Representative
+                                side={idx % 2 === 0 ? 'left' : 'right'}
+                                color={polygon.description.style.color}
+                                agents={polygon.description.agents}
+                            />
+                        </div>
+                    )
+                })}
+            </div>
+        )
 }
 
 export default Representatives
