@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import styles from './CategoryCard.module.scss'
 
@@ -7,10 +7,9 @@ import styles from './CategoryCard.module.scss'
  * @param title Name of category
  * @param path Path to product of this category
  * @param image Image of category
- * @returns {JSX.Element}
- * @constructor
  */
 const CategoryCard = ({categoryInfo: {title, path, image}}) => {
+
     const fontSizes = {
         24: '14px',
         36: '12px',

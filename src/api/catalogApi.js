@@ -5,9 +5,10 @@ const catalogAPI = {
      * GET request to receive names of categories
      * @returns {Promise}
      */
-    getCategoriesNames() {
+    getCategoriesNames(name) {
         const config = {
             params: {
+                name,
                 withProducts: false
             }
         }

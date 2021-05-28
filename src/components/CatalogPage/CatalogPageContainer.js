@@ -8,7 +8,7 @@ import {
     getProductsTotalPages
 } from '../../utils/selectors/catalogSelectors'
 import useDebounce from '../../hooks/useDebounce'
-import {downloadProducts, removeProducts} from '../../redux/reducers/catalogReducer'
+import {downloadCategories, downloadProducts, removeProducts} from '../../redux/reducers/catalogReducer'
 
 const mapStateToProps = (state) => ({
     categories: getCategories(state),
@@ -17,7 +17,11 @@ const mapStateToProps = (state) => ({
     productsTotalPages: getProductsTotalPages(state)
 })
 
-const CatalogPageContainer = ({categories, products, productsIsDownloaded, productsTotalPages, downloadProducts, removeProducts}) => {
+/**
+ * Container for catalog page.
+ */
+const CatalogPageContainer = ({categories, products, productsIsDownloaded, productsTotalPages,
+                                  downloadProducts, downloadCategories, removeProducts}) => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -45,6 +49,7 @@ const CatalogPageContainer = ({categories, products, productsIsDownloaded, produ
                     setIsSearching(false)
                     setLoading(false)
                 })
+            downloadCategories(debouncedSearchTerm)
         }
     }, [debouncedSearchTerm, producerIds])
 
@@ -87,4 +92,4 @@ const CatalogPageContainer = ({categories, products, productsIsDownloaded, produ
     />
 }
 
-export default connect(mapStateToProps, {downloadProducts, removeProducts})(CatalogPageContainer)
+export default connect(mapStateToProps, {downloadProducts, downloadCategories, removeProducts})(CatalogPageContainer)

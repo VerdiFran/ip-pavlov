@@ -4,11 +4,9 @@ import filtersImage from '../../../assets/images/filters.png'
 
 /**
  * Header of catalog page
- * @returns {JSX.Element}
- * @constructor
  */
 const CatalogHeader = ({manufacturers, searchTerm, setSearchTerm, setProducerIds, handleSearch}) => {
-    const [filtersIsOpened, setFiltersIsOpened] = useState(true)
+    const [filtersIsOpened, setFiltersIsOpened] = useState(false)
 
     const [manufacturersActive, setManufacturersActive] = useState(
         Object.fromEntries(manufacturers.map(manufacturer => [manufacturer.id, false]))

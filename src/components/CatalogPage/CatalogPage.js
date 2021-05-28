@@ -2,14 +2,12 @@ import React, {useEffect, useRef, useState} from 'react'
 import PageWrapper from '../PageWrapper/PageWrapper'
 import CatalogHeaderContainer from './CatalogHeader/CatalogHeaderContainer'
 import ListWrapper from './ListWrapper/ListWrapper'
-import CategoryCard from './CategoryCard/CategoryCard'
 import ProductContainer from '../common/Product/ProductContainer'
 import styles from './CatalogPage.module.scss'
+import CategoriesListContainer from './CategoriesList/CategoriesListContainer'
 
 /**
  * Page that contains catalog
- * @returns {JSX.Element}
- * @constructor
  */
 const CatalogPage = (props) => {
     const {
@@ -75,13 +73,7 @@ const CatalogPage = (props) => {
                 setProducerIds={setProducerIds}
                 handleSearch={handleSearch}
             />
-            <ListWrapper title="категории">
-                {
-                    categories.map(category =>
-                        <CategoryCard categoryInfo={category} key={category.id}/>
-                    )
-                }
-            </ListWrapper>
+            <CategoriesListContainer categories={categories}/>
             <ListWrapper title="товары">
                 {
                     products.map(product =>

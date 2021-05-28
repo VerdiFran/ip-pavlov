@@ -3,10 +3,6 @@ import styles from './ListWrapper.module.scss'
 
 /**
  * Wrapper for list of categories or products
- * @param title
- * @param children
- * @returns {JSX.Element}
- * @constructor
  */
 const ListWrapper = ({title, children}) => {
     return (

@@ -85,7 +85,6 @@ const catalogReducer = (state = initialState, action) => {
 
 const setCategories = (categories) => ({type: SET_CATEGORIES, categories})
 const setPartners = (partners) => ({type: SET_PARTNERS, partners})
-const setCategoriesImages = (images) => ({type: SET_CATEGORIES_IMAGES, images})
 const addProducts = (products) => ({type: ADD_PRODUCTS, products})
 const setTotalPages = (totalPages) => ({type: SET_TOTAL_PAGES, totalPages})
 const nextPage = () => ({type: NEXT_PAGE})
@@ -94,11 +93,10 @@ const setProductsIsDownloaded = () => ({type: SET_PRODUCTS_IS_DOWNLOADED})
 export const removeProducts = () => ({type: REMOVE_PRODUCTS})
 
 /**
- * Get categories from server and set categoryMenuItem to state
- * @returns {function(*): Promise<void>}
+ * Get categories from server and set categoryMenuItem to state.
  */
-export const downloadCategories = () => async (dispatch) => {
-    const {data} = await catalogAPI.getCategoriesNames()
+export const downloadCategories = (name) => async (dispatch) => {
+    const {data} = await catalogAPI.getCategoriesNames(name)
 
     dispatch(setCategories(data.map(category => ({
         id: category.id,
@@ -107,21 +105,6 @@ export const downloadCategories = () => async (dispatch) => {
         imageId: category.icon.id,
         image: null
     }))))
-}
-
-/**
- * Get images of categories and set it to categories from state
- * @returns {function(*=, *): void}
- */
-export const downloadCategoriesImages = () => async (dispatch, getState) => {
-    const images = {}
-
-    getState().catalog.categories.forEach(category => {
-        imagesApi.downloadImage(category.imageId, 'Categories')
-            .then(result => images[category.id] = result)
-    })
-
-    setCategoriesImages(images)
 }
 
 /**

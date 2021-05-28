@@ -28,7 +28,6 @@ export const initializeApp = () => async (dispatch) => {
     Promise.all(promises)
         .then(() => {
             dispatch(initializedSuccess())
-            dispatch(downloadCategoriesImages())
         })
 
     dispatch(await downloadPartners())
