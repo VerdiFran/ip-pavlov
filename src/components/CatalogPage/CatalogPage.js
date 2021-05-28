@@ -90,13 +90,7 @@ const CatalogPage = (props) => {
                 }
             </ListWrapper>
             {
-                !productsIsDownloaded && <div className={styles.buttonContainer} ref={emptyRef}>
-                    <button
-                        onClick={handleNextPage}
-                        className={styles.button}
-                        disabled={loading}
-                    >загрузить еще</button>
-                </div>
+                !productsIsDownloaded && <div className={styles.buttonContainer} ref={emptyRef}/>
             }
         </PageWrapper>
     )

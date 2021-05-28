@@ -135,7 +135,7 @@ export const downloadPartners = () => async (dispatch) => {
 }
 
 const getProducts = async (name, producerIds, currentPage, totalPages, pageSize) => {
-    if (!totalPages || currentPage <= totalPages) {
+    if ((!totalPages && totalPages !== 0) || currentPage <= totalPages) {
         const {data: {content, total}} = await catalogAPI.getProducts(name, producerIds, pageSize, currentPage)
         return [content, total]
     } else return []
@@ -148,7 +148,7 @@ export const downloadProducts = (name, producerIds) => async (dispatch, getState
     const [products, total] = await getProducts(name?.toString(), producerIds, currentPage, totalPages, pageSize)
 
     dispatch(addProducts(products || []))
-    dispatch(setTotalPages(total || totalPages))
+    dispatch(setTotalPages(total ?? totalPages))
     products ? dispatch(nextPage()) : dispatch(setProductsIsDownloaded())
 }
 

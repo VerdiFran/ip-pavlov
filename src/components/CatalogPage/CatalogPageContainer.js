@@ -1,17 +1,23 @@
 import React, {useEffect, useRef, useState} from 'react'
 import CatalogPage from './CatalogPage'
 import {connect} from 'react-redux'
-import {getCategories, getProducts, getProductsIsDownloaded} from '../../utils/selectors/catalogSelectors'
+import {
+    getCategories,
+    getProducts,
+    getProductsIsDownloaded,
+    getProductsTotalPages
+} from '../../utils/selectors/catalogSelectors'
 import useDebounce from '../../hooks/useDebounce'
 import {downloadProducts, removeProducts} from '../../redux/reducers/catalogReducer'
 
 const mapStateToProps = (state) => ({
     categories: getCategories(state),
     products: getProducts(state),
-    productsIsDownloaded: getProductsIsDownloaded(state)
+    productsIsDownloaded: getProductsIsDownloaded(state),
+    productsTotalPages: getProductsTotalPages(state)
 })
 
-const CatalogPageContainer = ({categories, products, productsIsDownloaded, downloadProducts, removeProducts}) => {
+const CatalogPageContainer = ({categories, products, productsIsDownloaded, productsTotalPages, downloadProducts, removeProducts}) => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -30,15 +36,15 @@ const CatalogPageContainer = ({categories, products, productsIsDownloaded, downl
 
     useEffect(() => {
         if ((debouncedSearchTermRef.current !== debouncedSearchTerm && (debouncedSearchTermRef.current?.length || debouncedSearchTerm?.length)) ||
-            (JSON.stringify(producerIdsRef.current) !== JSON.stringify(producerIds) && (producerIdsRef.current?.length || producerIds?.length)))
-        {
+            (JSON.stringify(producerIdsRef.current) !== JSON.stringify(producerIds) && (producerIdsRef.current?.length || producerIds?.length))) {
             setIsSearching(true)
             removeProducts()
             setLoading(true)
-            downloadProducts(debouncedSearchTerm, producerIds).then(() => {
-                setIsSearching(false)
-                setLoading(false)
-            })
+            downloadProducts(debouncedSearchTerm, producerIds)
+                .then(() => {
+                    setIsSearching(false)
+                    setLoading(false)
+                })
         }
     }, [debouncedSearchTerm, producerIds])
 
@@ -50,15 +56,20 @@ const CatalogPageContainer = ({categories, products, productsIsDownloaded, downl
         producerIdsRef.current = producerIds
     })
 
-    const appendProducts = async () => {
+    const appendProducts = () => {
         setLoading(true)
-        await downloadProducts(debouncedSearchTerm, producerIds)
-        setLoading(false)
+        downloadProducts(debouncedSearchTerm, producerIds)
+            .then(() => {
+                setLoading(false)
+            })
     }
-    const handleSearch = async (searchTerm) => {
+
+    const handleSearch = (searchTerm) => {
         setLoading(true)
-        await downloadProducts(searchTerm)
-        setLoading(false)
+        downloadProducts(searchTerm)
+            .then(() => {
+                setLoading(false)
+            })
     }
 
     return <CatalogPage
@@ -72,6 +83,7 @@ const CatalogPageContainer = ({categories, products, productsIsDownloaded, downl
         setProducerIds={setProducerIds}
         handleSearch={handleSearch}
         handleNextPage={appendProducts}
+        productsTotalPages={productsTotalPages}
     />
 }
 
