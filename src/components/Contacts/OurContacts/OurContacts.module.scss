@@ -1,0 +1,33 @@
+
+.contactsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-items: center;
+  align-items: center;
+}
+
+.contactContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px
+}
+
+.contactTitle {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  gap: 6px
+}
+
+.contactImage {
+  width: 26px;
+  height: 26px;
+}
+
+.contact {
+  text-align: center;
+  font-size: 14px;
+}
