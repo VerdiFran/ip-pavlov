@@ -11,7 +11,7 @@ import BlockDivider from './../BlockDivider/BlockDivider'
  * @returns {JSX.Element}
  * @constructor
  */
-const BlockWrapper = ({wrapperType, dividerType, children}) => {
+const BlockWrapper = ({wrapperType, dividerType, style, children}) => {
     const wrapperStyles = {
         light: {
             style: {
@@ -37,7 +37,7 @@ const BlockWrapper = ({wrapperType, dividerType, children}) => {
     const hasBlockDivider = options.hasDivider && !!dividerType
 
     return (
-        <div className={styles.blockWrapper} style={options.style}>
+        <div className={styles.blockWrapper} style={{...options.style, ...style}}>
             {
                 hasBlockDivider && <BlockDivider type={dividerType}/>
             }
