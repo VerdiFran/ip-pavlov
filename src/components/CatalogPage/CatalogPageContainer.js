@@ -1,18 +1,23 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import CatalogPage from './CatalogPage'
 import {connect} from 'react-redux'
-import {getCategories} from '../../utils/selectors/catalogSelectors'
-import catalogAPI from '../../api/catalogApi'
-import {imagesApi} from '../../api/imagesApi'
+import {getCategories, getProducts, getProductsIsDownloaded} from '../../utils/selectors/catalogSelectors'
 import useDebounce from '../../hooks/useDebounce'
+import {downloadProducts, removeProducts} from '../../redux/reducers/catalogReducer'
 
 const mapStateToProps = (state) => ({
-    categories: getCategories(state)
+    categories: getCategories(state),
+    products: getProducts(state),
+    productsIsDownloaded: getProductsIsDownloaded(state)
 })
 
-const CatalogPageContainer = ({categories}) => {
-    const [products, setProducts] = useState([])
-    const [productsImages, setProductsImages] = useState({})
+const CatalogPageContainer = ({categories, products, productsIsDownloaded, downloadProducts, removeProducts}) => {
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        setLoading(true)
+        downloadProducts().then(() => setLoading(false))
+    }, [])
 
     const [searchTerm, setSearchTerm] = useState('')
     const [isSearching, setIsSearching] = useState(false)
@@ -20,48 +25,54 @@ const CatalogPageContainer = ({categories}) => {
 
     const [producerIds, setProducerIds] = useState([])
 
-    const downloadProducts = async (name, producerIds) => {
-        const {data: {content}} = await catalogAPI.getProducts(name, producerIds)
-        setProducts(content)
-    }
+    const debouncedSearchTermRef = useRef()
+    const producerIdsRef = useRef()
 
-    const downloadProductsImages = () => {
-        if (products.length) {
-            products.forEach(product => {
-                imagesApi.downloadImage(product.image.id, 'Products')
-                    .then(result => setProductsImages(prev =>
-                        ({
-                            ...prev,
-                            [`${product.id}`]: result
-                        })
-                    ))
+    useEffect(() => {
+        if ((debouncedSearchTermRef.current !== debouncedSearchTerm && (debouncedSearchTermRef.current?.length || debouncedSearchTerm?.length)) ||
+            (JSON.stringify(producerIdsRef.current) !== JSON.stringify(producerIds) && (producerIdsRef.current?.length || producerIds?.length)))
+        {
+            setIsSearching(true)
+            removeProducts()
+            setLoading(true)
+            downloadProducts(debouncedSearchTerm, producerIds).then(() => {
+                setIsSearching(false)
+                setLoading(false)
             })
         }
-    }
-
-    useEffect(() => {
-        downloadProducts()
-    }, [])
-
-    useEffect(() => {
-        setIsSearching(true)
-        downloadProducts(debouncedSearchTerm, producerIds).then(() => setIsSearching(false))
     }, [debouncedSearchTerm, producerIds])
 
     useEffect(() => {
-        downloadProductsImages()
-    }, [products])
+        debouncedSearchTermRef.current = debouncedSearchTerm
+    })
+
+    useEffect(() => {
+        producerIdsRef.current = producerIds
+    })
+
+    const appendProducts = async () => {
+        setLoading(true)
+        await downloadProducts(debouncedSearchTerm, producerIds)
+        setLoading(false)
+    }
+    const handleSearch = async (searchTerm) => {
+        setLoading(true)
+        await downloadProducts(searchTerm)
+        setLoading(false)
+    }
 
     return <CatalogPage
         categories={categories}
         products={products}
-        productsImages={productsImages}
         searchTerm={searchTerm}
+        loading={loading}
         isSearching={isSearching}
+        productsIsDownloaded={productsIsDownloaded}
         setSearchTerm={setSearchTerm}
         setProducerIds={setProducerIds}
-        handleSearch={(searchTerm) => downloadProducts(searchTerm)}
+        handleSearch={handleSearch}
+        handleNextPage={appendProducts}
     />
 }
 
-export default connect(mapStateToProps)(CatalogPageContainer)
+export default connect(mapStateToProps, {downloadProducts, removeProducts})(CatalogPageContainer)

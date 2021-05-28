@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './Product.module.scss'
+import {imagesApi} from '../../../api/imagesApi'
 
 /**
  * Product card
@@ -11,7 +12,7 @@ import styles from './Product.module.scss'
  * @returns {JSX.Element}
  * @constructor
  */
-const Product = ({productInfo: {image, description, quantity, price, unit}}) => {
+const Product = ({productInfo: {description, quantity, price, unit}, image}) => {
     return (
         <div className={styles.productContainer}>
             <div className={styles.productImageContainer}>

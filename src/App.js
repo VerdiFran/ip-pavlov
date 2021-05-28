@@ -14,7 +14,7 @@ import CatalogPageContainer from './components/CatalogPage/CatalogPageContainer'
 const App = ({initialized, initializeApp}) => {
     useEffect(() => {
         initializeApp()
-    })
+    }, [])
 
     if (!initialized) {
         return <div>loading</div>
@@ -23,33 +23,33 @@ const App = ({initialized, initializeApp}) => {
     return (
         <div className="App">
             <Header/>
-            <Switch>
-                <Route
-                    exact
-                    path={routes.TO_HOME}
-                    render={() => <Home/>}
-                />
-                <Route
-                    path={`${routes.TO_CATALOG}`}
-                    render={() => <CatalogPageContainer/>}
-                />
-                <Route
-                    path={`${routes.TO_CATALOG}/:category`}
-                    render={() => <div>catalog</div>}
-                />
-                <Route
-                    path={routes.TO_ABOUT_COMPANY}
-                    render={() => <div>about company</div>}
-                />
-                <Route
-                    path={routes.TO_PARTNERS}
-                    render={() => <div>partners</div>}
-                />
-                <Route
-                    path={routes.TO_CONTACTS}
-                    render={() => <div>contacts</div>}
-                />
-            </Switch>
+                <Switch>
+                    <Route
+                        exact
+                        path={routes.TO_HOME}
+                        render={() => <Home/>}
+                    />
+                    <Route
+                        path={routes.TO_CATALOG}
+                        render={() => <CatalogPageContainer/>}
+                    />
+                    <Route
+                        path={`${routes.TO_CATALOG}/:category`}
+                        render={() => <div>catalog</div>}
+                    />
+                    <Route
+                        path={routes.TO_ABOUT_COMPANY}
+                        render={() => <div>about company</div>}
+                    />
+                    <Route
+                        path={routes.TO_PARTNERS}
+                        render={() => <div>partners</div>}
+                    />
+                    <Route
+                        path={routes.TO_CONTACTS}
+                        render={() => <div>contacts</div>}
+                    />
+                </Switch>
         </div>
     )
 }

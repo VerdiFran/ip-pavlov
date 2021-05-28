@@ -18,11 +18,13 @@ const catalogAPI = {
      * GET request to receive products
      * @returns {Promise}
      */
-    getProducts(name, producerIds) {
+    getProducts(name, producerIds, pageSize, currentPage) {
         const config = {
             params: {
                 name,
-                producerIds: producerIds ? producerIds.join(',') : ''
+                producerIds: producerIds ? producerIds.join(',') : '',
+                pageSize,
+                pageNumber: currentPage
             }
         }
 

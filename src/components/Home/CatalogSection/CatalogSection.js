@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styles from './CatalogSection.module.scss'
 import {NavLink} from 'react-router-dom'
 import {TO_CATALOG} from '../../../routes'

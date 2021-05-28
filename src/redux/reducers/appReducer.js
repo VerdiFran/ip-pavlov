@@ -23,14 +23,15 @@ const appReducer = (state = initialState, action) => {
 const initializedSuccess = () => ({type: INITIALIZED_SUCCESS})
 
 export const initializeApp = () => async (dispatch) => {
-    const promise = dispatch(await downloadCategories())
+    const promises = [dispatch(await downloadCategories())]
 
-    Promise.all([promise])
-        .then(() => dispatch(initializedSuccess()))
+    Promise.all(promises)
+        .then(() => {
+            dispatch(initializedSuccess())
+            dispatch(downloadCategoriesImages())
+        })
 
-    dispatch(downloadCategoriesImages())
-
-    dispatch(downloadPartners())
+    dispatch(await downloadPartners())
 }
 
 export default appReducer

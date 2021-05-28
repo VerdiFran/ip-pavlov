@@ -51,6 +51,9 @@ $border-margin: 61px;
     left: -$border-margin;
     right: 0;
     bottom: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-items: center;
 
     // blocks of content
     & > div {
