@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ideal from '../../../assets/images/distributors/ideal.png'
 import goldenSeed from '../../../assets/images/distributors/golden_seed.png'
 import bear from '../../../assets/images/distributors/bear.svg'
@@ -16,6 +16,40 @@ import styles from './AboutSite.module.scss'
  * @constructor
  */
 const AboutSite = () => {
+    const [scrolledHeight, setScrolledHeight] = useState(-30)
+    const [scrolledWidth, setScrolledWidth] = useState(-30)
+
+    const handleScroll = () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+        const scrolled = (winScroll / height) * 600 - 30
+        setScrolledHeight(() => scrolled > 0 ? 0 : scrolled)
+        setScrolledWidth(() => scrolled > 0 ? 0 : scrolled)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    const boxStyle = {
+        transform: `translateY(${-scrolledHeight}%)`,
+        transitionDuration: '0.3s'
+    }
+
+    const product1Style = {
+        transform: `translate(${scrolledWidth}%, ${scrolledHeight}%) rotate(-18deg)`
+    }
+
+    const product2Style = {
+        transform: `translate(${scrolledWidth}%, ${scrolledHeight}%) rotate(-6deg)`
+    }
+
+    const product3Style = {
+        transform: `translate(${-scrolledWidth / 3}%, ${scrolledHeight}%) rotate(6deg)`
+    }
+
+    const product4Style = {
+        transform: `translate(${-scrolledWidth}%, ${scrolledHeight}%) rotate(20deg)`
+    }
+
     return (
         <section className={styles.aboutSiteSection}>
             <div className={styles.infoText}>
@@ -39,12 +73,12 @@ const AboutSite = () => {
             </div>
             <div className={styles.productsInBox}>
                 <div className={styles.productsContainer}>
-                    <img src={bearProduct} alt='' width="166px" className={styles.product}/>
-                    <img src={goldenSeedProduct} alt='' width="92px" className={styles.product}/>
-                    <img src={barkoProduct} alt='' width="134px" className={styles.product}/>
-                    <img src={idealProduct} alt='' width="84px" className={styles.product}/>
+                    <img src={bearProduct} alt='' width="166px" className={styles.product} style={product1Style}/>
+                    <img src={goldenSeedProduct} alt='' width="92px" className={styles.product} style={product2Style}/>
+                    <img src={barkoProduct} alt='' width="134px" className={styles.product} style={product3Style}/>
+                    <img src={idealProduct} alt='' width="84px" className={styles.product} style={product4Style}/>
                 </div>
-                <img src={box} alt='' width="400px" className={styles.box}/>
+                <img src={box} alt='' width="400px" className={styles.box} style={boxStyle}/>
             </div>
         </section>
     )
