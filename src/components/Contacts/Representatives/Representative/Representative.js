@@ -5,14 +5,20 @@ import styles from './Representative.module.scss'
  * @param agents Agents that works in that point.
  * @param side Is there a description to the left or right of the map?
  * @param color Polygon color.
+ * @param opacity Opacity of representative info.
  */
-const Representative = ({agents, side, color}) => {
+const Representative = ({agents, side, color, opacity}) => {
     const polygonStyle = {
         backgroundColor: color,
+        opacity,
         padding: side === 'left' ? '0 0 0 20px' : '0 20px 0 0',
         justifySelf: side === 'left' ? 'end' : 'start',
         clipPath: side === 'left' ? 'polygon(0 0, 350px 0, 350px 60px, 100px 60px)'
             : 'polygon(0 0, 350px 0, 250px 60px, 0 60px)'
+    }
+
+    const infoStyle = {
+        opacity
     }
 
     const toShortTime = (time) => time.slice(0, 5)
@@ -31,7 +37,7 @@ const Representative = ({agents, side, color}) => {
             <div style={polygonStyle} className={styles.regionPolygon}>
                 {agents[0].region}
             </div>
-            <div className={styles.regionDescription}>
+            <div style={infoStyle} className={styles.regionDescription}>
                 <div className={styles.aboutName}>
                     {agent.lastName} {agent.firstName} {agent.middleName}
                 </div>

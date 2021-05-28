@@ -30,13 +30,23 @@ const Representatives = ({representatives}) => {
         }
 
         polygon.onMouseOver = (poly) => {
-            if (poly.description.id !== currentDistrict?.id) {
-                setCurrentDistrict(poly)
-            }
+            setCurrentDistrict(poly)
+        }
+
+        polygon.onMouseOut = () => {
+            setCurrentDistrict(null)
         }
 
         return polygon
     })
+
+    const getOpacity = (polygon) => {
+        if (currentDistrict === null) {
+            return 1
+        }
+
+        return polygon.description.id === currentDistrict.description.id ? 1 : 0.4
+    }
 
     return polygons?.length &&
         (
@@ -54,6 +64,7 @@ const Representatives = ({representatives}) => {
                                 side={idx % 2 === 0 ? 'left' : 'right'}
                                 color={polygon.description.style.color}
                                 agents={polygon.description.agents}
+                                opacity={getOpacity(polygon)}
                             />
                         </div>
                     )
