@@ -50,25 +50,28 @@ const Representatives = ({representatives}) => {
 
     return polygons?.length &&
         (
-            <div className={styles.representativesContainer}>
-                <div className={styles.map}>
-                    <Map zoom={10} polygons={polygons} mapContainerId={'representatives-map'}/>
+            <div>
+                <h1 className="heading">наши агенты</h1>
+                <div className={styles.representativesContainer}>
+                    <div className={styles.map}>
+                        <Map zoom={10} polygons={polygons} mapContainerId={'representatives-map'}/>
+                    </div>
+                    {polygons.map((polygon, idx) => {
+                        const style = {
+                            justifySelf: idx % 2 === 0 ? 'end' : 'start'
+                        }
+                        return (
+                            <div style={style} className={`rep${idx + 1}`}>
+                                <Representative
+                                    side={idx % 2 === 0 ? 'left' : 'right'}
+                                    color={polygon.description.style.color}
+                                    agents={polygon.description.agents}
+                                    opacity={getOpacity(polygon)}
+                                />
+                            </div>
+                        )
+                    })}
                 </div>
-                {polygons.map((polygon, idx) => {
-                    const style = {
-                        justifySelf: idx % 2 === 0 ? 'end' : 'start'
-                    }
-                    return (
-                        <div style={style} className={`rep${idx + 1}`}>
-                            <Representative
-                                side={idx % 2 === 0 ? 'left' : 'right'}
-                                color={polygon.description.style.color}
-                                agents={polygon.description.agents}
-                                opacity={getOpacity(polygon)}
-                            />
-                        </div>
-                    )
-                })}
             </div>
         )
 }
