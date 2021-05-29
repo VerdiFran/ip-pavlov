@@ -12,7 +12,7 @@ import React, {useEffect} from 'react'
 import Footer from './components/Footer/Footer'
 import AboutCompany from './components/AboutCompany/AboutCompany'
 import Contacts from './components/Contacts/Contacts'
-import CatalogPageContainer from './components/CatalogPage/CatalogPageContainer'
+import PartnersPage from './components/PartnersPage/PartnersPage'
 
 const App = ({initialized, initializeApp}) => {
     useEffect(() => {
@@ -42,7 +42,7 @@ const App = ({initialized, initializeApp}) => {
                 />
                 <Route
                     path={routes.TO_PARTNERS}
-                    render={() => <div>partners</div>}
+                    render={() => <PartnersPage/>}
                 />
                 <Route
                     path={routes.TO_CONTACTS}
