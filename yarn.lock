@@ -15,11 +15,6 @@
     leaflet "1.0.1"
     lodash "^4.8.2"
 
-"@2gis/mapgl@^1.13.0":
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/@2gis/mapgl/-/mapgl-1.13.0.tgz#3904631e1f95b98398bda09fcb9875ffd087e75c"
-  integrity sha512-2D407r+w+iCnhUwoR4/kA5BNjwPJVEY7Vy2gYCx+hdl6s5vey+exXXyg1UEVlrSAA6qgBFwqhbigdZG6wpn/NQ==
-
 "@babel/code-frame@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
