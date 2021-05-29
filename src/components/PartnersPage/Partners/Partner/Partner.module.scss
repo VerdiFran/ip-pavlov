@@ -1,0 +1,99 @@
+@import "../../../../common-scss/variables";
+
+.partnerContainer {
+    width: 240px;
+    min-height: 300px;
+    padding: 16px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 140px min-content auto 21px;
+    grid-template-areas:
+            'image'
+            'name'
+            'description'
+            'link';
+    row-gap: 20px;
+    justify-items: center;
+    background-color: $second-color;
+    box-shadow: 0 4px 4px $shadow-color;
+}
+
+.partnerImage, .partnerDescription, .partnerName {
+}
+
+.partnerImageContainer {
+    grid-area: image;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    place-items: center;
+    place-content: center;
+    border-radius: 45%;
+    overflow: hidden;
+    background-color: $background-color;
+}
+
+.partnerImage {
+    object-fit: contain;
+    width: 160px;
+    height: 120px;
+}
+
+.partnerName, .partnerDescription, .partnerLink {
+    text-align: center;
+}
+
+.partnerName {
+    grid-area: name;
+    align-self: start;
+    font-size: 20px;
+}
+
+.partnerDescription, .partnerLink {
+    font-size: 12px;
+}
+
+.partnerDescription {
+    grid-area: description;
+    align-self: center;
+}
+
+.partnerLinkButton {
+    grid-area: link;
+    align-self: end;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.partnerLinkButton span {
+    position: relative;
+
+    &::before {
+        content: attr(data-text);
+        transition: 0.5s;
+        color: $hover-link-color;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 0;
+        overflow: hidden;
+    }
+
+    &:hover {
+        &::before {
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+
+    &:active {
+        &::before {
+            color: $active-link-color;
+        }
+    }
+}
