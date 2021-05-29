@@ -1,0 +1,7 @@
+.certificatesContainer {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    column-gap: 20px;
+    row-gap: 40px;
+}
