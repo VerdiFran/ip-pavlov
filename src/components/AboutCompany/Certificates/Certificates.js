@@ -1,6 +1,12 @@
 import CertificateContainer from './Certificate/CertificateContainer'
 import styles from './Certificates.module.scss'
 
+/**
+ * List of certificates
+ * @param certificates Array of certificates
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Certificates = ({certificates}) => {
     return (
         <div>
