@@ -13,7 +13,7 @@ import {useEffect} from 'react'
 const App = ({initialized, initializeApp}) => {
     useEffect(() => {
         initializeApp()
-    })
+    }, [])
 
     if (!initialized) {
         return <div>loading</div>

@@ -4,16 +4,7 @@ export const getCategories = (state) => {
 
 export const getEightRandomCategories = (state) => {
     const categories = state.catalog.categories
+    const randomCategoryIds = state.catalog.randomCategoryIds
 
-    if (categories.length <= 8) {
-        return categories
-    }
-
-    const shuffle = (array) => {
-        return array.sort(function () {
-            return 0.5 - Math.random()
-        })
-    }
-
-    return shuffle(categories).slice(0, 8)
+    return categories.filter(category => randomCategoryIds.includes(category.id))
 }
