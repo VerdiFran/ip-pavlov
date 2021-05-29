@@ -1,6 +1,12 @@
 import PartnerContainer from './Partner/PartnerContainer'
 import styles from './Partners.module.scss'
 
+/**
+ * List of partners
+ * @param partners Array of partners
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Partners = ({partners}) => {
     return (
         <div>
