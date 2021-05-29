@@ -24,7 +24,12 @@ const CatalogSection = ({categories}) => {
                                 >{category.title}</span>
                                 </div>
                             </NavLink>
-                            <img src="" alt="" height="80px" className={styles.categoryImage}/>
+                            <img
+                                src={category.image ? URL.createObjectURL(category.image) : ''}
+                                alt=""
+                                height="80px"
+                                className={styles.categoryImage}
+                            />
                         </div>
                     ))
                 }
