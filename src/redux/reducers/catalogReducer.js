@@ -1,4 +1,5 @@
 import catalogAPI from '../../api/catalogApi'
+import {shuffle} from '../../utils/helpers/ArrayHelpers'
 import {imagesApi} from '../../api/imagesApi'
 
 const SET_CATEGORIES = 'CATALOG/SET-CATEGORIES'
@@ -10,9 +11,11 @@ const SET_TOTAL_PAGES = 'CATALOG/SET-TOTAL-PAGES'
 const REMOVE_PRODUCTS = 'CATALOG/REMOVE-PRODUCTS'
 const SET_PRODUCTS = 'CATALOG/SET-PRODUCTS'
 const SET_PRODUCTS_IS_DOWNLOADED = 'CATALOG/SET-PRODUCTS-IS-DOWNLOADED'
+const SET_RANDOM_CATEGORY_IDS = 'CATALOG/SET-RANDOM-CATEGORY_IDS'
 
 const initialState = {
     categories: [],
+    randomCategoryIds: [],
     partners: [],
     products: [],
     totalPages: null,
@@ -27,6 +30,11 @@ const catalogReducer = (state = initialState, action) => {
             return {
                 ...state,
                 categories: action.categories
+            }
+        case SET_RANDOM_CATEGORY_IDS:
+            return {
+                ...state,
+                randomCategoryIds: action.categoryIds
             }
         case SET_CATEGORIES_IMAGES:
             return {
@@ -84,6 +92,7 @@ const catalogReducer = (state = initialState, action) => {
 }
 
 const setCategories = (categories) => ({type: SET_CATEGORIES, categories})
+const setRandomCategoryIds = (categoryIds) => ({type: SET_RANDOM_CATEGORY_IDS, categoryIds})
 const setPartners = (partners) => ({type: SET_PARTNERS, partners})
 const addProducts = (products) => ({type: ADD_PRODUCTS, products})
 const setTotalPages = (totalPages) => ({type: SET_TOTAL_PAGES, totalPages})
@@ -99,12 +108,24 @@ export const downloadCategories = (name) => async (dispatch) => {
     const {data} = await catalogAPI.getCategoriesNames(name)
 
     dispatch(setCategories(data.map(category => ({
-        id: category.id,
+        ...category,
         title: category.name,
         path: `/categories/${category.routeName}`,
         imageId: category.icon.id,
         image: null
     }))))
+}
+
+export const chooseEightRandomCategories = () => (dispatch, getState) => {
+    const categoryIds = getState().catalog.categories.map(category => category.id)
+
+    if (categoryIds.length <= 8) {
+        return categoryIds
+    }
+
+    const randomCategoryIds = shuffle(categoryIds).slice(0, 8)
+
+    dispatch(setRandomCategoryIds(randomCategoryIds))
 }
 
 /**

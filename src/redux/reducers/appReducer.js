@@ -1,4 +1,5 @@
 import {downloadPartners} from './catalogReducer'
+import {chooseEightRandomCategories} from './catalogReducer'
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 
@@ -28,6 +29,7 @@ export const initializeApp = () => async (dispatch) => {
     Promise.all(promises)
         .then(() => {
             dispatch(initializedSuccess())
+            dispatch(chooseEightRandomCategories())
         })
 
     dispatch(await downloadPartners())
