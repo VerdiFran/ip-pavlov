@@ -5,13 +5,14 @@
     margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-column-gap: 20px;
+    grid-column-gap: 40px;
     grid-row-gap: 20px;
 }
 
 .categoryContainer {
     margin: 0 20px 0 0;
     height: 112px;
+    width: 220px;
 
     a {
         text-decoration: none;
@@ -21,8 +22,10 @@
 .categoryImage {
     position: relative;
     float: right;
-    top: -60px;
-    transform: translateX(50%);
+    top: -50px;
+    max-height: 80px;
+    max-width: 60px;
+    transform: translateX(30%);
 }
 
 .categoryNameBlock {
@@ -68,6 +71,13 @@
     &:hover {
         background-color: darken($second-color, 5);
     }
+}
+
+.categoryContainer, .toCatalogButton {
+    -webkit-user-select: none;
+    cursor: pointer;
+    transition-duration: 200ms;
+
     &:active {
         transform: scale(0.97);
     }

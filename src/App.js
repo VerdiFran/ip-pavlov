@@ -15,7 +15,7 @@ import AboutCompany from './components/AboutCompany/AboutCompany'
 const App = ({initialized, initializeApp}) => {
     useEffect(() => {
         initializeApp()
-    })
+    }, [])
 
     if (!initialized) {
         return <div>loading</div>

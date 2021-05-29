@@ -8,7 +8,7 @@ import {TO_CATALOG} from '../../../routes'
  * @returns {JSX.Element}
  * @constructor
  */
-const CatalogSection = ({categories}) => {
+const CatalogSection = ({categories, images}) => {
     return (
         <div>
             <h1 className="heading">Каталог товаров</h1>
@@ -25,7 +25,7 @@ const CatalogSection = ({categories}) => {
                                 </div>
                             </NavLink>
                             <img
-                                src={category.image ? URL.createObjectURL(category.image) : ''}
+                                src={images[category.id] ? URL.createObjectURL(images[category.id]) : ''}
                                 alt=""
                                 height="80px"
                                 className={styles.categoryImage}
