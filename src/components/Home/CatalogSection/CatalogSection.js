@@ -15,7 +15,7 @@ const CatalogSection = ({categories}) => {
             <div className={styles.categoriesContainer}>
                 {
                     categories.map(category => (
-                        <div className={styles.categoryContainer}>
+                        <div className={styles.categoryContainer} key={category.id}>
                             <NavLink to={category.path}>
                                 <div className={styles.categoryNameBlock}>
                                 <span
@@ -24,7 +24,12 @@ const CatalogSection = ({categories}) => {
                                 >{category.title}</span>
                                 </div>
                             </NavLink>
-                            <img src="" alt="" height="80px" className={styles.categoryImage}/>
+                            <img
+                                src={category.image ? URL.createObjectURL(category.image) : ''}
+                                alt=""
+                                height="80px"
+                                className={styles.categoryImage}
+                            />
                         </div>
                     ))
                 }
