@@ -11,7 +11,15 @@ import Representative from './Representative/Representative'
 const Representatives = ({representatives}) => {
     const [currentDistrict, setCurrentDistrict] = useState(null)
 
-    const colors = ['#103C6C', '#6498D3', '#26A08F', '#6c0b06', '#A58514', '#0F7E23', '#A55014']
+    const colors = [
+        '#6da9e5',
+        '#a678ca',
+        '#80decf',
+        '#fa8983',
+        '#f5dd85',
+        '#64b14c',
+        '#ffb681'
+    ]
     const districtsNames = [...new Set(representatives.map(representative => representative.region))]
 
     const polygons = districtsNames.map((name, idx) => {
