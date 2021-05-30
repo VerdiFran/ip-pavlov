@@ -15,7 +15,7 @@ const SalesLeaders = ({leaders, categoryImages, productImages}) => {
     const [selectedLeaderId, setSelectedLeaderId] = useState(0)
     const [selectedProduct, setSelectedProduct] = useState(null)
     const [selectedProductImage, setSelectedProductImage] = useState(null)
-
+    const [anotherLeaders, setAnotherLeaders] = useState([])
 
     useEffect(() => {
         if (!selectedLeaderId) {
@@ -26,7 +26,9 @@ const SalesLeaders = ({leaders, categoryImages, productImages}) => {
         setSelectedProductImage(productImages?.find(image => image.leaderId === selectedLeaderId)?.image)
     }, [selectedLeaderId])
 
-    const anotherLeaders = leaders.filter((element, idx) => idx !== currentLeader)
+    useEffect(() => {
+        setAnotherLeaders(leaders?.filter((_, index) => index !== currentLeader))
+    }, [currentLeader, leaders])
 
     return (
         <div>
