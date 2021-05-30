@@ -1,0 +1,42 @@
+@import "src/common-scss/variables";
+
+.regionPolygon {
+  width: 330px;
+  height: 32px;
+  padding: 6px 0;
+  margin: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $main-font-color;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition-duration: 0.2s;
+}
+
+.regionDescription {
+  padding: 6px;
+  display: grid;
+  grid-template-areas:
+          'name name'
+          'phone schedule';
+  transition-duration: 0.2s;
+}
+
+.aboutName {
+  padding-bottom: 6px;
+  grid-area: name;
+  justify-self: center;
+}
+
+.aboutPhone {
+  padding: 6px;
+  grid-area: phone;
+}
+
+.aboutSchedule {
+  padding: 6px;
+  grid-area: schedule;
+  justify-self: flex-end;
+}

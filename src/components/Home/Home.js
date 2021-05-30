@@ -13,20 +13,31 @@ import SalesLeadersContainer from './SalesLeaders/SalesLeadersContainer'
  */
 const Home = () => {
     return (
-        <PageWrapper>
-            <BlockWrapper wrapperType="grey">
+        <>
+            <BlockWrapper
+                wrapperType="grey"
+                style={{
+                    position: 'relative',
+                    boxSizing: 'border-box',
+                    marginBottom: '3px',
+                    overflowY: 'hidden',
+                    boxShadow: 'inset 0 -4px 20px rgba(0, 0, 0, 0.15)'
+                }}
+            >
                 <AboutSite/>
             </BlockWrapper>
-            <BlockWrapper wrapperType="light" dividerType="short">
-                <SalesLeadersContainer/>
-            </BlockWrapper>
-            <BlockWrapper wrapperType="dark" dividerType="long">
-                <CatalogSectionContainer/>
-            </BlockWrapper>
-            <BlockWrapper wrapperType="light" dividerType="short">
-                <AboutCompany/>
-            </BlockWrapper>
-        </PageWrapper>
+            <PageWrapper>
+                <BlockWrapper wrapperType="light" dividerType="short">
+                    <SalesLeadersContainer/>
+                </BlockWrapper>
+                <BlockWrapper wrapperType="dark" dividerType="long">
+                    <CatalogSectionContainer/>
+                </BlockWrapper>
+                <BlockWrapper wrapperType="light" dividerType="short">
+                    <AboutCompany/>
+                </BlockWrapper>
+            </PageWrapper>
+        </>
     )
 }
 

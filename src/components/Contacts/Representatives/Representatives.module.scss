@@ -1,0 +1,19 @@
+
+.representativesContainer {
+  margin-top: 40px;
+  display: grid;
+  justify-items: center;
+  grid-row-gap: 20px;
+  grid-template-columns: 20% auto 20%;
+  grid-template-areas:
+          'rep1 map rep5'
+          'rep2 map rep6'
+          'rep3 map rep7'
+          'rep4 map .'
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+  grid-area: map;
+}
