@@ -80,4 +80,11 @@ export const showMessage = (status, message) => (dispatch) => {
     }, 4000)
 }
 
+export const showMessage = (status, message) => (dispatch) => {
+    dispatch(setMessage(message, status))
+    setTimeout(() => {
+        dispatch(deleteMessage())
+    }, 4000)
+}
+
 export default appReducer
