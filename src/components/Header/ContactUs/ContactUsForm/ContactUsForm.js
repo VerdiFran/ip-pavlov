@@ -7,7 +7,7 @@ import styles from './ContactUsForm.module.scss'
  * @returns {JSX.Element}
  * @constructor
  */
-const ContactUsForm = () => {
+const ContactUsForm = ({handleSubmit}) => {
     return (
         <div className={styles.formContainer}>
             <div className={styles.extraMessage}>
@@ -19,7 +19,7 @@ const ContactUsForm = () => {
                     email: '',
                     message: ''
                 }}
-                onSubmit={(values => alert(JSON.stringify(values, null, 2)))}
+                onSubmit={(values => handleSubmit(values))}
             >
                 {({handleSubmit}) => (
                     <Form onSubmit={handleSubmit}>
@@ -33,8 +33,9 @@ const ContactUsForm = () => {
                         </div>
                         <div className={styles.fieldContainer}>
                             <label htmlFor="message">Ваш вопрос</label>
-                            <textarea name="message" id="message" className={styles.questionField}/>
+                            <Field as="textarea" name="message" id="message" className={styles.questionField}/>
                         </div>
+                        <button onClick={handleSubmit}>Отправить</button>
                     </Form>
                 )}
             </Formik>
