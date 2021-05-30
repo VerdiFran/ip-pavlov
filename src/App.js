@@ -6,15 +6,15 @@ import * as routes from './routes'
 import {connect, Provider} from 'react-redux'
 import store from './redux/store'
 import {compose} from 'redux'
-import {getInitialized} from './utils/selectors/appSelectors'
-import {initializeApp} from './redux/reducers/appReducer'
+import {getInitialized, getMessageInfo} from './utils/selectors/appSelectors'
+import {getMessageClassname, initializeApp} from './redux/reducers/appReducer'
 import React, {useEffect} from 'react'
 import Footer from './components/Footer/Footer'
 import AboutCompany from './components/AboutCompany/AboutCompany'
 import Contacts from './components/Contacts/Contacts'
 import PartnersPage from './components/PartnersPage/PartnersPage'
 
-const App = ({initialized, initializeApp}) => {
+const App = ({initialized, messageInfo: {status, text, visible}, initializeApp}) => {
     useEffect(() => {
         initializeApp()
     }, [])
@@ -25,6 +25,11 @@ const App = ({initialized, initializeApp}) => {
 
     return (
         <div className="App">
+            {
+                visible && <div className={getMessageClassname(status)}>
+                    {text}
+                </div>
+            }
             <Header/>
             <Switch>
                 <Route
@@ -55,7 +60,8 @@ const App = ({initialized, initializeApp}) => {
 }
 
 const mapStateToProps = (state) => ({
-    initialized: getInitialized(state)
+    initialized: getInitialized(state),
+    messageInfo: getMessageInfo(state)
 })
 
 const AppContainer = compose(

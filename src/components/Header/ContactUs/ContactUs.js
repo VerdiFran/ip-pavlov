@@ -11,6 +11,8 @@ import ContactUsFormContainer from './ContactUsForm/ContactUsFormContainer'
 const ContactUs = () => {
     const {ref, isVisible, setIsVisible} = useVisible(false, 'click')
 
+    const close = () => setIsVisible(false)
+
     return (
         <div ref={ref}>
             <div className={styles.contactUsPolygon} onClick={() => setIsVisible(!isVisible)}>
@@ -18,7 +20,7 @@ const ContactUs = () => {
             </div>
             {
                 isVisible && <div>
-                    <ContactUsFormContainer/>
+                    <ContactUsFormContainer close={close}/>
                 </div>
             }
         </div>
