@@ -67,3 +67,8 @@
         background-color: $dark-main-color;
     }
 }
+
+.errorMessage {
+    color: $error-color;
+    font-size: 11px;
+}
