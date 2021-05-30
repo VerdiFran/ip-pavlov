@@ -3,16 +3,14 @@ import {useEffect, useState} from 'react'
 import {imagesApi} from '../../../../api/imagesApi'
 
 /**
- * Container component for partner's card
- * @param partner Information about partner
- * @returns {JSX.Element}
- * @constructor
+ * Container component for partner's card.
+ * @param partner Information about partner.
  */
 const PartnerContainer = ({partner}) => {
     const [image, setImage] = useState()
 
     const downloadImage = () => {
-        imagesApi.downloadImage(partner.image.id, 'Partners').then(result => setImage(result))
+        imagesApi.downloadImage(partner.image.id).then(result => setImage(result))
     }
 
     useEffect(() => {

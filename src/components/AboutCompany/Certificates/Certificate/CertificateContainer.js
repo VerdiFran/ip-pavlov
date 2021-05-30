@@ -12,7 +12,7 @@ const CertificateContainer = ({certificate}) => {
     const [certificateImage, setCertificateImage] = useState()
 
     const downloadImage = () => {
-        imagesApi.downloadImage(certificate.image.id, 'Certificates')
+        imagesApi.downloadImage(certificate.image.id)
             .then(result => setCertificateImage(result))
     }
 

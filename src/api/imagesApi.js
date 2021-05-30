@@ -8,17 +8,13 @@ export const imagesApi = {
     /**
      * Returns GET request on image.
      * @param imageId Image id.
-     * @param type Type of image.
+     * @param size Size of image: normal | mini.
      */
-    async downloadImage(imageId, type) {
-        const config = {
-            params: {
-                type
-            }
-        }
+    async downloadImage(imageId, size) {
+        const imageSize = size ?? 'normal'
 
         try {
-            const response = await instanceForDownloadFile.get(`images/${imageId}`, config)
+            const response = await instanceForDownloadFile.get(`images/${imageId}/${imageSize}`)
             return response.data
         } catch (error) {
             console.log(error)

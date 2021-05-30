@@ -13,7 +13,7 @@ const CatalogSectionContainer = ({categories}) => {
 
     const downloadImages = () => {
         categories.forEach(category =>
-            imagesApi.downloadImage(category.icon.id, 'Categories')
+            imagesApi.downloadImage(category.icon.id)
                 .then(result => setImages(images => ({
                     ...images,
                     [category.id]: result
