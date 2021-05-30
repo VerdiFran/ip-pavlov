@@ -31,9 +31,9 @@ const ContactUsForm = ({handleSubmit}) => {
             </div>
             <Formik
                 initialValues={{
-                    name: '',
-                    email: '',
-                    message: ''
+                    name: 'ree',
+                    email: 'eg@y.ru',
+                    message: 'rthrthe'
                 }}
                 onSubmit={(values => handleSubmit(values))}
                 validationSchema={contactUsSchema}
