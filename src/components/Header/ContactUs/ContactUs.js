@@ -4,9 +4,7 @@ import useVisible from '../../../hooks/useVisible'
 import ContactUsFormContainer from './ContactUsForm/ContactUsFormContainer'
 
 /**
- * Component with button and opening question from
- * @returns {JSX.Element}
- * @constructor
+ * Component with button and opening question from.
  */
 const ContactUs = () => {
     const {ref, isVisible, setIsVisible} = useVisible(false, 'click')

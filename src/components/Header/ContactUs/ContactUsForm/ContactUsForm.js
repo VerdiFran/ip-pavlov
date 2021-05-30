@@ -4,9 +4,7 @@ import {Form, Formik, Field, ErrorMessage, getIn} from 'formik'
 import styles from './ContactUsForm.module.scss'
 
 /**
- * Contact form
- * @returns {JSX.Element}
- * @constructor
+ * Contact form.
  */
 const ContactUsForm = ({handleSubmit}) => {
     const contactUsSchema = yup.object().shape({
@@ -38,8 +36,8 @@ const ContactUsForm = ({handleSubmit}) => {
                 onSubmit={(values => handleSubmit(values))}
                 validationSchema={contactUsSchema}
             >
-                {({errors, handleSubmit, validateForm}) => (
-                    <Form onSubmit={handleSubmit}>
+                {({errors, validateForm}) => (
+                    <Form>
                         <div className={styles.fieldContainer}>
                             <label htmlFor="name">Ваше имя</label>
                             <Field
@@ -77,10 +75,10 @@ const ContactUsForm = ({handleSubmit}) => {
                             </div>
                         </div>
                         <button
+                            type="submit"
                             className={styles.button}
                             onClick={() => {
                                 validateForm().then()
-                                handleSubmit()
                             }}
                         >Отправить</button>
                     </Form>
