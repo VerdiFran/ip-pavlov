@@ -15,7 +15,7 @@ const DropDawnMenu = ({visibility, leaders, onSelect}) => {
         >
             <ul className={styles.dropDawnList}>
                 {
-                    leaders.map(leader => {
+                    leaders?.map(leader => {
                         return (
                             <li onClick={() => onSelect(leader.id)} className={styles.dropDawnItem}>
                                 <span className={styles.dropDownText}>{leader.product.description}</span>

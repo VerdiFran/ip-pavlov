@@ -91,14 +91,14 @@ const CarouselSlider = (props) => {
     }
 
     const handleSetCurrent = (value) => {
-        if (props.current) {
+        if (props.setCurrent) {
             props.setCurrent(value)
         } else {
             setInnerCurrent(value)
         }
     }
 
-    const handleGetCurrent = () => props.current || innerCurrent
+    const handleGetCurrent = () => props.current ?? innerCurrent
 
     const handleClick = (config) => {
 
