@@ -35,7 +35,7 @@ const ContactUsForm = ({handleSubmit}) => {
                             <label htmlFor="message">Ваш вопрос</label>
                             <Field as="textarea" name="message" id="message" className={styles.questionField}/>
                         </div>
-                        <button onClick={handleSubmit}>Отправить</button>
+                        <button className={styles.button} onClick={handleSubmit}>Отправить</button>
                     </Form>
                 )}
             </Formik>
