@@ -24,7 +24,7 @@ const SalesLeadersContainer = (props) => {
     useEffect(() => {
         if (props.leaders) {
             props.leaders.forEach(leader => {
-                imagesApi.downloadImage(leader.product.category.icon.id, 'Categories')
+                imagesApi.downloadImage(leader.product.category.icon.id, 'normal')
                     .then((result) => {
                         setImages(prev => [...prev, {leaderId: leader.id, image: result}])
                     })

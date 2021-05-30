@@ -18,7 +18,7 @@ const CategoriesListContainer = ({categories, loading}) => {
 
     useEffect(() => {
         categories.forEach(category => {
-            imagesApi.downloadImage(category.imageId, 'Categories')
+            imagesApi.downloadImage(category.imageId)
                 .then((image) => setImages((prev) => [...prev, {categoryId: category.id, image}]))
         })
     }, [categories])

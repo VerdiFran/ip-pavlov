@@ -15,7 +15,7 @@ const ProductContainer = ({productInfo}) => {
 
     useEffect(() => {
         if (image) {
-            imagesApi.downloadImage(image.id, 'Products')
+            imagesApi.downloadImage(image.id, 'mini')
                 .then(result => setImageBlob(result))
         }
     }, [image])
