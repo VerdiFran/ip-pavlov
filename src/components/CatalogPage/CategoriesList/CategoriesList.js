@@ -6,9 +6,10 @@ import React from 'react'
  * List with categories.
  * @param categories All categories.
  * @param images Category images.
+ * @param loading Loading
  */
-const CategoriesList = ({categories, images}) => {
-    const categoriesIndo = categories?.map(category => {
+const CategoriesList = ({categories, images, loading}) => {
+    const categoriesInfo = categories?.map(category => {
         const image = images?.find(image => image.categoryId === category.id)?.image
         return {
             ...category,
@@ -17,9 +18,9 @@ const CategoriesList = ({categories, images}) => {
     })
 
     return (
-        <ListWrapper title="категории">
+        <ListWrapper title="категории" loading={loading}>
             {
-                categoriesIndo.map(category =>
+                categoriesInfo.map(category =>
                     <CategoryCard categoryInfo={category} key={category.id}/>
                 )
             }

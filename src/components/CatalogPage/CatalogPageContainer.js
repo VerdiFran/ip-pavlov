@@ -1,95 +1,144 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import CatalogPage from './CatalogPage'
 import {connect} from 'react-redux'
-import {
-    getCategories,
-    getProducts,
-    getProductsIsDownloaded,
-    getProductsTotalPages
-} from '../../utils/selectors/catalogSelectors'
-import useDebounce from '../../hooks/useDebounce'
 import {downloadCategories, downloadProducts, removeProducts} from '../../redux/reducers/catalogReducer'
-
-const mapStateToProps = (state) => ({
-    categories: getCategories(state),
-    products: getProducts(state),
-    productsIsDownloaded: getProductsIsDownloaded(state),
-    productsTotalPages: getProductsTotalPages(state)
-})
 
 /**
  * Container for catalog page.
  */
-const CatalogPageContainer = ({categories, products, productsIsDownloaded, productsTotalPages,
-                                  downloadProducts, downloadCategories, removeProducts}) => {
-    const [loading, setLoading] = useState(false)
+const CatalogPageContainer = (props) => {
+    const {
+        downloadProducts,
+        downloadCategories,
+        removeProducts
+    } = props
 
-    useEffect(() => {
-        setLoading(true)
-        downloadProducts().then(() => setLoading(false))
-    }, [])
+    const [categoriesLoading, setCategoriesLoading] = useState(false)
+    const [productsLoading, setProductsLoading] = useState(false)
 
-    const [searchTerm, setSearchTerm] = useState('')
-    const [isSearching, setIsSearching] = useState(false)
-    const debouncedSearchTerm = useDebounce(searchTerm, 500)
-
-    const [producerIds, setProducerIds] = useState([])
-
-    const debouncedSearchTermRef = useRef()
-    const producerIdsRef = useRef()
-
-    useEffect(() => {
-        if ((debouncedSearchTermRef.current !== debouncedSearchTerm && (debouncedSearchTermRef.current?.length || debouncedSearchTerm?.length)) ||
-            (JSON.stringify(producerIdsRef.current) !== JSON.stringify(producerIds) && (producerIdsRef.current?.length || producerIds?.length))) {
-            setIsSearching(true)
-            removeProducts()
-            setLoading(true)
-            downloadProducts(debouncedSearchTerm, producerIds)
-                .then(() => {
-                    setIsSearching(false)
-                    setLoading(false)
-                })
-            downloadCategories(debouncedSearchTerm)
-        }
-    }, [debouncedSearchTerm, producerIds])
-
-    useEffect(() => {
-        debouncedSearchTermRef.current = debouncedSearchTerm
-    })
-
-    useEffect(() => {
-        producerIdsRef.current = producerIds
-    })
-
-    const appendProducts = () => {
-        setLoading(true)
-        downloadProducts(debouncedSearchTerm, producerIds)
-            .then(() => {
-                setLoading(false)
-            })
+    const downloadCategoriesWithLoading = (searchTerm = '') => {
+        setCategoriesLoading(true)
+        downloadCategories(searchTerm).then(() => setCategoriesLoading(false))
     }
 
-    const handleSearch = (searchTerm) => {
-        setLoading(true)
-        downloadProducts(searchTerm)
-            .then(() => {
-                setLoading(false)
-            })
+    const downloadProductsWithLoading = (searchTerm = '', producerIds = []) => {
+        setProductsLoading(true)
+        downloadProducts(searchTerm, producerIds).then(() => setProductsLoading(false))
+    }
+
+    useEffect(() => {
+        downloadCategoriesWithLoading()
+    }, [])
+
+    useEffect(() => {
+        downloadProductsWithLoading()
+    }, [])
+
+    const [searchTerm, setSearchTerm] = useState()
+    const [producerIds, setProducerIds] = useState()
+
+    useEffect(() => {
+        if (searchTerm) {
+            downloadCategoriesWithLoading(searchTerm)
+        }
+    }, [searchTerm])
+
+    useEffect(() => {
+        if (searchTerm) {
+            removeProducts()
+            downloadProductsWithLoading(searchTerm, producerIds)
+        }
+    }, [searchTerm])
+
+    useEffect(() => {
+        if (producerIds) {
+            removeProducts()
+            downloadProductsWithLoading(searchTerm, producerIds)
+        }
+    }, [producerIds])
+
+    const appendProducts = () => {
+        return downloadProducts(searchTerm, producerIds)
     }
 
     return <CatalogPage
-        categories={categories}
-        products={products}
-        searchTerm={searchTerm}
-        loading={loading}
-        isSearching={isSearching}
-        productsIsDownloaded={productsIsDownloaded}
+        categoriesLoading={categoriesLoading}
+        productsLoading={productsLoading}
         setSearchTerm={setSearchTerm}
         setProducerIds={setProducerIds}
-        handleSearch={handleSearch}
-        handleNextPage={appendProducts}
-        productsTotalPages={productsTotalPages}
+        appendProducts={appendProducts}
+        setCategoriesLoading={setCategoriesLoading}
+        setProductsLoading={setProductsLoading}
+        downloadCategoriesWithLoading={downloadCategoriesWithLoading}
+        downloadProductsWithLoading={downloadProductsWithLoading}
     />
 }
 
-export default connect(mapStateToProps, {downloadProducts, downloadCategories, removeProducts})(CatalogPageContainer)
+export default connect(
+    null,
+    {downloadProducts, downloadCategories, removeProducts}
+)(CatalogPageContainer)
+
+
+
+
+
+
+
+
+
+
+/*const [loading, setLoading] = useState(false)
+
+useEffect(() => {
+    setLoading(true)
+    downloadProducts().then(() => setLoading(false))
+}, [])
+
+const [searchTerm, setSearchTerm] = useState('')
+const [isSearching, setIsSearching] = useState(false)
+const debouncedSearchTerm = useDebounce(searchTerm, 500)
+
+const [producerIds, setProducerIds] = useState([])
+
+const debouncedSearchTermRef = useRef()
+const producerIdsRef = useRef()
+
+useEffect(() => {
+    if ((debouncedSearchTermRef.current !== debouncedSearchTerm && (debouncedSearchTermRef.current?.length || debouncedSearchTerm?.length)) ||
+        (JSON.stringify(producerIdsRef.current) !== JSON.stringify(producerIds) && (producerIdsRef.current?.length || producerIds?.length))) {
+        setIsSearching(true)
+        removeProducts()
+        setLoading(true)
+        downloadProducts(debouncedSearchTerm, producerIds)
+            .then(() => {
+                setIsSearching(false)
+                setLoading(false)
+            })
+        downloadCategories(debouncedSearchTerm)
+    }
+}, [debouncedSearchTerm, producerIds])
+
+useEffect(() => {
+    debouncedSearchTermRef.current = debouncedSearchTerm
+})
+
+useEffect(() => {
+    producerIdsRef.current = producerIds
+})
+
+const appendProducts = () => {
+    setLoading(true)
+    downloadProducts(debouncedSearchTerm, producerIds)
+        .then(() => {
+            setLoading(false)
+        })
+}
+
+const handleSearch = (searchTerm) => {
+    setLoading(true)
+    downloadProducts(searchTerm)
+        .then(() => {
+            setLoading(false)
+        })
+}*/

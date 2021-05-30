@@ -1,29 +1,40 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import styles from './CatalogHeader.module.scss'
 import filtersImage from '../../../assets/images/filters.png'
 
 /**
  * Header of catalog page
  */
-const CatalogHeader = ({manufacturers, searchTerm, setSearchTerm, setProducerIds, handleSearch}) => {
+const CatalogHeader = ({producers, searchTerm, setSearchTerm, setProducerIds, handleSearch}) => {
     const [filtersIsOpened, setFiltersIsOpened] = useState(false)
 
-    const [manufacturersActive, setManufacturersActive] = useState(
-        Object.fromEntries(manufacturers.map(manufacturer => [manufacturer.id, false]))
+    const [activeProducers, setActiveProducers] = useState(
+        Object.fromEntries(producers.map(manufacturer => [manufacturer.id, false]))
     )
 
+    const activeProducersRef = useRef()
+
     useEffect(() => {
-        setProducerIds(Object
-            .entries(manufacturersActive)
-            .filter(manufacturer => manufacturer[1] === true)
-            .map(manufacturer => manufacturer[0])
-        )
-    }, [manufacturersActive])
+        if (
+            JSON.stringify(activeProducersRef.current) !== JSON.stringify(activeProducers) &&
+            activeProducersRef.current &&
+            Object.entries(activeProducers)?.length
+        ) {
+            setProducerIds(Object.entries(activeProducers)
+                .filter(producer => producer[1] === true)
+                .map(producer => producer[0])
+            )
+        }
+    }, [activeProducers])
+
+    useEffect(() => {
+        activeProducersRef.current = activeProducers
+    }, [activeProducers])
 
     const toggleCheckbox = (manufacturerId) => {
-        setManufacturersActive({
-            ...manufacturersActive,
-            [`${manufacturerId}`]: !manufacturersActive[manufacturerId]
+        setActiveProducers({
+            ...activeProducers,
+            [manufacturerId]: !activeProducers[manufacturerId]
         })
     }
 
@@ -42,7 +53,8 @@ const CatalogHeader = ({manufacturers, searchTerm, setSearchTerm, setProducerIds
                     onClick={() => {
                         handleSearch(searchTerm)
                     }}
-                >Поиск</button>
+                >Поиск
+                </button>
             </div>
             <div className={styles.filtersContainer}>
                 <div
@@ -57,10 +69,10 @@ const CatalogHeader = ({manufacturers, searchTerm, setSearchTerm, setProducerIds
                         <span className={styles.filterTitle}>Производитель: </span>
                         <div className={styles.filterValues}>
                             {
-                                manufacturers.map(manufacturer => {
+                                producers.map(manufacturer => {
                                     let classes = [styles.customCheckbox]
 
-                                    if (manufacturersActive[manufacturer.id]) {
+                                    if (activeProducers[manufacturer.id]) {
                                         classes.push(styles.active)
                                     } else {
                                         classes = [styles.customCheckbox]

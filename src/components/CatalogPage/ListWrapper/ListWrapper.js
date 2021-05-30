@@ -4,7 +4,11 @@ import styles from './ListWrapper.module.scss'
 /**
  * Wrapper for list of categories or products
  */
-const ListWrapper = ({title, children}) => {
+const ListWrapper = ({title, loading, children}) => {
+    if (loading) {
+        return <div>loading...</div>
+    }
+
     return (
         <div className={styles.listWrapper}>
             <div className={styles.header}>

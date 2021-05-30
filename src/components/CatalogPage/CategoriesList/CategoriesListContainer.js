@@ -1,12 +1,19 @@
 import CategoriesList from './CategoriesList'
 import {imagesApi} from '../../../api/imagesApi'
 import {useEffect, useState} from 'react'
+import {getCategories} from '../../../utils/selectors/catalogSelectors'
+import {connect} from 'react-redux'
+
+const mapStateToProps = (state) => ({
+    categories: getCategories(state)
+})
 
 /**
  * Container for CategoryList component.
  * @param categories List of categories.
+ * @param loading Loading
  */
-const CategoriesListContainer = ({categories}) => {
+const CategoriesListContainer = ({categories, loading}) => {
     const [images, setImages] = useState([])
 
     useEffect(() => {
@@ -16,7 +23,7 @@ const CategoriesListContainer = ({categories}) => {
         })
     }, [categories])
 
-    return <CategoriesList categories={categories} images={images}/>
+    return <CategoriesList categories={categories} images={images} loading={loading}/>
 }
 
-export default CategoriesListContainer
+export default connect(mapStateToProps)(CategoriesListContainer)
