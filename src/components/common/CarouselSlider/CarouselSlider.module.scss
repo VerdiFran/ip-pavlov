@@ -5,15 +5,18 @@
   grid-area: items;
   grid-template-areas: 'slide';
   overflow: hidden;
+  opacity: 0;
 }
 
 .carousel {
   width: 100%;
   display: grid;
   grid-template-areas: 'leftArrow items rightArrow';
-  grid-template-columns: 40px auto 40px;
+  grid-template-columns: 4% 0 4%;
   justify-items: center;
+  justify-content: center;
   align-items: center;
+  transition: grid-template-columns 1s;
 }
 
 .item {

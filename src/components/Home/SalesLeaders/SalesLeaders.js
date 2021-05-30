@@ -1,6 +1,6 @@
 import CarouselSlider from '../../common/CarouselSlider/CarouselSlider'
 import styles from './SalesLeaders.module.scss'
-import {useRef, useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import ProductInfo from '../../ProductInfo/ProductInfo'
 import AnotherSalesLeaders from './AnotherSalesLeaders/AnotherSalesLeaders'
 
@@ -9,52 +9,13 @@ import AnotherSalesLeaders from './AnotherSalesLeaders/AnotherSalesLeaders'
  */
 const SalesLeaders = ({leaders, categoryImages, productImages}) => {
 
-    const containerWithSlider = useRef(null)
-    const containerFallIcon = useRef(null)
-    const anyCategoryIcon = useRef(null)
-    const fallingIcon = useRef(null)
-
-    const [fallingIconY, setFallingIconY] = useState(0)
-    const [circleSize, setCircleSize] = useState('0px')
-    const [categoryIconsVisibility, setCategoryIconsVisibility] = useState('hidden')
-    const [fallingIconVisibility, setFallingIconVisibility] = useState('visible')
     const [currentLeader, setCurrentLeader] = useState(0)
 
     const [productVisible, setProductVisible] = useState(false)
     const [selectedLeaderId, setSelectedLeaderId] = useState(0)
     const [selectedProduct, setSelectedProduct] = useState(null)
     const [selectedProductImage, setSelectedProductImage] = useState(null)
-
-    let inTranslation = false
-
-    useEffect(() => {
-        if (containerWithSlider.current && anyCategoryIcon.current) {
-
-            const options = {
-                root: null,
-                threshold: 1
-            }
-
-            const observer = new IntersectionObserver((entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !inTranslation && fallingIconY === 0) {
-                        const rect = anyCategoryIcon.current.getBoundingClientRect()
-                        const imgRect = fallingIcon.current.getBoundingClientRect()
-                        setFallingIconY(rect.top - imgRect.top)
-                        setCircleSize('250px')
-                        setFallingIconVisibility('hidden')
-                        setTimeout(() => {
-                            setCategoryIconsVisibility('visible')
-                        }, 400)
-                        inTranslation = true
-                    }
-
-                })
-            }), options)
-
-            observer.observe(containerWithSlider.current)
-        }
-    })
+    const [anotherLeaders, setAnotherLeaders] = useState([])
 
     useEffect(() => {
         if (!selectedLeaderId) {
@@ -65,25 +26,15 @@ const SalesLeaders = ({leaders, categoryImages, productImages}) => {
         setSelectedProductImage(productImages?.find(image => image.leaderId === selectedLeaderId)?.image)
     }, [selectedLeaderId])
 
-    const firstImage = categoryImages.find(image => image.leaderId === leaders[0].id)
-    const anotherLeaders = leaders.filter((element, idx) => idx !== currentLeader)
+    useEffect(() => {
+        setAnotherLeaders(leaders?.filter((_, index) => index !== currentLeader))
+    }, [currentLeader, leaders])
 
     return (
         <div>
             <h1 className={"heading"}>лидеры продаж</h1>
             <div>
-                <div ref={containerFallIcon} className={styles.dropIconContainer}>
-                    <div className={styles.dropIconGrid}>
-                        <img
-                            ref={fallingIcon}
-                            style={{top: fallingIconY, visibility: fallingIconVisibility}}
-                            className={styles.dropIcon}
-                            src={firstImage ? URL.createObjectURL(firstImage.image) : ''}
-                            alt={'drop'}
-                        />
-                    </div>
-                </div>
-                <div className={styles.salesLeadersSliderContainer} ref={containerWithSlider}>
+                <div className={styles.salesLeadersSliderContainer}>
                     <CarouselSlider
                         current={currentLeader}
                         setCurrent={setCurrentLeader}
@@ -106,14 +57,8 @@ const SalesLeaders = ({leaders, categoryImages, productImages}) => {
                                                 Производитель: {leader.product.producer.name}
                                             </div>
                                         </div>
-                                        <div style={{width: circleSize, height: circleSize}} className={styles.circle}/>
+                                        <div className={styles.circle}/>
                                         <img
-                                            style={{visibility: categoryIconsVisibility}}
-                                            ref={(image) => {
-                                                if (!anyCategoryIcon.current && image) {
-                                                    anyCategoryIcon.current = image
-                                                }
-                                            }}
                                             className={styles.salesLeaderCategoryIcon}
                                             src={image ? URL.createObjectURL(image.image) : ''}
                                             alt={'category'}
