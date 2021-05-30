@@ -10,3 +10,45 @@
 .simpleText {
     font-size: 18px;
 }
+
+.message {
+    $width: calc(auto);
+    display: block;
+    width: $width;
+    padding: 14px 10px;
+    position: fixed;
+    top: 20px;
+    left: calc(50%);
+    font-size: 14px;
+    color: $main-font-color;
+    z-index: 50;
+    animation: messageIn 0.5s ease-in-out;
+    box-shadow: 0 4px 8px $shadow-color;
+    transform: translateX(-50%);
+
+    &.success {
+        background-color: lighten($success-message, 7);
+    }
+
+    &.error {
+        background-color: lighten($error-message, 7);
+    }
+}
+
+@keyframes messageIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-200%);
+    }
+    50%{
+        transform: translateX(-50%) translateY(-100%);
+    }
+    80% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
