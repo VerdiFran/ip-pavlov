@@ -8,22 +8,18 @@ const animationDuration = 0.5
 const duration = `x ${animationDuration}s`
 
 const animation = {
-
     fadeInLeft: {
         animation: duration,
         animationName: Radium.keyframes(fadeInLeft, 'fadeInLeft'),
     },
-
     fadeOutLeft: {
         animation: duration,
         animationName: Radium.keyframes(fadeOutLeft, 'fadeOutLeft'),
     },
-
     fadeInRight: {
         animation: duration,
         animationName: Radium.keyframes(fadeInRight, 'fadeInRight'),
     },
-
     fadeOutRight: {
         animation: duration,
         animationName: Radium.keyframes(fadeOutRight, 'fadeOutRight'),
@@ -43,9 +39,8 @@ const animation = {
     }
 }
 
-
 /**
- * Our custom carrousel slider.
+ * Our custom carousel slider.
  * @param props Properties
  */
 const CarouselSlider = (props) => {

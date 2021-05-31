@@ -1,0 +1,27 @@
+@import '../../../common-scss/variables';
+
+.buttonContainer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: block;
+    box-sizing: border-box;
+    width: 214px;
+    height: 36px;
+    margin: 0;
+    padding: 8px 20px;
+    background-color: $second-color;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: $main-font-color;
+    box-shadow: 0 4px 4px $shadow-color;
+    text-decoration: none;
+    cursor: pointer;
+}

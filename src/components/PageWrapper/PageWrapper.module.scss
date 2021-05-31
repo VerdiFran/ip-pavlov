@@ -42,21 +42,25 @@ $border-margin: 61px;
 .contentWrapper {
     position: relative;
     margin: 0;
+    box-sizing: border-box;
 }
 
 .content {
+    box-sizing: border-box;
     width: calc(100% + #{$border-margin * 2});
     position: relative;
     top: 0;
     left: #{-$border-margin};
     right: 0;
     bottom: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-items: center;
 
     // blocks of content
     & > div {
         width: 100%;
         position: relative;
         box-sizing: border-box;
-        margin: 0;
     }
 }

@@ -1,4 +1,5 @@
-import {chooseEightRandomCategories, downloadCategories} from './catalogReducer'
+import {downloadCategories, downloadPartners} from './catalogReducer'
+import {chooseEightRandomCategories} from './catalogReducer'
 
 const INITIALIZED_SUCCESS = 'APP/INITIALIZED_SUCCESS'
 const SET_MESSAGE = 'APP/SET-MESSAGE'
@@ -61,13 +62,16 @@ const setMessage = (message, status) => ({type: SET_MESSAGE, message, status})
 const deleteMessage = () => ({type: DELETE_MESSAGE})
 
 export const initializeApp = () => async (dispatch) => {
-    const promise = dispatch(await downloadCategories())
+    const promises = []
 
-    Promise.all([promise])
+    await downloadCategories('')(dispatch)
+    Promise.all(promises)
         .then(() => {
             dispatch(initializedSuccess())
             dispatch(chooseEightRandomCategories())
         })
+
+    dispatch(await downloadPartners())
 }
 
 export const showMessage = (status, message) => (dispatch) => {
