@@ -12,9 +12,8 @@
 }
 
 .message {
-    $width: calc(auto);
     display: block;
-    width: $width;
+    width: auto;
     padding: 14px 10px;
     position: fixed;
     top: 20px;
