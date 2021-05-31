@@ -1,16 +1,19 @@
 import * as axios from 'axios'
 
+const baseURL = 'http://' + process.env.REACT_APP_SERVER_HOST + ':' +
+    process.env.REACT_APP_SERVER_PORT + '/api/v1'
+
 /**
  * Default API instance.
  */
 export const instance = axios.create({
-    baseURL: 'http://176.119.158.143:9090/api/v1'
+    baseURL: baseURL
 })
 
 /**
  * Instance for file downloading.
  */
 export const instanceForDownloadFile = axios.create({
-    baseURL: "http://176.119.158.143:9090/api/v1",
+    baseURL: baseURL,
     responseType: 'blob'
 })
