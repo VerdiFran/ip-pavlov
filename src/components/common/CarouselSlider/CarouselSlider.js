@@ -28,16 +28,18 @@ const animation = {
         animation: duration,
         animationName: Radium.keyframes(fadeOutRight, 'fadeOutRight'),
     },
-
-    emergenceCarousel: {
-        transition: 'grid-template-columns 1s',
-        gridTemplateColumns: "4% 92% 4%",
-    },
-
-    emergenceSlide: {
-        transition: '0.5s',
-        transitionDelay: '1s',
-        opacity: 1
+    slideWidthAnimation: {
+        animation: '1.5s forwards',
+        animationName: Radium.keyframes({
+            '75%': {
+                width: '100%',
+                opacity: 0,
+            },
+            '100%': {
+                opacity: 1,
+                width: '100%'
+            }
+        })
     }
 }
 
@@ -55,8 +57,7 @@ const CarouselSlider = (props) => {
 
     const carouselSlideRef = useRef(null)
 
-    const [carouselGridStyle, setCarouselGridStyle] = useState(null)
-    const [slideStyle, setSlideStyle] = useState(null)
+    const [slideWidthStyle, setSlideWidthStyle] = useState(null)
 
     useEffect(() => {
         if (carouselSlideRef.current) {
@@ -67,8 +68,7 @@ const CarouselSlider = (props) => {
 
             const observer = new IntersectionObserver(([entry]) => {
                 if (entry.isIntersecting) {
-                    setCarouselGridStyle(animation.emergenceCarousel)
-                    setSlideStyle(animation.emergenceSlide)
+                    setSlideWidthStyle(animation.slideWidthAnimation)
                 }
             }, options)
 
@@ -120,11 +120,11 @@ const CarouselSlider = (props) => {
 
     return (
         <StyleRoot>
-            <div ref={carouselSlideRef} style={carouselGridStyle} className={styles.carousel}>
+            <div ref={carouselSlideRef} className={styles.carousel}>
                 <div className={styles.leftArrow}>
                     <Arrow onClick={() => handleClick(leftClickConfig)} type={'left'}/>
                 </div>
-                <div style={slideStyle} className={styles.slide}>
+                <div style={slideWidthStyle} className={styles.slide}>
                     <div className={styles.item} style={currentAnimation}>
                         {props.children[handleGetCurrent()]}
                     </div>

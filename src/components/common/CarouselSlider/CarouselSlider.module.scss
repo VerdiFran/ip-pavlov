@@ -1,6 +1,6 @@
 
 .slide {
-  width: 100%;
+  width: 0;
   display: grid;
   grid-area: items;
   grid-template-areas: 'slide';
@@ -10,12 +10,11 @@
 
 .carousel {
   width: 100%;
-  display: grid;
-  grid-template-areas: 'leftArrow items rightArrow';
-  grid-template-columns: 4% 0 4%;
+  display: flex;
   justify-items: center;
   justify-content: center;
   align-items: center;
+  gap: 20px;
   transition: grid-template-columns 1s;
 }
 
@@ -28,18 +27,16 @@
 }
 
 .leftArrow {
-  height: 100%;
-  width: 100%;
-  grid-area: leftArrow;
+  height: 80px;
+  width: 40px;
   display: flex;
   justify-items: center;
   align-items: center;
 }
 
 .rightArrow {
-  height: 100%;
-  width: 100%;
-  grid-area: rightArrow;
+  height: 80px;
+  width: 40px;
   display: flex;
   justify-items: center;
   align-items: center;
