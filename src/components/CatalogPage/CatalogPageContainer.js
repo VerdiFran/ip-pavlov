@@ -21,83 +21,68 @@ const CatalogPageContainer = (props) => {
     const [isSpecificCategory, setIsSpecificCategory] = useState(false)
     const [specificCategoryName, setSpecificCategoryName] = useState()
     const [specificCategoryImageId, setSpecificCategoryImageId] = useState()
-    const [pageLoading, setPageLoading] = useState(false)
+    const [pageLoading, setPageLoading] = useState(true)
+    const [productsLoading, setProductsLoading] = useState(false)
+
+    const [searchTerm, setSearchTerm] = useState()
+    const [producerIds, setProducerIds] = useState()
 
     const getCategoryInfo = async (categoryName) => {
         return await catalogAPI.getCategoryInfo(categoryName)
     }
 
+    const downloadProductsWithLoading = (searchTerm = '', producerIds = [], categoryIds = []) => {
+        setProductsLoading(true)
+        return downloadProducts(searchTerm, producerIds, categoryIds).then(() => setProductsLoading(false))
+    }
+
+    useEffect(() => setPageLoading(true), [categoryName])
+
     useEffect(() => {
         if (categoryName) {
             setIsSpecificCategory(true)
-            setPageLoading(true)
+            removeProducts()
             getCategoryInfo(categoryName).then(({data}) => {
                 setCategoryIds([data.id])
                 setSpecificCategoryName(data.name)
                 setSpecificCategoryImageId(data.icon.id)
-                setPageLoading(false)
+                downloadProductsWithLoading(searchTerm, producerIds, categoryIds)
+                    .then(() => setPageLoading(false))
             })
         } else {
+            setPageLoading(true)
             setIsSpecificCategory(false)
-        }
-    }, [])
-
-    const [categoriesLoading, setCategoriesLoading] = useState(false)
-    const [productsLoading, setProductsLoading] = useState(false)
-
-    const downloadCategoriesWithLoading = (searchTerm = '') => {
-        setCategoriesLoading(true)
-        downloadCategories(searchTerm).then(() => setCategoriesLoading(false))
-    }
-
-    const downloadProductsWithLoading = (searchTerm = '', producerIds = [], categoryIds = []) => {
-        setProductsLoading(true)
-        downloadProducts(searchTerm, producerIds, categoryIds).then(() => setProductsLoading(false))
-    }
-
-    useEffect(() => {
-        downloadProductsWithLoading(null, null, categoryIds)
-    }, [])
-
-    const [searchTerm, setSearchTerm] = useState()
-    const [producerIds, setProducerIds] = useState()
-
-    useEffect(() => {
-        if (searchTerm) {
             removeProducts()
-            downloadProductsWithLoading(searchTerm, producerIds, categoryIds)
+            setCategoryIds(null)
+            setSpecificCategoryName(null)
+            setSpecificCategoryImageId(null)
+            downloadProductsWithLoading(searchTerm, producerIds)
+                .then(() => setPageLoading(false))
         }
-    }, [searchTerm])
+    }, [categoryName])
 
-    useEffect(() => {
-        if (producerIds) {
-            removeProducts()
-            downloadProductsWithLoading(searchTerm, producerIds, categoryIds)
+    return <>
+        {
+            pageLoading
+                ? <div>page is loading</div>
+                : <CatalogPage
+                    searchTerm={searchTerm}
+                    producerIds={producerIds}
+                    productsLoading={productsLoading}
+                    isSpecificCategory={isSpecificCategory}
+                    specificCategoryName={specificCategoryName}
+                    categoryIds={categoryIds}
+                    specificCategoryImageId={specificCategoryImageId}
+                    downloadProducts={downloadProducts}
+                    downloadCategories={downloadCategories}
+                    removeProducts={removeProducts}
+                    downloadProductsWithLoading={downloadProductsWithLoading}
+                    setProductsLoading={setProductsLoading}
+                    setSearchTerm={setSearchTerm}
+                    setProducerIds={setProducerIds}
+                />
         }
-    }, [producerIds])
-
-    const appendProducts = () => {
-        return downloadProducts(searchTerm, producerIds, categoryIds)
-    }
-
-    if (pageLoading) {
-        return <div>page is loading</div>
-    }
-
-    return <CatalogPage
-        isSpecificCategory={isSpecificCategory}
-        specificCategoryName={specificCategoryName}
-        productsLoading={productsLoading}
-        categoriesLoading={categoriesLoading}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        setProducerIds={setProducerIds}
-        appendProducts={appendProducts}
-        setCategoriesLoading={setCategoriesLoading}
-        setProductsLoading={setProductsLoading}
-        downloadProductsWithLoading={downloadProductsWithLoading}
-        downloadCategoriesWithLoading={downloadCategoriesWithLoading}
-    />
+    </>
 }
 
 export default compose(

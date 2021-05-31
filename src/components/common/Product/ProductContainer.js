@@ -4,11 +4,10 @@ import {imagesApi} from '../../../api/imagesApi'
 
 /**
  * Container component for product card in catalog
- * @param productInfo
  * @returns {JSX.Element}
  * @constructor
  */
-const ProductContainer = ({productInfo}) => {
+const ProductContainer = ({productInfo, selectProduct}) => {
     const [imageBlob, setImageBlob] = useState(null)
 
     const {image} = productInfo
@@ -20,7 +19,7 @@ const ProductContainer = ({productInfo}) => {
         }
     }, [image])
 
-    return <Product productInfo={productInfo} image={imageBlob}/>
+    return <Product selectProduct={selectProduct} productInfo={productInfo} image={imageBlob}/>
 }
 
 export default ProductContainer

@@ -61,7 +61,11 @@ const Products = (props) => {
             <ListWrapper title="товары" loading={loading}>
                 {
                     products.map(product =>
-                        <ProductContainer productInfo={product} key={product.id}/>
+                        <ProductContainer
+                            productInfo={product}
+                            key={product.id}
+                            selectProduct={() => props.selectProduct(product)}
+                        />
                     )
                 }
             </ListWrapper>

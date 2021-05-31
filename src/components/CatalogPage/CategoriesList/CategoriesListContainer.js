@@ -23,7 +23,9 @@ const CategoriesListContainer = ({categories, loading, searchTerm, downloadCateg
     }, [])
 
     useEffect(() => {
-        downloadCategoriesWithLoading(searchTerm)
+        if (searchTerm) {
+            downloadCategoriesWithLoading(searchTerm)
+        }
     }, [searchTerm])
 
     useEffect(() => {
