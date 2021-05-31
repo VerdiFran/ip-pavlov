@@ -27,6 +27,7 @@ const ProductsContainer = (props) => {
     }
 
     return <Products
+        selectProduct={props.selectProduct}
         products={products}
         productsIsDownloaded={productsIsDownloaded}
         loading={loading}

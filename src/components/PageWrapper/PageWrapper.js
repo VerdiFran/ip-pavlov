@@ -12,7 +12,9 @@ const PageWrapper = (props) => {
         <div>
             <div className={styles.pageWrapper} id="pageWrapper">
                 <div className={styles.contentWrapper} id="contentWrapper">
-                    <div className={styles.content}>{props.children}</div>
+                    <div className={styles.content} style={props.style}>
+                        {props.children}
+                    </div>
                 </div>
             </div>
         </div>

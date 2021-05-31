@@ -1,0 +1,62 @@
+@import '../../common-scss/variables';
+
+.heading {
+    margin-bottom: 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: $main-font-color;
+}
+
+.toCatalog {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    color: $main-font-color;
+
+    & > *:first-child {
+        margin-right: 10px;
+    }
+
+    & > span {
+        position: relative;
+
+        &::before {
+            content: attr(data-text);
+            transition: 0.5s;
+            color: $hover-link-color;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 0;
+            overflow: hidden;
+        }
+
+        &:hover {
+            &::before {
+                width: 100%;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+
+        &:active {
+            &::before {
+                color: $active-link-color;
+            }
+        }
+    }
+}
+
+.headingDivider {
+    width: 2px;
+    height: 20px;
+    margin: 0 14px;
+    background-color: $dark-second-color;
+}

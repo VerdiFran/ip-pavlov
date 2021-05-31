@@ -42,9 +42,11 @@ $border-margin: 61px;
 .contentWrapper {
     position: relative;
     margin: 0;
+    box-sizing: border-box;
 }
 
 .content {
+    box-sizing: border-box;
     width: calc(100% + #{$border-margin * 2});
     position: relative;
     top: 0;

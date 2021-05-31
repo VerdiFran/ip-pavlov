@@ -1,6 +1,6 @@
 import catalogAPI from '../../api/catalogApi'
 import {shuffle} from '../../utils/helpers/ArrayHelpers'
-import {imagesApi} from '../../api/imagesApi'
+import * as routes from './../../routes'
 
 const SET_CATEGORIES = 'CATALOG/SET-CATEGORIES'
 const SET_PARTNERS = 'CATALOG/SET-PARTNERS'
@@ -110,7 +110,7 @@ export const downloadCategories = (name) => async (dispatch) => {
     dispatch(setCategories(data.map(category => ({
         ...category,
         title: category.name,
-        path: `/categories/${category.routeName}`,
+        path: `${routes.TO_CATALOG}/${category.routeName}`,
         imageId: category.icon.id,
         image: null
     }))))
@@ -138,18 +138,22 @@ export const downloadPartners = () => async (dispatch) => {
     dispatch(setPartners(data))
 }
 
-const getProducts = async (name, producerIds, currentPage, totalPages, pageSize) => {
+const getProducts = async (name, producerIds, currentPage, totalPages, pageSize, categoryIds) => {
     if ((!totalPages && totalPages !== 0) || currentPage <= totalPages) {
-        const {data: {content, total}} = await catalogAPI.getProducts(name, producerIds, pageSize, currentPage)
+        const {data: {content, total}} = await catalogAPI.getProducts({
+            name, producerIds, pageSize, currentPage, categoryIds
+        })
         return [content, total]
     } else return []
 }
 
-export const downloadProducts = (name, producerIds) => async (dispatch, getState) => {
+export const downloadProducts = (name, producerIds, categoryIds) => async (dispatch, getState) => {
     const currentPage = getState().catalog.currentPage
     const totalPages = getState().catalog.totalPages
     const pageSize = getState().catalog.pageSize
-    const [products, total] = await getProducts(name?.toString(), producerIds, currentPage, totalPages, pageSize)
+    const [products, total] = await getProducts(
+        name?.toString(), producerIds, currentPage, totalPages, pageSize, categoryIds
+    )
 
     dispatch(addProducts(products || []))
     dispatch(setTotalPages(total ?? totalPages))
