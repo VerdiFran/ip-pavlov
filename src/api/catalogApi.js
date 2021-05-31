@@ -19,13 +19,14 @@ const catalogAPI = {
      * GET request to receive products
      * @returns {Promise}
      */
-    getProducts(name, producerIds, pageSize, currentPage) {
+    getProducts({name, producerIds, pageSize, currentPage, categoryIds}) {
         const config = {
             params: {
                 name,
-                producerIds: producerIds ? producerIds.join(',') : '',
+                producerIds: producerIds ? producerIds.join(',') : undefined,
                 pageSize,
-                pageNumber: currentPage
+                pageNumber: currentPage,
+                categoryIds: categoryIds ? categoryIds.join(',') : undefined
             }
         }
 
@@ -37,6 +38,9 @@ const catalogAPI = {
      */
     getPartners() {
         return instance.get('partners')
+    },
+    getCategoryInfo(categoryName) {
+        return instance.get(`categories/${categoryName}`)
     }
 }
 

@@ -13,6 +13,7 @@ import Footer from './components/Footer/Footer'
 import AboutCompany from './components/AboutCompany/AboutCompany'
 import Contacts from './components/Contacts/Contacts'
 import PartnersPage from './components/PartnersPage/PartnersPage'
+import CatalogPageContainer from './components/CatalogPage/CatalogPageContainer'
 
 const App = ({initialized, messageInfo: {status, text, visible}, initializeApp}) => {
     useEffect(() => {
@@ -31,29 +32,29 @@ const App = ({initialized, messageInfo: {status, text, visible}, initializeApp})
                 </div>
             }
             <Header/>
-            <Switch>
-                <Route
-                    exact
-                    path={routes.TO_HOME}
-                    render={() => <Home/>}
-                />
-                <Route
-                    path={`${routes.TO_CATALOG}/:category`}
-                    render={() => <div>catalog</div>}
-                />
-                <Route
-                    path={routes.TO_ABOUT_COMPANY}
-                    render={() => <AboutCompany/>}
-                />
-                <Route
-                    path={routes.TO_PARTNERS}
-                    render={() => <PartnersPage/>}
-                />
-                <Route
-                    path={routes.TO_CONTACTS}
-                    render={() => <Contacts/>}
-                />
-            </Switch>
+                <Switch>
+                    <Route
+                        exact
+                        path={routes.TO_HOME}
+                        render={() => <Home/>}
+                    />
+                    <Route
+                        path={`${routes.TO_CATALOG}/:categoryName?`}
+                        render={() => <CatalogPageContainer/>}
+                    />
+                    <Route
+                        path={routes.TO_ABOUT_COMPANY}
+                        render={() => <AboutCompany/>}
+                    />
+                    <Route
+                        path={routes.TO_PARTNERS}
+                        render={() => <PartnersPage/>}
+                    />
+                    <Route
+                        path={routes.TO_CONTACTS}
+                        render={() => <Contacts/>}
+                    />
+                </Switch>
             <Footer/>
         </div>
     )
