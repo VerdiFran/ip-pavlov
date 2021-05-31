@@ -8,32 +8,25 @@ const animationDuration = 0.5
 const duration = `x ${animationDuration}s`
 
 const animation = {
-
     fadeInLeft: {
         animation: duration,
         animationName: Radium.keyframes(fadeInLeft, 'fadeInLeft'),
     },
-
     fadeOutLeft: {
         animation: duration,
         animationName: Radium.keyframes(fadeOutLeft, 'fadeOutLeft'),
     },
-
     fadeInRight: {
         animation: duration,
         animationName: Radium.keyframes(fadeInRight, 'fadeInRight'),
     },
-
     fadeOutRight: {
         animation: duration,
         animationName: Radium.keyframes(fadeOutRight, 'fadeOutRight'),
     },
-
     emergenceCarousel: {
-        transition: 'grid-template-columns 1s',
         gridTemplateColumns: "4% 92% 4%",
     },
-
     emergenceSlide: {
         transition: '0.5s',
         transitionDelay: '1s',
@@ -41,9 +34,8 @@ const animation = {
     }
 }
 
-
 /**
- * Our custom carrousel slider.
+ * Our custom carousel slider.
  * @param props Properties
  */
 const CarouselSlider = (props) => {
