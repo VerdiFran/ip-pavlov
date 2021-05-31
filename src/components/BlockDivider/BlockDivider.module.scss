@@ -18,8 +18,8 @@
     margin: 0;
     background: repeating-linear-gradient(
                     to right,
-                    $second-color 0,
-                    $second-color 12px,
+                    #{$second-color} 0,
+                    #{$second-color} 12px,
                     transparent 12px,
                     transparent 22px
     )

@@ -11,7 +11,7 @@
     align-items: center;
     padding-left: 50px;
     box-sizing: border-box;
-    background: linear-gradient(to right, $main-color, $dark-main-color);
+    background: linear-gradient(to right, #{$main-color}, #{$dark-main-color});
     color: $logo-font-color;
     font-size: 18px;
     cursor: pointer;
