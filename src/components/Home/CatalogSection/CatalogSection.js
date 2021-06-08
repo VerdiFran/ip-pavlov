@@ -14,7 +14,7 @@ const CatalogSection = ({categories, images}) => {
             <h1 className="heading">Каталог товаров</h1>
             <div className={styles.categoriesContainer}>
                 {
-                    categories.map(category => (
+                    categories?.map(category => (
                         <div className={styles.categoryContainer} key={category.id}>
                             <NavLink to={category.path}>
                                 <div className={styles.categoryNameBlock}>

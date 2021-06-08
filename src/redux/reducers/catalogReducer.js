@@ -1,10 +1,8 @@
 import catalogAPI from '../../api/catalogApi'
-import {shuffle} from '../../utils/helpers/ArrayHelpers'
 import * as routes from './../../routes'
 
 const SET_CATEGORIES = 'CATALOG/SET-CATEGORIES'
 const SET_PARTNERS = 'CATALOG/SET-PARTNERS'
-const SET_CATEGORIES_IMAGES = 'CATALOG/SET-CATEGORIES-IMAGES'
 const NEXT_PAGE = 'CATALOG/NEXT-PAGE'
 const ADD_PRODUCTS = 'CATALOG/ADD_PRODUCTS'
 const SET_TOTAL_PAGES = 'CATALOG/SET-TOTAL-PAGES'
@@ -35,14 +33,6 @@ const catalogReducer = (state = initialState, action) => {
             return {
                 ...state,
                 randomCategoryIds: action.categoryIds
-            }
-        case SET_CATEGORIES_IMAGES:
-            return {
-                ...state,
-                categories: state.categories.map(category => ({
-                    ...category,
-                    image: action.images[category.id]
-                }))
             }
         case SET_PARTNERS:
             return {
@@ -92,7 +82,6 @@ const catalogReducer = (state = initialState, action) => {
 }
 
 const setCategories = (categories) => ({type: SET_CATEGORIES, categories})
-const setRandomCategoryIds = (categoryIds) => ({type: SET_RANDOM_CATEGORY_IDS, categoryIds})
 const setPartners = (partners) => ({type: SET_PARTNERS, partners})
 const addProducts = (products) => ({type: ADD_PRODUCTS, products})
 const setTotalPages = (totalPages) => ({type: SET_TOTAL_PAGES, totalPages})
@@ -116,21 +105,8 @@ export const downloadCategories = (name) => async (dispatch) => {
     }))))
 }
 
-export const chooseEightRandomCategories = () => (dispatch, getState) => {
-    const categoryIds = getState().catalog.categories.map(category => category.id)
-
-    if (categoryIds.length <= 8) {
-        return categoryIds
-    }
-
-    const randomCategoryIds = shuffle(categoryIds).slice(0, 8)
-
-    dispatch(setRandomCategoryIds(randomCategoryIds))
-}
-
 /**
- * Get partners and set it to state
- * @returns {function(*): Promise<void>}
+ * Get partners and set it to state.
  */
 export const downloadPartners = () => async (dispatch) => {
     const {data} = await catalogAPI.getPartners()

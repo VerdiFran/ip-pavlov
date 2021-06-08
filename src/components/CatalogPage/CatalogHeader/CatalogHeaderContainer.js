@@ -15,7 +15,7 @@ const CatalogHeaderContainer = (props) => {
         setDebouncedSearchTerm,
         setDebouncedProducerIds,
         removeProducts,
-        downloadCategoriesWithLoading,
+        handleFilterCategories,
         downloadProductsWithLoading
     } = props
 
@@ -34,10 +34,9 @@ const CatalogHeaderContainer = (props) => {
     }, [debouncedProducerIds])
 
     const handleSearch = () => {
-        downloadCategoriesWithLoading(debouncedSearchTerm)
+        handleFilterCategories(debouncedSearchTerm)
 
         removeProducts()
-
         downloadProductsWithLoading(debouncedSearchTerm, debouncedProducerIds)
     }
 

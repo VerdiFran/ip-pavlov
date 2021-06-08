@@ -21,7 +21,7 @@ const CatalogPage = (props) => {
         isSpecificCategory,
         specificCategoryName,
         categoryIds,
-        downloadCategories,
+        getCategoriesByName,
         downloadProducts,
         removeProducts,
         downloadProductsWithLoading,
@@ -30,16 +30,20 @@ const CatalogPage = (props) => {
         setProducerIds
     } = props
 
-    const [categoriesLoading, setCategoriesLoading] = useState(false)
+    const [filteredCategories, setFilteredCategories] = useState([])
 
     const [currentProductVisible, setCurrentProductVisible] = useState(false)
     const [currentProduct, setCurrentProduct] = useState()
     const [currentProductImage, setCurrentProductImage] = useState()
 
-    const downloadCategoriesWithLoading = (searchTerm = '') => {
-        setCategoriesLoading(true)
-        downloadCategories(searchTerm).then(() => setCategoriesLoading(false))
+    const handleFilterCategories = (term) => {
+        const filtered = getCategoriesByName(term)
+        setFilteredCategories(filtered)
     }
+
+    useEffect(() => {
+        handleFilterCategories('')
+    }, [])
 
     useEffect(() => {
         if (categoryIds) {
@@ -50,6 +54,7 @@ const CatalogPage = (props) => {
 
     useEffect(() => {
         if (searchTerm) {
+            handleFilterCategories(searchTerm)
             removeProducts()
             downloadProductsWithLoading(searchTerm, producerIds, categoryIds)
         }
@@ -105,18 +110,15 @@ const CatalogPage = (props) => {
                     }
                 </div>
                 <CatalogHeaderContainer
-                    setCategoriesLoading={setCategoriesLoading}
                     setProductsLoading={setProductsLoading}
                     setDebouncedSearchTerm={setSearchTerm}
                     setDebouncedProducerIds={setProducerIds}
-                    downloadCategoriesWithLoading={downloadCategoriesWithLoading}
                     downloadProductsWithLoading={downloadProductsWithLoading}
+                    handleFilterCategories={handleFilterCategories}
                 />
                 {
-                    !isSpecificCategory && <CategoriesListContainer
-                        searchTerm={searchTerm}
-                        loading={categoriesLoading}
-                        downloadCategoriesWithLoading={downloadCategoriesWithLoading}
+                    !isSpecificCategory &&
+                    <CategoriesListContainer categories={filteredCategories}
                     />
                 }
                 <ProductsContainer
@@ -124,12 +126,15 @@ const CatalogPage = (props) => {
                     loading={productsLoading}
                     appendProducts={appendProducts}/>
             </PageWrapper>
-            {currentProductVisible && <ProductInfo
-                productInfoVisible={currentProductVisible}
-                productImage={currentProductImage}
-                product={currentProduct}
-                onClose={handleClose}
-            />}
+            {
+                currentProductVisible &&
+                <ProductInfo
+                    productInfoVisible={currentProductVisible}
+                    productImage={currentProductImage}
+                    product={currentProduct}
+                    onClose={handleClose}
+                />
+            }
         </div>
     )
 }

@@ -5,6 +5,11 @@ import {downloadCategories, downloadProducts, removeProducts} from '../../redux/
 import catalogAPI from '../../api/catalogApi'
 import {compose} from 'redux'
 import {withRouter} from 'react-router-dom'
+import {getCategories} from '../../utils/selectors/catalogSelectors'
+
+const mapStateToProps = (state) => ({
+    getCategoriesByName: (name) => getCategories(state, name)
+})
 
 /**
  * Container for catalog page.
@@ -13,8 +18,8 @@ const CatalogPageContainer = (props) => {
     const {
         match: {params: {categoryName}},
         downloadProducts,
-        downloadCategories,
-        removeProducts
+        removeProducts,
+        getCategoriesByName
     } = props
 
     const [categoryIds, setCategoryIds] = useState()
@@ -74,7 +79,7 @@ const CatalogPageContainer = (props) => {
                     categoryIds={categoryIds}
                     specificCategoryImageId={specificCategoryImageId}
                     downloadProducts={downloadProducts}
-                    downloadCategories={downloadCategories}
+                    getCategoriesByName={getCategoriesByName}
                     removeProducts={removeProducts}
                     downloadProductsWithLoading={downloadProductsWithLoading}
                     setProductsLoading={setProductsLoading}
@@ -87,5 +92,5 @@ const CatalogPageContainer = (props) => {
 
 export default compose(
     withRouter,
-    connect(null, {downloadProducts, downloadCategories, removeProducts})
+    connect(mapStateToProps, {downloadProducts, downloadCategories, removeProducts})
 )(CatalogPageContainer)
