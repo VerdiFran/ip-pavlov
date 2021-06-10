@@ -16,15 +16,13 @@ const CategoriesList = ({categories, images}) => {
         }
     }) ?? []
 
-    return (
-        <ListWrapper title="категории">
-            {
-                categoriesInfo.map(category =>
-                    <CategoryCard categoryInfo={category} key={category.id}/>
-                )
-            }
-        </ListWrapper>
-    )
+    return categories.length > 0 && <ListWrapper title="категории">
+        {
+            categoriesInfo.map(category =>
+                <CategoryCard categoryInfo={category} key={category.id}/>
+            )
+        }
+    </ListWrapper>
 }
 
 export default CategoriesList

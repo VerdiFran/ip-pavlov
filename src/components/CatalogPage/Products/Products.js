@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import ListWrapper from './../ListWrapper/ListWrapper'
 import ProductContainer from '../../common/Product/ProductContainer'
 import styles from './Products.module.scss'
+import CatalogPreloader from '../CatalogPreloader/CatalogPreloader'
 
 /**
  * Section with list of products
@@ -73,7 +74,11 @@ const Products = (props) => {
                 </ListWrapper>
             }
             {
-                appendLoading && <div>loading...</div>
+                appendLoading && <CatalogPreloader/>
+            }
+            {
+                (products.length === 0 && !appendLoading) &&
+                <p className={styles.noProductsInfo}>продуктов по вашему запросу не найдено</p>
             }
             {
                 (!loading && !appendLoading) && <div className={styles.buttonContainer} ref={emptyRef}/>
