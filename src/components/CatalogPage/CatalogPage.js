@@ -15,57 +15,16 @@ import {imagesApi} from '../../api/imagesApi'
  */
 const CatalogPage = (props) => {
     const {
-        searchTerm,
-        producerIds,
-        productsLoading,
-        isSpecificCategory,
         specificCategoryName,
-        categoryIds,
-        getCategoriesByName,
-        downloadProducts,
-        removeProducts,
-        downloadProductsWithLoading,
-        setProductsLoading,
-        setSearchTerm,
-        setProducerIds
+        specificCategoryId
     } = props
-
-    const [filteredCategories, setFilteredCategories] = useState([])
 
     const [currentProductVisible, setCurrentProductVisible] = useState(false)
     const [currentProduct, setCurrentProduct] = useState()
     const [currentProductImage, setCurrentProductImage] = useState()
 
-    const handleFilterCategories = (term) => {
-        const filtered = getCategoriesByName(term)
-        setFilteredCategories(filtered)
-    }
-
-    useEffect(() => {
-        handleFilterCategories('')
-    }, [])
-
-    useEffect(() => {
-        if (categoryIds) {
-            removeProducts()
-            downloadProductsWithLoading(searchTerm, producerIds, categoryIds)
-        }
-    }, [categoryIds])
-
-    useEffect(() => {
-        if (searchTerm) {
-            handleFilterCategories(searchTerm)
-            removeProducts()
-            downloadProductsWithLoading(searchTerm, producerIds, categoryIds)
-        }
-    }, [searchTerm])
-
-    useEffect(() => {
-        if (producerIds) {
-            removeProducts()
-            downloadProductsWithLoading(searchTerm, producerIds, categoryIds)
-        }
-    }, [producerIds])
+    const [producerIds, setProducerIds] = useState()
+    const [searchTerm, setSearchTerm] = useState()
 
     useEffect(() => {
         if (!currentProduct) {
@@ -87,22 +46,18 @@ const CatalogPage = (props) => {
         setCurrentProductVisible(true)
     }
 
-    const appendProducts = () => {
-        return downloadProducts(searchTerm, producerIds, categoryIds)
-    }
-
     return (
         <div>
             <PageWrapper style={{padding: '60px 120px'}}>
                 <div className={styles.heading}>
                     <NavLink to={TO_CATALOG} className={styles.toCatalog}>
                         {
-                            isSpecificCategory && <Arrow type="left" height="14px" width="14px"/>
+                            specificCategoryName && <Arrow type="left" height="14px" width="14px"/>
                         }
                         <span data-text="Каталог">Каталог</span>
                     </NavLink>
                     {
-                        isSpecificCategory &&
+                        specificCategoryName &&
                         <>
                             <div className={styles.headingDivider}/>
                             <span>{specificCategoryName}</span>
@@ -110,21 +65,19 @@ const CatalogPage = (props) => {
                     }
                 </div>
                 <CatalogHeaderContainer
-                    setProductsLoading={setProductsLoading}
                     setDebouncedSearchTerm={setSearchTerm}
                     setDebouncedProducerIds={setProducerIds}
-                    downloadProductsWithLoading={downloadProductsWithLoading}
-                    handleFilterCategories={handleFilterCategories}
                 />
                 {
-                    !isSpecificCategory &&
-                    <CategoriesListContainer categories={filteredCategories}
-                    />
+                    (!specificCategoryName) &&
+                    <CategoriesListContainer searchTerm={searchTerm}/>
                 }
                 <ProductsContainer
-                    selectProduct={handleSetCurrent}
-                    loading={productsLoading}
-                    appendProducts={appendProducts}/>
+                    onClick={handleSetCurrent}
+                    specificCategoryId={specificCategoryId}
+                    searchTerm={searchTerm}
+                    producerIds={producerIds}
+                />
             </PageWrapper>
             {
                 currentProductVisible &&

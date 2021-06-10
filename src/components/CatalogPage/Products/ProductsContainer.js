@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {getProducts, getProductsIsDownloaded} from '../../../utils/selectors/catalogSelectors'
+import {getProducts} from '../../../utils/selectors/catalogSelectors'
 import Products from './Products'
+import {downloadProducts, removeProducts} from '../../../redux/reducers/catalogReducer'
 
 const mapStateToProps = (state) => ({
-    products: getProducts(state),
-    productsIsDownloaded: getProductsIsDownloaded(state)
+    products: getProducts(state)
 })
 
 /**
@@ -14,26 +14,40 @@ const mapStateToProps = (state) => ({
 const ProductsContainer = (props) => {
     const {
         products,
-        productsIsDownloaded,
-        loading,
-        appendProducts
+        removeProducts,
+        onClick,
+        downloadProducts,
+        specificCategoryId,
+        searchTerm,
+        producerIds
     } = props
 
     const [appendLoading, setAppendLoading] = useState(false)
+    const [productsLoading, setProductsLoading] = useState(false)
+
+    useEffect(() => {
+        removeProducts()
+        setProductsLoading(true)
+        downloadProducts(searchTerm, producerIds, specificCategoryId ? [specificCategoryId] : [])
+            .then(() => setProductsLoading(false))
+    }, [specificCategoryId, searchTerm, producerIds])
 
     const handleNextPage = () => {
         setAppendLoading(true)
-        appendProducts().then(() => setAppendLoading(false))
+        downloadProducts(searchTerm, producerIds, [specificCategoryId])
+            .then(() => setAppendLoading(false))
     }
 
-    return <Products
-        selectProduct={props.selectProduct}
-        products={products}
-        productsIsDownloaded={productsIsDownloaded}
-        loading={loading}
-        appendLoading={appendLoading}
-        handleNextPage={handleNextPage}
-    />
+    return (
+        !productsLoading &&
+        <Products
+            onClick={onClick}
+            products={products}
+            loading={productsLoading}
+            appendLoading={appendLoading}
+            handleNextPage={handleNextPage}
+        />
+    )
 }
 
-export default connect(mapStateToProps)(ProductsContainer)
+export default connect(mapStateToProps, {downloadProducts, removeProducts})(ProductsContainer)

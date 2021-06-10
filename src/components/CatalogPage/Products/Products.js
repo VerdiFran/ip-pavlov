@@ -11,8 +11,8 @@ const Products = (props) => {
         products,
         loading,
         appendLoading,
-        productsIsDownloaded,
-        handleNextPage
+        handleNextPage,
+        onClick
     } = props
 
     const emptyRef = useRef(null)
@@ -29,12 +29,12 @@ const Products = (props) => {
     }
 
     useEffect(() => {
-        if (!loading && !appendLoading && !productsIsDownloaded) {
+        if (!loading && !appendLoading) {
             setEmptyElement(emptyRef.current)
         } else {
             setEmptyElement(null)
         }
-    }, [emptyRef, loading, appendLoading, productsIsDownloaded])
+    }, [emptyRef, loading, appendLoading])
 
     useEffect(() => {
         if (!emptyElement) {
@@ -58,22 +58,25 @@ const Products = (props) => {
 
     return (
         <>
-            <ListWrapper title="товары" loading={loading}>
-                {
-                    products.map(product =>
-                        <ProductContainer
-                            productInfo={product}
-                            key={product.id}
-                            selectProduct={() => props.selectProduct(product)}
-                        />
-                    )
-                }
-            </ListWrapper>
+            {
+                products.length > 0 &&
+                <ListWrapper title="товары" loading={loading}>
+                    {
+                        products.map(product =>
+                            <ProductContainer
+                                productInfo={product}
+                                key={product.id}
+                                onClick={() => onClick(product)}
+                            />
+                        )
+                    }
+                </ListWrapper>
+            }
             {
                 appendLoading && <div>loading...</div>
             }
             {
-                !productsIsDownloaded && <div className={styles.buttonContainer} ref={emptyRef}/>
+                (!loading && !appendLoading) && <div className={styles.buttonContainer} ref={emptyRef}/>
             }
         </>
     )
