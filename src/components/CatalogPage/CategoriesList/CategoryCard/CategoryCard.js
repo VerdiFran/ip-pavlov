@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import styles from './CategoryCard.module.scss'
+import CategoryPreloader from './CategoryPreloader/CategoryPreloader'
+import Radium, {StyleRoot} from 'radium'
 
 /**
  * Category of products in catalog
@@ -9,11 +11,24 @@ import styles from './CategoryCard.module.scss'
  * @param image Image of category
  */
 const CategoryCard = ({categoryInfo: {title, path, image}}) => {
+    const [loaded, setLoaded] = useState(false)
 
     const fontSizes = {
         24: '14px',
         36: '12px',
         50: '10px'
+    }
+
+    const fontAnimation = {
+        animation: 'x 0.5s linear forwards',
+        animationName: Radium.keyframes({
+            'from': {
+                bottom: 50
+            },
+            'to': {
+                bottom: 0
+            }
+        })
     }
 
     const len = title.length
@@ -22,22 +37,34 @@ const CategoryCard = ({categoryInfo: {title, path, image}}) => {
             ? fontSizes[50] : len > 36
                 ? fontSizes[36] : fontSizes[24]
 
+    const [fontStyle, setFontStyle] = useState({fontSize})
+
     return (
-        <div className={styles.categoryCard}>
-            <NavLink to={path}>
+        <NavLink to={path} className={styles.navLink}>
+            <CategoryPreloader loaded={loaded}/>
+            <StyleRoot className={styles.categoryCard}>
                 <div className={styles.categoryImageContainer}>
                     <img
                         src={image ? URL.createObjectURL(image) : ''}
                         alt=""
                         className={styles.categoryImage}
+                        onLoad={() => {
+                            if (!loaded) {
+                                setLoaded(true)
+                                setFontStyle(prev => ({
+                                    ...prev,
+                                    ...fontAnimation
+                                }))
+                            }
+                        }}
                     />
                 </div>
                 <div
                     className={styles.categoryName}
-                    style={{fontSize: fontSize}}
+                    style={fontStyle}
                 >{title}</div>
-            </NavLink>
-        </div>
+            </StyleRoot>
+        </NavLink>
     )
 }
 
