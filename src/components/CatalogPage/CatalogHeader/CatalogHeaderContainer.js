@@ -12,7 +12,8 @@ const CatalogHeaderContainer = (props) => {
     const {
         producers,
         setDebouncedSearchTerm,
-        setDebouncedProducerIds
+        setDebouncedProducerIds,
+        specificCategoryName
     } = props
 
     const [searchTerm, setSearchTerm] = useState()
@@ -28,6 +29,10 @@ const CatalogHeaderContainer = (props) => {
     useEffect(() => {
         setDebouncedProducerIds(debouncedProducerIds)
     }, [debouncedProducerIds])
+
+    useEffect(() => {
+        setSearchTerm('')
+    }, [specificCategoryName])
 
     return <CatalogHeader
         producers={producers}

@@ -67,6 +67,7 @@ const CatalogPage = (props) => {
                 <CatalogHeaderContainer
                     setDebouncedSearchTerm={setSearchTerm}
                     setDebouncedProducerIds={setProducerIds}
+                    specificCategoryName={specificCategoryName}
                 />
                 {
                     (!specificCategoryName) &&
