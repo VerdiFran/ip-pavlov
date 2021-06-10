@@ -8,7 +8,6 @@ const ADD_PRODUCTS = 'CATALOG/ADD_PRODUCTS'
 const SET_TOTAL_PAGES = 'CATALOG/SET-TOTAL-PAGES'
 const REMOVE_PRODUCTS = 'CATALOG/REMOVE-PRODUCTS'
 const SET_PRODUCTS = 'CATALOG/SET-PRODUCTS'
-const SET_PRODUCTS_IS_DOWNLOADED = 'CATALOG/SET-PRODUCTS-IS-DOWNLOADED'
 const SET_RANDOM_CATEGORY_IDS = 'CATALOG/SET-RANDOM-CATEGORY_IDS'
 
 const initialState = {
@@ -70,11 +69,6 @@ const catalogReducer = (state = initialState, action) => {
                 currentPage: 1,
                 pageSize: 20
             }
-        case SET_PRODUCTS_IS_DOWNLOADED:
-            return {
-                ...state,
-                productsIsDownloaded: true
-            }
         default: {
             return state
         }
@@ -86,7 +80,6 @@ const setPartners = (partners) => ({type: SET_PARTNERS, partners})
 const addProducts = (products) => ({type: ADD_PRODUCTS, products})
 const setTotalPages = (totalPages) => ({type: SET_TOTAL_PAGES, totalPages})
 const nextPage = () => ({type: NEXT_PAGE})
-const setProductsIsDownloaded = () => ({type: SET_PRODUCTS_IS_DOWNLOADED})
 
 export const removeProducts = () => ({type: REMOVE_PRODUCTS})
 
@@ -133,7 +126,7 @@ export const downloadProducts = (name, producerIds, categoryIds) => async (dispa
 
     dispatch(addProducts(products || []))
     dispatch(setTotalPages(total ?? totalPages))
-    products ? dispatch(nextPage()) : dispatch(setProductsIsDownloaded())
+    dispatch(nextPage())
 }
 
 export default catalogReducer
