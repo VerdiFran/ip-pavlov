@@ -31,7 +31,9 @@ const CatalogHeaderContainer = (props) => {
     }, [debouncedProducerIds])
 
     useEffect(() => {
-        setSearchTerm('')
+        if (searchTerm) {
+            setSearchTerm('')
+        }
     }, [specificCategoryName])
 
     return <CatalogHeader
