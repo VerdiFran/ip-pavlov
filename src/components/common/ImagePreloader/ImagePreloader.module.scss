@@ -1,4 +1,4 @@
-@import "src/common-scss/variables";
+@import "../../../common-scss/variables";
 
 .ring {
   z-index: 10;
@@ -10,6 +10,6 @@
 .innerRing {
   z-index: 20;
   grid-area: card;
-  border: 150px solid $background-color;
+  border: solid $background-color;
 }
 

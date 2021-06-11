@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import styles from './CategoryCard.module.scss'
-import CategoryPreloader from './CategoryPreloader/CategoryPreloader'
+import ImagePreloader from '../../../common/ImagePreloader/ImagePreloader'
 import Radium, {StyleRoot} from 'radium'
 
 /**
@@ -12,6 +12,7 @@ import Radium, {StyleRoot} from 'radium'
  */
 const CategoryCard = ({categoryInfo: {title, path, image}}) => {
     const [loaded, setLoaded] = useState(false)
+    const preloaderContainer = useRef()
 
     const fontSizes = {
         24: '14px',
@@ -40,31 +41,33 @@ const CategoryCard = ({categoryInfo: {title, path, image}}) => {
     const [fontStyle, setFontStyle] = useState({fontSize})
 
     return (
-        <NavLink to={path} className={styles.navLink}>
-            <CategoryPreloader loaded={loaded}/>
-            <StyleRoot className={styles.categoryCard}>
-                <div className={styles.categoryImageContainer}>
-                    <img
-                        src={image ? URL.createObjectURL(image) : ''}
-                        alt=""
-                        className={styles.categoryImage}
-                        onLoad={() => {
-                            if (!loaded) {
-                                setLoaded(true)
-                                setFontStyle(prev => ({
-                                    ...prev,
-                                    ...fontAnimation
-                                }))
-                            }
-                        }}
-                    />
-                </div>
-                <div
-                    className={styles.categoryName}
-                    style={fontStyle}
-                >{title}</div>
-            </StyleRoot>
-        </NavLink>
+        <div ref={preloaderContainer}>
+            <NavLink to={path} className={styles.navLink}>
+                <ImagePreloader loaded={loaded} preloaderContainer={preloaderContainer.current}/>
+                <StyleRoot className={styles.categoryCard}>
+                    <div className={styles.categoryImageContainer}>
+                        <img
+                            src={image ? URL.createObjectURL(image) : ''}
+                            alt=""
+                            className={styles.categoryImage}
+                            onLoad={() => {
+                                if (!loaded) {
+                                    setLoaded(true)
+                                    setFontStyle(prev => ({
+                                        ...prev,
+                                        ...fontAnimation
+                                    }))
+                                }
+                            }}
+                        />
+                    </div>
+                    <div
+                        className={styles.categoryName}
+                        style={fontStyle}
+                    >{title}</div>
+                </StyleRoot>
+            </NavLink>
+        </div>
     )
 }
 
