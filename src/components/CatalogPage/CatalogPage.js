@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import PageWrapper from '../PageWrapper/PageWrapper'
 import CatalogHeaderContainer from './CatalogHeader/CatalogHeaderContainer'
 import CategoriesListContainer from './CategoriesList/CategoriesListContainer'
@@ -7,8 +7,7 @@ import styles from './CatalogPage.module.scss'
 import Arrow from '../common/Arrow/Arrow'
 import {NavLink} from 'react-router-dom'
 import {TO_CATALOG} from '../../routes'
-import ProductInfo from '../ProductInfo/ProductInfo'
-import {imagesApi} from '../../api/imagesApi'
+import ProductInfoContainer from '../ProductInfo/ProductInfoContainer'
 
 /**
  * Page that contains catalog
@@ -21,23 +20,12 @@ const CatalogPage = (props) => {
 
     const [currentProductVisible, setCurrentProductVisible] = useState(false)
     const [currentProduct, setCurrentProduct] = useState()
-    const [currentProductImage, setCurrentProductImage] = useState()
 
     const [producerIds, setProducerIds] = useState()
     const [searchTerm, setSearchTerm] = useState()
 
-    useEffect(() => {
-        if (!currentProduct) {
-            return
-        }
-
-        imagesApi.downloadImage(currentProduct.image.id, 'mini')
-            .then((response) => setCurrentProductImage(response))
-    }, [currentProduct])
-
     const handleClose = () => {
         setCurrentProduct(null)
-        setCurrentProductImage(null)
         setCurrentProductVisible(false)
     }
 
@@ -82,9 +70,8 @@ const CatalogPage = (props) => {
             </PageWrapper>
             {
                 currentProductVisible &&
-                <ProductInfo
+                <ProductInfoContainer
                     productInfoVisible={currentProductVisible}
-                    productImage={currentProductImage}
                     product={currentProduct}
                     onClose={handleClose}
                 />

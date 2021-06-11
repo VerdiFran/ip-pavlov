@@ -1,29 +1,26 @@
 import CarouselSlider from '../../common/CarouselSlider/CarouselSlider'
 import styles from './SalesLeaders.module.scss'
 import {useState, useEffect} from 'react'
-import ProductInfo from '../../ProductInfo/ProductInfo'
 import AnotherSalesLeaders from './AnotherSalesLeaders/AnotherSalesLeaders'
+import ProductInfoContainer from '../../ProductInfo/ProductInfoContainer'
 
 /**
  * Component with sales leaders.
  */
-const SalesLeaders = ({leaders, categoryImages, productImages}) => {
+const SalesLeaders = ({leaders, categoryImages}) => {
 
     const [currentLeader, setCurrentLeader] = useState(0)
 
     const [productVisible, setProductVisible] = useState(false)
     const [selectedLeaderId, setSelectedLeaderId] = useState(0)
     const [selectedProduct, setSelectedProduct] = useState(null)
-    const [selectedProductImage, setSelectedProductImage] = useState(null)
     const [anotherLeaders, setAnotherLeaders] = useState([])
 
     useEffect(() => {
         if (!selectedLeaderId) {
             return
         }
-
         setSelectedProduct(leaders?.find(leader => leader.id === selectedLeaderId)?.product)
-        setSelectedProductImage(productImages?.find(image => image.leaderId === selectedLeaderId)?.image)
     }, [selectedLeaderId])
 
     useEffect(() => {
@@ -79,9 +76,9 @@ const SalesLeaders = ({leaders, categoryImages, productImages}) => {
                     />
                 </div>
             </div>
-            {productVisible && <ProductInfo
+            {(productVisible && selectedProduct) &&
+            <ProductInfoContainer
                 product={selectedProduct}
-                productImage={selectedProductImage}
                 productInfoVisible={productVisible}
                 onClose={() => {
                     setProductVisible(false)
