@@ -29,11 +29,15 @@ const ProductInfo = ({product, productInfoVisible, onClose, productImage}) => {
         >
             <div style={modalStyle} className={styles.modalContainer}>
                 <div ref={preloaderRef} className={styles.productImageContainer}>
-                    <ImagePreloader loaded={imageLoaded} preloaderContainer={preloaderRef.current}/>
+                    <ImagePreloader
+                        loaded={imageLoaded}
+                        preloaderContainer={preloaderRef.current}
+                        preloaderTitle="загрузка"
+                    />
                     <img
                         className={styles.productImage}
                         src={productImage ? URL.createObjectURL(productImage) : ''}
-                        alt="product"
+                        alt=""
                         onLoad={() => setImageLoaded(true)}
                     />
                 </div>

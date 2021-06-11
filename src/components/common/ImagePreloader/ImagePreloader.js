@@ -6,8 +6,9 @@ import {useEffect, useState} from 'react'
  * Preloader for category image.
  * @param loaded Image is loaded.
  * @param preloaderContainer Block that contains this preloader.
+ * @param preloaderTitle Text that will be show before load.
  */
-const ImagePreloader = ({loaded, preloaderContainer}) => {
+const ImagePreloader = ({loaded, preloaderContainer, preloaderTitle}) => {
     const animation = {
         animation: 'x 2s forwards',
         animationName: Radium.keyframes({
@@ -24,6 +25,11 @@ const ImagePreloader = ({loaded, preloaderContainer}) => {
 
     const [preloaderStyle, setPreloaderStyle] = useState()
     const [preloaderSize, setPreloaderSize] = useState(500)
+    const [preloaderTitleVisibility, setPreloaderTitleVisibility] = useState('visible')
+
+    const preloaderTitleStyle = {
+        visibility: preloaderTitleVisibility
+    }
 
     useEffect(() => {
         if (preloaderContainer) {
@@ -44,10 +50,14 @@ const ImagePreloader = ({loaded, preloaderContainer}) => {
     useEffect(() => {
         if (loaded) {
             setPreloaderStyle(prev => ({...prev, ...animation}))
+            setPreloaderTitleVisibility('hidden')
         }
     }, [loaded])
 
-    return <StyleRoot style={preloaderStyle} className={[styles.ring, styles.innerRing].join(' ')}/>
+    return <>
+        <StyleRoot style={preloaderStyle} className={[styles.ring, styles.innerRing].join(' ')}/>
+        <span className={styles.preloaderTitle} style={preloaderTitleStyle}>{preloaderTitle}</span>
+    </>
 }
 
 export default ImagePreloader

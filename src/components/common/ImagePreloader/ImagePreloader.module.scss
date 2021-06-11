@@ -13,3 +13,13 @@
   border: solid $background-color;
 }
 
+.preloaderTitle {
+  z-index: 20;
+  grid-area: card;
+  visibility: visible;
+  font-size: 20px;
+  font-weight: bold;
+  color: $main-color;
+  transition: visibility 0.1s;
+}
+
