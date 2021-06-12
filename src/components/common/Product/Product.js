@@ -12,9 +12,9 @@ import styles from './Product.module.scss'
  * @returns {JSX.Element}
  * @constructor
  */
-const Product = ({productInfo: {description, quantity, price, unit}, image, selectProduct}) => {
+const Product = ({productInfo: {description, quantity, price, unit}, image, onClick}) => {
     return (
-        <div onClick={selectProduct} className={styles.productContainer}>
+        <div onClick={onClick} className={styles.productContainer}>
             <div className={styles.productImageContainer}>
                 <img src={image ? URL.createObjectURL(image) : ''} alt="" className={styles.productImage}/>
             </div>

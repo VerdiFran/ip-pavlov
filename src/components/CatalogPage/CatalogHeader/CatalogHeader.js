@@ -5,7 +5,7 @@ import filtersImage from '../../../assets/images/filters.png'
 /**
  * Header of catalog page
  */
-const CatalogHeader = ({producers, searchTerm, setSearchTerm, setProducerIds, handleSearch}) => {
+const CatalogHeader = ({producers, searchTerm, setSearchTerm, setProducerIds}) => {
     const [filtersIsOpened, setFiltersIsOpened] = useState(false)
 
     const [activeProducers, setActiveProducers] = useState(
@@ -50,9 +50,6 @@ const CatalogHeader = ({producers, searchTerm, setSearchTerm, setProducerIds, ha
                 />
                 <button
                     className={styles.searchButton}
-                    onClick={() => {
-                        handleSearch(searchTerm)
-                    }}
                 >Поиск
                 </button>
             </div>

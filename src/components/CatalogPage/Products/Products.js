@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import ListWrapper from './../ListWrapper/ListWrapper'
 import ProductContainer from '../../common/Product/ProductContainer'
 import styles from './Products.module.scss'
+import CatalogPreloader from '../CatalogPreloader/CatalogPreloader'
 
 /**
  * Section with list of products
@@ -11,8 +12,8 @@ const Products = (props) => {
         products,
         loading,
         appendLoading,
-        productsIsDownloaded,
-        handleNextPage
+        handleNextPage,
+        onClick
     } = props
 
     const emptyRef = useRef(null)
@@ -29,12 +30,12 @@ const Products = (props) => {
     }
 
     useEffect(() => {
-        if (!loading && !appendLoading && !productsIsDownloaded) {
+        if (!loading && !appendLoading) {
             setEmptyElement(emptyRef.current)
         } else {
             setEmptyElement(null)
         }
-    }, [emptyRef, loading, appendLoading, productsIsDownloaded])
+    }, [emptyRef, loading, appendLoading])
 
     useEffect(() => {
         if (!emptyElement) {
@@ -58,22 +59,29 @@ const Products = (props) => {
 
     return (
         <>
-            <ListWrapper title="товары" loading={loading}>
-                {
-                    products.map(product =>
-                        <ProductContainer
-                            productInfo={product}
-                            key={product.id}
-                            selectProduct={() => props.selectProduct(product)}
-                        />
-                    )
-                }
-            </ListWrapper>
             {
-                appendLoading && <div>loading...</div>
+                products.length > 0 &&
+                <ListWrapper title="товары" loading={loading}>
+                    {
+                        products.map(product =>
+                            <ProductContainer
+                                productInfo={product}
+                                key={product.id}
+                                onClick={() => onClick(product)}
+                            />
+                        )
+                    }
+                </ListWrapper>
             }
             {
-                !productsIsDownloaded && <div className={styles.buttonContainer} ref={emptyRef}/>
+                appendLoading && <CatalogPreloader/>
+            }
+            {
+                (products.length === 0 && !appendLoading) &&
+                <p className={styles.noProductsInfo}>продуктов по вашему запросу не найдено</p>
+            }
+            {
+                (!loading && !appendLoading) && <div className={styles.buttonContainer} ref={emptyRef}/>
             }
         </>
     )

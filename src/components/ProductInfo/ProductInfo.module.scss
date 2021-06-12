@@ -33,19 +33,27 @@
 }
 
 .productImageContainer {
-  width: 85%;
-  height: 70%;
-  display: flex;
+  width: 400px;
+  height: 450px;
+  display: grid;
+  grid-template-areas: 'card';
+  justify-items: center;
   justify-content: center;
   align-items: center;
+  align-content: center;
   border-radius: 150px;
   background-color: #ffffff;
+  box-sizing: content-box;
   box-shadow: 0 4px 4px $shadow-color;
+  overflow: hidden;
 }
 
 .productImage {
+  max-height: 350px;
+  max-width: 350px;
   width: auto;
   height: auto;
+  grid-area: card;
 }
 
 .productInfoContainer {

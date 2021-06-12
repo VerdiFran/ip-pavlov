@@ -1,10 +1,13 @@
 import styles from './ProductInfo.module.scss'
-import {useRef} from 'react'
+import {useRef, useState} from 'react'
+import ImagePreloader from '../common/ImagePreloader/ImagePreloader'
 
 /**
  * Component with information about product.
  */
 const ProductInfo = ({product, productInfoVisible, onClose, productImage}) => {
+    const [imageLoaded, setImageLoaded] = useState(false)
+    const preloaderRef = useRef()
     const backgroundRef = useRef()
 
     const modalStyle = {
@@ -25,9 +28,18 @@ const ProductInfo = ({product, productInfoVisible, onClose, productImage}) => {
             onClick={handleBackgroundClick}
         >
             <div style={modalStyle} className={styles.modalContainer}>
-                <div className={styles.productImageContainer}>
-                    <img className={styles.productImage} src={productImage ? URL.createObjectURL(productImage) : ''}
-                         alt="product"/>
+                <div ref={preloaderRef} className={styles.productImageContainer}>
+                    <ImagePreloader
+                        loaded={imageLoaded}
+                        preloaderContainer={preloaderRef.current}
+                        preloaderTitle="загрузка"
+                    />
+                    <img
+                        className={styles.productImage}
+                        src={productImage ? URL.createObjectURL(productImage) : ''}
+                        alt=""
+                        onLoad={() => setImageLoaded(true)}
+                    />
                 </div>
                 <div className={styles.productInfoContainer}>
                     <span className={styles.productDescription}>{product?.description}</span>

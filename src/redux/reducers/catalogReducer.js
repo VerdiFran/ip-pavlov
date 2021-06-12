@@ -1,16 +1,13 @@
 import catalogAPI from '../../api/catalogApi'
-import {shuffle} from '../../utils/helpers/ArrayHelpers'
 import * as routes from './../../routes'
 
 const SET_CATEGORIES = 'CATALOG/SET-CATEGORIES'
 const SET_PARTNERS = 'CATALOG/SET-PARTNERS'
-const SET_CATEGORIES_IMAGES = 'CATALOG/SET-CATEGORIES-IMAGES'
 const NEXT_PAGE = 'CATALOG/NEXT-PAGE'
 const ADD_PRODUCTS = 'CATALOG/ADD_PRODUCTS'
 const SET_TOTAL_PAGES = 'CATALOG/SET-TOTAL-PAGES'
 const REMOVE_PRODUCTS = 'CATALOG/REMOVE-PRODUCTS'
 const SET_PRODUCTS = 'CATALOG/SET-PRODUCTS'
-const SET_PRODUCTS_IS_DOWNLOADED = 'CATALOG/SET-PRODUCTS-IS-DOWNLOADED'
 const SET_RANDOM_CATEGORY_IDS = 'CATALOG/SET-RANDOM-CATEGORY_IDS'
 
 const initialState = {
@@ -35,14 +32,6 @@ const catalogReducer = (state = initialState, action) => {
             return {
                 ...state,
                 randomCategoryIds: action.categoryIds
-            }
-        case SET_CATEGORIES_IMAGES:
-            return {
-                ...state,
-                categories: state.categories.map(category => ({
-                    ...category,
-                    image: action.images[category.id]
-                }))
             }
         case SET_PARTNERS:
             return {
@@ -80,11 +69,6 @@ const catalogReducer = (state = initialState, action) => {
                 currentPage: 1,
                 pageSize: 20
             }
-        case SET_PRODUCTS_IS_DOWNLOADED:
-            return {
-                ...state,
-                productsIsDownloaded: true
-            }
         default: {
             return state
         }
@@ -92,12 +76,10 @@ const catalogReducer = (state = initialState, action) => {
 }
 
 const setCategories = (categories) => ({type: SET_CATEGORIES, categories})
-const setRandomCategoryIds = (categoryIds) => ({type: SET_RANDOM_CATEGORY_IDS, categoryIds})
 const setPartners = (partners) => ({type: SET_PARTNERS, partners})
 const addProducts = (products) => ({type: ADD_PRODUCTS, products})
 const setTotalPages = (totalPages) => ({type: SET_TOTAL_PAGES, totalPages})
 const nextPage = () => ({type: NEXT_PAGE})
-const setProductsIsDownloaded = () => ({type: SET_PRODUCTS_IS_DOWNLOADED})
 
 export const removeProducts = () => ({type: REMOVE_PRODUCTS})
 
@@ -116,21 +98,8 @@ export const downloadCategories = (name) => async (dispatch) => {
     }))))
 }
 
-export const chooseEightRandomCategories = () => (dispatch, getState) => {
-    const categoryIds = getState().catalog.categories.map(category => category.id)
-
-    if (categoryIds.length <= 8) {
-        return categoryIds
-    }
-
-    const randomCategoryIds = shuffle(categoryIds).slice(0, 8)
-
-    dispatch(setRandomCategoryIds(randomCategoryIds))
-}
-
 /**
- * Get partners and set it to state
- * @returns {function(*): Promise<void>}
+ * Get partners and set it to state.
  */
 export const downloadPartners = () => async (dispatch) => {
     const {data} = await catalogAPI.getPartners()
@@ -157,7 +126,7 @@ export const downloadProducts = (name, producerIds, categoryIds) => async (dispa
 
     dispatch(addProducts(products || []))
     dispatch(setTotalPages(total ?? totalPages))
-    products ? dispatch(nextPage()) : dispatch(setProductsIsDownloaded())
+    dispatch(nextPage())
 }
 
 export default catalogReducer
