@@ -18,6 +18,7 @@ const ProductsContainer = (props) => {
         onClick,
         downloadProducts,
         specificCategoryId,
+        categoryIsSpecified,
         searchTerm,
         producerIds
     } = props
@@ -26,6 +27,10 @@ const ProductsContainer = (props) => {
     const [productsLoading, setProductsLoading] = useState(false)
 
     useEffect(() => {
+        if (categoryIsSpecified && specificCategoryId === undefined) {
+            return
+        }
+
         removeProducts()
         setProductsLoading(true)
         downloadProducts(searchTerm, producerIds, specificCategoryId ? [specificCategoryId] : [])
@@ -33,6 +38,10 @@ const ProductsContainer = (props) => {
     }, [specificCategoryId, searchTerm, producerIds])
 
     const handleNextPage = () => {
+        if (categoryIsSpecified && specificCategoryId === undefined) {
+            return
+        }
+
         setAppendLoading(true)
         downloadProducts(searchTerm, producerIds, [specificCategoryId])
             .then(() => setAppendLoading(false))

@@ -15,7 +15,8 @@ import ProductInfoContainer from '../ProductInfo/ProductInfoContainer'
 const CatalogPage = (props) => {
     const {
         specificCategoryName,
-        specificCategoryId
+        specificCategoryId,
+        categoryIsSpecified
     } = props
 
     const [currentProductVisible, setCurrentProductVisible] = useState(false)
@@ -58,11 +59,12 @@ const CatalogPage = (props) => {
                     specificCategoryName={specificCategoryName}
                 />
                 {
-                    (!specificCategoryName) &&
+                    (!categoryIsSpecified) &&
                     <CategoriesListContainer searchTerm={searchTerm}/>
                 }
                 <ProductsContainer
                     onClick={handleSetCurrent}
+                    categoryIsSpecified={categoryIsSpecified}
                     specificCategoryId={specificCategoryId}
                     searchTerm={searchTerm}
                     producerIds={producerIds}

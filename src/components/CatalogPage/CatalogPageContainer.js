@@ -12,11 +12,13 @@ const CatalogPageContainer = (props) => {
         match: {params: {categoryName}}
     } = props
 
-    const [specificCategoryName, setSpecificCategoryName] = useState(null)
-    const [specificCategoryId, setSpecificCategoryId] = useState(null)
+    const [specificCategoryName, setSpecificCategoryName] = useState()
+    const [specificCategoryId, setSpecificCategoryId] = useState()
+    const [categoryIsSpecified, setCategoryIsSpecified] = useState(categoryName !== undefined)
 
     useEffect(() => {
         if (categoryName) {
+            setCategoryIsSpecified(true)
             catalogAPI.getCategoryInfo(categoryName).then(({data}) => {
                 setSpecificCategoryId(data.id)
                 setSpecificCategoryName(data.name)
@@ -24,12 +26,14 @@ const CatalogPageContainer = (props) => {
         } else {
             setSpecificCategoryId(null)
             setSpecificCategoryName(null)
+            setCategoryIsSpecified(false)
         }
     }, [categoryName])
 
     return <CatalogPage
         specificCategoryName={specificCategoryName}
         specificCategoryId={specificCategoryId}
+        categoryIsSpecified={categoryIsSpecified}
     />
 }
 
