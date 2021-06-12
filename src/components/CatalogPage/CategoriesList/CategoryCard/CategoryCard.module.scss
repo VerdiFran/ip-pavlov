@@ -1,39 +1,55 @@
 @import '../../../../common-scss/variables';
 
-.categoryCard {
-    width: 170px;
+.navLink {
     height: 190px;
+    width: 170px;
+    display: grid;
+    grid-template-areas: 'card';
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 4px $shadow-color;
+    text-decoration: none;
+}
+
+.categoryCard {
+    height: 190px;
+    width: 170px;
     padding: 12px;
+    grid-area: card;
     box-sizing: border-box;
     background-color: $second-color;
     box-shadow: 0 4px 4px $shadow-color;
-
-    a {
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-rows: 110px auto;
-        grid-template-areas:
+    display: grid;
+    grid-template-rows: 110px auto;
+    grid-template-areas:
                 'image'
                 'title';
-        justify-content: center;
-        text-decoration: none;
-    }
+    align-items: center;
+    justify-items: center;
 }
 
 .categoryImageContainer {
+    height: 80%;
+    width: 80%;
     grid-area: image;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .categoryImage {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 }
 
 .categoryName {
+    z-index: 20;
+    bottom: 50px;
+    position: relative;
     grid-area: title;
     font-size: 16px;
     color: $main-font-color;

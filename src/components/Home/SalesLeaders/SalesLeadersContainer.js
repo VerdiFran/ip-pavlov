@@ -16,7 +16,6 @@ const mapStateToProps = (state) => ({
  */
 const SalesLeadersContainer = (props) => {
     const [categoryImages, setCategoryImages] = useState([])
-    const [productImages, setProductImages] = useState([])
     const [leadersIsLoaded, setLeadersIsLoaded] = useState(false)
 
     useEffect(() => {
@@ -29,16 +28,9 @@ const SalesLeadersContainer = (props) => {
     useEffect(() => {
         if (leadersIsLoaded) {
             props.leaders.forEach(leader => {
-                imagesApi.downloadImage(leader.product.category.icon.id, 'normal')
+                imagesApi.downloadImage(leader.product.category.icon.id)
                     .then((result) => {
                         setCategoryImages(prev => [...prev, {leaderId: leader.id, image: result}])
-                    })
-            })
-
-            props.leaders.forEach(leader => {
-                imagesApi.downloadImage(leader.product.id, 'Products')
-                    .then((result) => {
-                        setProductImages(prev => [...prev, {leaderId: leader.id, image: result}])
                     })
             })
         }
@@ -47,7 +39,6 @@ const SalesLeadersContainer = (props) => {
     return <SalesLeaders
         leaders={props.leaders}
         categoryImages={categoryImages}
-        productImages={productImages}
     />
 }
 

@@ -3,7 +3,6 @@ import CatalogHeader from './CatalogHeader'
 import {getPartners} from '../../../utils/selectors/catalogSelectors'
 import {connect} from 'react-redux'
 import useDebounce from '../../../hooks/useDebounce'
-import {downloadCategories, downloadProducts, removeProducts} from '../../../redux/reducers/catalogReducer'
 
 const mapStateToProps = (state) => ({
     producers: getPartners(state)
@@ -14,9 +13,7 @@ const CatalogHeaderContainer = (props) => {
         producers,
         setDebouncedSearchTerm,
         setDebouncedProducerIds,
-        removeProducts,
-        downloadCategoriesWithLoading,
-        downloadProductsWithLoading
+        specificCategoryName
     } = props
 
     const [searchTerm, setSearchTerm] = useState()
@@ -33,24 +30,18 @@ const CatalogHeaderContainer = (props) => {
         setDebouncedProducerIds(debouncedProducerIds)
     }, [debouncedProducerIds])
 
-    const handleSearch = () => {
-        downloadCategoriesWithLoading(debouncedSearchTerm)
-
-        removeProducts()
-
-        downloadProductsWithLoading(debouncedSearchTerm, debouncedProducerIds)
-    }
+    useEffect(() => {
+        if (searchTerm) {
+            setSearchTerm('')
+        }
+    }, [specificCategoryName])
 
     return <CatalogHeader
         producers={producers}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         setProducerIds={setProducerIds}
-        handleSearch={handleSearch}
     />
 }
 
-export default connect(
-    mapStateToProps,
-    {removeProducts, downloadProducts, downloadCategories}
-)(CatalogHeaderContainer)
+export default connect(mapStateToProps)(CatalogHeaderContainer)

@@ -1,5 +1,4 @@
 import {downloadCategories, downloadPartners} from './catalogReducer'
-import {chooseEightRandomCategories} from './catalogReducer'
 
 const INITIALIZED_SUCCESS = 'APP/INITIALIZED_SUCCESS'
 const SET_MESSAGE = 'APP/SET-MESSAGE'
@@ -68,7 +67,6 @@ export const initializeApp = () => async (dispatch) => {
     Promise.all(promises)
         .then(() => {
             dispatch(initializedSuccess())
-            dispatch(chooseEightRandomCategories())
         })
 
     dispatch(await downloadPartners())
