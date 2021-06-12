@@ -4,7 +4,7 @@ $border-margin: 61px;
 
 .pageWrapper {
     width: calc(100% - #{$border-margin * 2});
-    min-height: 100%;
+    min-height: 100vh;
     height: 100%;
     margin: -3px auto auto auto;
     position: relative;
