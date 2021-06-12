@@ -1,5 +1,9 @@
 @import '../../common-scss/variables';
 
+.catalogBody {
+    min-height: 100vh;
+}
+
 .heading {
     margin-bottom: 40px;
     display: flex;

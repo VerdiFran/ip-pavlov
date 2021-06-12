@@ -5,6 +5,7 @@ import {downloadCategories, downloadProducts, removeProducts} from '../../redux/
 import catalogAPI from '../../api/catalogApi'
 import {compose} from 'redux'
 import {withRouter} from 'react-router-dom'
+import styles from './CatalogPage.module.scss'
 
 /**
  * Container for catalog page.
@@ -64,7 +65,7 @@ const CatalogPageContainer = (props) => {
     return <>
         {
             pageLoading
-                ? <div>page is loading</div>
+                ? <div className={styles.catalogBody}>page is loading</div>
                 : <CatalogPage
                     searchTerm={searchTerm}
                     producerIds={producerIds}
