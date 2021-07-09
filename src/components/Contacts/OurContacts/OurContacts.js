@@ -38,9 +38,9 @@ const OurContacts = () => {
                         <img src={call} alt="call" className={styles.contactImage}/>
                         <span>номер телефона</span>
                     </div>
-                    <span className={styles.contact}>+7 (904) 869-25-21</span>
+                    <span className={styles.contact}>8 (391) 240-12-22</span>
                 </div>
-                <div className={styles.contactContainer}>
+                {/*<div className={styles.contactContainer}>
                     <div className={styles.contactTitle}>
                         <img src={email} alt="email" className={styles.contactImage}/>
                         <span>email</span>
@@ -55,13 +55,13 @@ const OurContacts = () => {
                             <div className={styles.tip}>{tip}</div>
                         </div>
                     </div>
-                </div>
+                </div>*/}
                 <div className={styles.contactContainer}>
                     <div className={styles.contactTitle}>
                         <img src={address} alt="address" className={styles.contactImage}/>
                         <span>адрес</span>
                     </div>
-                    <span className={styles.contact}>ул. Красноярская, д 23</span>
+                    <span className={styles.contact}>ул. Калинина, 169, склад 3/2, База Крайснабсбыт</span>
                 </div>
             </div>
         </div>

@@ -2,17 +2,16 @@
 
 .partnerContainer {
     width: 240px;
-    min-height: 300px;
     padding: 16px;
     box-sizing: border-box;
     display: grid;
-    grid-template-rows: 140px min-content auto 21px;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
             'image'
             'name'
             'description'
             'link';
-    row-gap: 20px;
+    row-gap: 14px;
     justify-items: center;
     background-color: $second-color;
     box-shadow: 0 4px 4px $shadow-color;
@@ -24,7 +23,7 @@
 .partnerImageContainer {
     grid-area: image;
     width: 100%;
-    height: 100%;
+    height: 100px;
     display: flex;
     place-items: center;
     place-content: center;
@@ -35,8 +34,8 @@
 
 .partnerImage {
     object-fit: contain;
-    width: 160px;
-    height: 120px;
+    width: 80%;
+    height: 80%;
 }
 
 .partnerName, .partnerDescription, .partnerLink {
@@ -95,5 +94,89 @@
         &::before {
             color: $active-link-color;
         }
+    }
+}
+
+@media screen and (max-width: $screen-width-big) {
+    .partnerContainer {
+        width: 220px;
+    }
+
+    .partnerName {
+        font-size: 18px;
+    }
+
+    .partnerDescription {
+        font-size: 12px;
+    }
+
+    .partnerLink {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: $screen-width-medium) {
+    .partnerContainer {
+        width: 200px;
+    }
+
+    .partnerName {
+        font-size: 16px;
+    }
+
+    .partnerDescription {
+        font-size: 11px;
+    }
+
+    .partnerLink {
+        font-size: 12px;
+    }
+
+    .partnerImageContainer {
+        height: 80px;
+    }
+}
+
+@media screen and (max-width: $screen-width-small) {
+    .partnerContainer {
+        width: 170px;
+    }
+
+    .partnerName {
+        font-size: 13px;
+    }
+
+    .partnerDescription {
+        font-size: 10px;
+    }
+
+    .partnerLink {
+        font-size: 10px;
+    }
+
+    .partnerImageContainer {
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: $screen-width-tiny) {
+    .partnerContainer {
+        width: 150px;
+    }
+
+    .partnerName {
+        font-size: 14px;
+    }
+
+    .partnerDescription {
+        font-size: 10px;
+    }
+
+    .partnerLink {
+        font-size: 10px;
+    }
+
+    .partnerImageContainer {
+        height: 60px;
     }
 }

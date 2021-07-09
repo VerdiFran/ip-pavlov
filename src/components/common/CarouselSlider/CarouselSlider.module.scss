@@ -1,3 +1,4 @@
+@import "src/common-scss/variables";
 
 .slide {
   width: 0;
@@ -10,6 +11,7 @@
 
 .carousel {
   width: 100%;
+  margin-top: 40px;
   display: flex;
   justify-items: center;
   justify-content: center;
@@ -20,13 +22,13 @@
 
 .item {
   width: 100%;
-  padding: 0 72px;
+  padding: 0 62px;
   grid-area: slide;
   justify-self: left;
   box-sizing: border-box;
 }
 
-.leftArrow {
+.leftArrow, .rightArrow {
   height: 80px;
   width: 40px;
   display: flex;
@@ -34,10 +36,77 @@
   align-items: center;
 }
 
-.rightArrow {
-  height: 80px;
-  width: 40px;
-  display: flex;
-  justify-items: center;
-  align-items: center;
+@media screen and (max-width: $screen-width-large) {
+  .carousel {
+    gap: 20px;
+  }
+
+  .item {
+    padding: 0 52px;
+  }
+
+  .leftArrow, .rightArrow {
+    height: 70px;
+    width: 35px;
+  }
+}
+
+@media screen and (max-width: $screen-width-big) {
+  .carousel {
+    gap: 18px;
+  }
+
+  .item {
+    padding: 0 42px;
+  }
+
+  .leftArrow, .rightArrow {
+    height: 60px;
+    width: 30px;
+  }
+}
+
+@media screen and (max-width: $screen-width-medium) {
+  .carousel {
+    gap: 14px;
+  }
+
+  .item {
+    padding: 0 32px;
+  }
+
+  .leftArrow, .rightArrow {
+    height: 50px;
+    width: 25px;
+  }
+}
+
+@media screen and (max-width: $screen-width-small) {
+  .carousel {
+    gap: 10px;
+  }
+
+  .item {
+    padding: 0 12px;
+  }
+
+  .leftArrow, .rightArrow {
+    height: 40px;
+    width: 20px;
+  }
+}
+
+@media screen and (max-width: $screen-width-tiny) {
+  .carousel {
+    gap: 6px;
+  }
+
+  .item {
+    padding: 0 6px;
+  }
+
+  .leftArrow, .rightArrow {
+    height: 30px;
+    width: 15px;
+  }
 }

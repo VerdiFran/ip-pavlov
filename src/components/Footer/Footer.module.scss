@@ -2,16 +2,46 @@
 
 .footerContainer {
   width: 100%;
-  height: 94px;
   box-sizing: border-box;
   padding: 0 80px;
   display: flex;
-  flex-direction: row;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   background-color: $main-color;
+
+  @media screen and (max-width: $screen-width-large) {
+    padding: 0 70px;
+  }
+
+  @media screen and (max-width: $screen-width-big) {
+    padding: 0 60px;
+  }
+
+  @media screen and (max-width: $screen-width-medium) {
+    padding: 0 50px;
+  }
+
+  @media screen and (max-width: $screen-width-small) {
+    padding: 0 40px;
+  }
 }
 
 .footerText {
+  margin: 20px 0;
   color: $logo-font-color;
+  font-size: 16px;
+
+  @media screen and (max-width: $screen-width-large) {
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: $screen-width-big) {
+    font-size: 12px;
+  }
+
+  @media screen and (max-width: $screen-width-small) {
+    font-size: 10px;
+  }
 }

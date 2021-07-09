@@ -1,7 +1,13 @@
+@import "src/common-scss/variables";
+
 .partnersContainer {
     margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    column-gap: 20px;
-    row-gap: 20px;
+    gap: 20px;
+    justify-items: center;
+
+    @media screen and (max-width: $screen-width-medium) {
+        gap: 10px;
+    }
 }

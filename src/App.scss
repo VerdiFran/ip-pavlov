@@ -5,6 +5,26 @@
     text-transform: uppercase;
     color: $main-color;
     font-size: 24px;
+
+    @media screen and (max-width: $screen-width-large) {
+        font-size: 24px;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        font-size: 22px;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        font-size: 20px;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: $screen-width-tiny) {
+        font-size: 16px;
+    }
 }
 
 .simpleText {
@@ -31,6 +51,30 @@
 
     &.error {
         background-color: lighten($error-message, 7);
+    }
+}
+
+.content {
+    padding-top: $header-height;
+
+    @media screen and (max-width: $screen-width-large) {
+        padding-top: $large-header-height;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        padding-top: $big-header-height;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        padding-top: $medium-header-height;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        padding-top: $small-header-height;
+    }
+
+    @media screen and (max-width: $screen-width-tiny) {
+        padding-top: $tiny-header-height;
     }
 }
 

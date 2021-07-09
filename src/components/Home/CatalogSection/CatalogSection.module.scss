@@ -7,6 +7,41 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-column-gap: 40px;
     grid-row-gap: 20px;
+
+    @media screen and (max-width: $screen-width-large) {
+        margin-top: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        grid-column-gap: 40px;
+        grid-row-gap: 20px;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        margin-top: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-column-gap: 40px;
+        grid-row-gap: 20px;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        margin-top: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-column-gap: 40px;
+        grid-row-gap: 20px;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        margin-top: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-column-gap: 40px;
+        grid-row-gap: 20px;
+    }
+
+    /*@media screen and (max-width: $screen-width-tiny) {
+        margin-top: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-column-gap: 40px;
+        grid-row-gap: 20px;
+    }*/
 }
 
 .categoryContainer {
@@ -17,6 +52,30 @@
     a {
         text-decoration: none;
     }
+
+    @media screen and (max-width: $screen-width-large) {
+        margin: 0 20px 0 0;
+        height: 106px;
+        width: 210px;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        margin: 0 20px 0 0;
+        height: 112px;
+        width: 180px;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        margin: 0 20px 0 0;
+        height: 112px;
+        width: 160px;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        margin: 0 10px 0 0;
+        height: 70px;
+        width: 114px;
+    }
 }
 
 .categoryImage {
@@ -26,6 +85,30 @@
     max-height: 80px;
     max-width: 60px;
     transform: translateX(30%);
+
+    @media screen and (max-width: $screen-width-large) {
+        top: -50px;
+        max-height: 70px;
+        max-width: 50px;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        top: -40px;
+        max-height: 68px;
+        max-width: 48px;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        top: -32px;
+        max-height: 56px;
+        max-width: 38px;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        top: -30px;
+        max-height: 60px;
+        max-width: 30px;
+    }
 }
 
 .categoryNameBlock {
@@ -38,6 +121,36 @@
     align-items: center;
     background-color: $second-color;
     box-shadow: 0 4px 4px $shadow-color;
+
+    @media screen and (max-width: $screen-width-large) {
+        margin: 0 20px 0 0;
+        height: 92px;
+        width: 200px;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        margin: 0 20px 0 0;
+        height: 88px;
+        width: 180px;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        margin: 0 20px 0 0;
+        height: 80px;
+        width: 160px;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        margin: 0 20px 0 0;
+        height: 64px;
+        width: 110px;
+    }/*
+
+    @media screen and (max-width: $screen-width-tiny) {
+        margin: 0 20px 0 0;
+        height: 70px;
+        width: 140px;
+    }*/
 }
 
 .categoryName {
@@ -62,6 +175,38 @@
     box-shadow: 0 4px 4px $shadow-color;
     text-decoration: none;
     text-align: center;
+
+    @media screen and (max-width: $screen-width-large) {
+        width: 210px;
+        height: 32px;
+        margin-top: 20px;
+        padding: 8px 20px;
+        font-size: 12px;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        width: 180px;
+        height: 28px;
+        margin-top: 20px;
+        padding: 8px 20px;
+        font-size: 10px;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        width: 160px;
+        height: 24px;
+        margin-top: 20px;
+        padding: 6px 10px;
+        font-size: 9px;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        width: 114px;
+        height: 20px;
+        margin-top: 20px;
+        padding: 4px 10px;
+        font-size: 8px;
+    }
 }
 
 .categoryNameBlock, .toCatalogButton {

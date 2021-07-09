@@ -37,6 +37,26 @@ $border-margin: 61px;
                 transparent 12px,
                 transparent 22px);
     }
+
+    @media screen and (max-width: $screen-width-large) {
+        width: calc(100% - #{($border-margin - 10px) * 2});
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        width: calc(100% - #{($border-margin - 20px) * 2});
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        width: calc(100% - #{($border-margin - 25px) * 2});
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        width: calc(100% - #{($border-margin - 30px) * 2});
+    }
+
+    @media screen and (max-width: $screen-width-tiny) {
+        width: calc(100% - #{($border-margin - 40px) * 2});
+    }
 }
 
 .contentWrapper {
@@ -57,10 +77,29 @@ $border-margin: 61px;
     flex-flow: column nowrap;
     justify-items: center;
 
+    @media screen and (max-width: $screen-width-large) {
+        width: calc(100% + #{($border-margin - 10px / 2) * 2});
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        width: calc(100% + #{($border-margin - 20px / 2) * 2});
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        width: calc(100% + #{($border-margin - 25px / 2) * 2});
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        width: calc(100% + #{($border-margin - 30px / 2) * 2});
+    }
+
+    @media screen and (max-width: $screen-width-tiny) {
+        width: calc(100% + #{($border-margin - 40px / 2) * 2});
+    }
+
     // blocks of content
     & > div {
         width: 100%;
-        position: relative;
         box-sizing: border-box;
     }
 }

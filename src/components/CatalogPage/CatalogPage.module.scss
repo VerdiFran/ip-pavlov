@@ -4,6 +4,22 @@
     min-height: 100vh;
 }
 
+.catalogWrapper {
+    padding: 60px 120px;
+
+    @media screen and (max-width: $screen-width-big) {
+        padding: 50px 80px 50px 110px;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        padding: 40px 60px 40px 90px;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        padding: 40px 50px 40px 80px;
+    }
+}
+
 .heading {
     margin-bottom: 40px;
     display: flex;

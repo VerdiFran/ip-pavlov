@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './ContactUs.module.scss'
-import useVisible from '../../../hooks/useVisible'
+import useVisible from '../../hooks/useVisible'
 import ContactUsFormContainer from './ContactUsForm/ContactUsFormContainer'
 
 /**
@@ -12,10 +12,16 @@ const ContactUs = () => {
     const close = () => setIsVisible(false)
 
     return (
-        <div ref={ref}>
-            <div className={styles.contactUsPolygon} onClick={() => setIsVisible(!isVisible)}>
+        <div ref={ref} className={styles.contactUsWrapper}>
+            {/*<div className={styles.contactUsPolygon} onClick={() => setIsVisible(!isVisible)}>
                 <span>Связаться с нами</span>
-            </div>
+            </div>*/}
+            {
+                !isVisible && <button
+                    className={styles.contactUsButton}
+                    onClick={() => setIsVisible(!isVisible)}
+                >?</button>
+            }
             {
                 isVisible && <div>
                     <ContactUsFormContainer close={close}/>

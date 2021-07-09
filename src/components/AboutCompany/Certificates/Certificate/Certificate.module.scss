@@ -11,17 +11,24 @@
     row-gap: 20px;
 }
 
+.imageWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .certificateImage {
     grid-area: image;
     align-self: center;
-    max-height: 240px;
-    max-width: 200px;
-    margin-bottom: 20px;
+    max-height: 90%;
+    max-width: 90%;
     object-fit: contain;
 }
 
 .certificateDescription {
     grid-area: description;
     text-align: center;
-    font-size: 18px;
+    font-size: 14px;
 }

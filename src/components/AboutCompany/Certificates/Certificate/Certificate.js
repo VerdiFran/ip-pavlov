@@ -10,7 +10,9 @@ import styles from './Certificate.module.scss'
 const Certificate = ({certificate, image}) => {
     return (
         <div key={certificate.id} className={styles.certificateContainer}>
-            <img src={image ? URL.createObjectURL(image) : ''} alt="" className={styles.certificateImage}/>
+            <div className={styles.imageWrapper}>
+                <img src={image ? URL.createObjectURL(image) : ''} alt="" className={styles.certificateImage}/>
+            </div>
             <div className={styles.certificateDescription}>
                 {
                     certificate?.description

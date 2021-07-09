@@ -1,29 +1,116 @@
 @import "src/common-scss/variables";
 
 .aboutSiteSection {
-    min-height: 560px;
+    width: 100%;
+    height: calc(100vh - #{$header-height});
+    max-height: 1000px;
+    min-height: 700px;
     display: grid;
-    grid-template-rows: 75% 25%;
-    grid-template-columns: 65% 35%;
+    padding: 40px 60px 0 40px;
+    margin-bottom: 3px;
+    grid-template-rows: 65% auto;
+    grid-template-columns: auto 500px;
     grid-template-areas:
         "info box"
         "distributors box";
     justify-content: center;
     align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    box-shadow: inset 0 -4px 20px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(45deg, $error-message, $dark-block-color) rgb(236, 236, 236);
+    background-blend-mode: color;
+
+    @media screen and (max-width: $screen-width-large) {
+        grid-template-columns: auto 350px;
+        height: calc(100vh - #{$header-height} - 100px);
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        height: calc(100vh - #{$header-height} - 200px);
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        height: calc(100vh - #{$header-height} - 250px);
+        grid-template-columns: auto;
+        grid-template-areas:
+            "info"
+            "distributors";
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        height: calc(100vh - #{$header-height} - 300px);
+    }
+
+    @media screen and (max-width: $screen-width-tiny) {
+        height: calc(100vh - #{$header-height} - 320px);
+    }
 }
 
 .infoText {
     grid-area: info;
-    width: 580px;
+    width: 100%;
+    padding: 60px;
+    box-sizing: border-box;
+
+    //background-color: #cb000050;
 
     p {
         font-size: 20px;
         line-height: 24px;
+
+        @media screen and (max-width: $screen-width-large) {
+            font-size: 18px;
+            line-height: 22px;
+        }
+
+        @media screen and (max-width: $screen-width-big) {
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        @media screen and (max-width: $screen-width-medium) {
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        @media screen and (max-width: $screen-width-small) {
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        @media screen and (max-width: $screen-width-tiny) {
+            font-size: 10px;
+            line-height: 16px;
+        }
     }
 }
 
 .heading {
     font-size: 36px;
+    text-transform: uppercase;
+
+    @media screen and (max-width: $screen-width-large) {
+        font-size: 32px;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        font-size: 28px;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        font-size: 26px;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        font-size: 24px;
+    }
+
+    @media screen and (max-width: $screen-width-tiny) {
+        font-size: 20px;
+    }
 }
 
 .catalogButton {
@@ -44,19 +131,30 @@
 
 .distributorsContainer {
     grid-area: distributors;
-    width: 700px;
+    align-self: start;
+    width: 100%;
     position: relative;
-    left: -60px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
     align-items: center;
+    gap: 14px;
+
+    & > img {
+        max-width: 80px;
+        max-height: 80px;
+        object-fit: contain;
+    }
+
+    //background-color: #556b2f50;
 }
 
 .productsInBox {
     grid-area: box;
     width: 100%;
     height: 100%;
+
+    //background-color: #d2691e50;
 }
 
 .productsContainer {
@@ -74,6 +172,7 @@
         bottom: 0;
         z-index: 5;
     }
+
     &:nth-of-type(2) {
         top: 50px;
         left: 150px;
@@ -81,6 +180,7 @@
         bottom: 0;
         z-index: 7;
     }
+
     &:nth-of-type(3) {
         top: 130px;
         left: 190px;
@@ -88,6 +188,7 @@
         bottom: 0;
         z-index: 6;
     }
+
     &:last-of-type {
         top: 80px;
         left: 316px;
@@ -99,7 +200,19 @@
 
 .box {
     position: absolute;
-    top: 250px;
+    bottom: 70px;
     margin-left: 24px;
     z-index: 10;
+
+    @media screen and (max-width: $screen-width-large) {
+        width: 300px;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        width: 200px;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        width: 130px;
+    }
 }

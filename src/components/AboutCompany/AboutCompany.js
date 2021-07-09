@@ -2,6 +2,7 @@ import PageWrapper from '../PageWrapper/PageWrapper'
 import Facts from './Facts/Facts'
 import BlockWrapper from '../BlockWrapper/BlockWrapper'
 import CertificatesContainer from './Certificates/CertificatesContainer'
+import AboutCompanySection from './AboutCompanySection/AboutCompanySection'
 
 /**
  * Component with information about company.
@@ -9,6 +10,9 @@ import CertificatesContainer from './Certificates/CertificatesContainer'
 const AboutCompany = () => {
     return (
         <PageWrapper>
+            <BlockWrapper wrapperType="light">
+                <AboutCompanySection/>
+            </BlockWrapper>
             <BlockWrapper>
                 <Facts/>
             </BlockWrapper>

@@ -3,10 +3,11 @@ $background-color: #ffffff;
 $main-color: #002A5A;
 $dark-main-color: #001835;
 $shadow-color: rgba(0, 0, 0, 0.2);
-$second-color: #ECECEC;
+$second-color: #ececec;
 $dark-second-color: #D1D1D1;
 $accent-color: #3268a6;
 $product-info-background-color: #6F6F6F99;
+$dark-block-color: #99b4d3;
 
 $logo-font-color: #ffffff;
 $main-font-color: #000000;
@@ -21,4 +22,17 @@ $error-message: rgba(208, 122, 114, 0.9);
 
 // sizes
 $header-height: 60px;
+$large-header-height: 52px;
+$big-header-height: 46px;
+$medium-header-height: 40px;
+$small-header-height: 40px;
+$tiny-header-height: 40px;
+
 $nav-button-margin: 18px;
+
+// media
+$screen-width-large: 1200px;
+$screen-width-big: 1000px;
+$screen-width-medium: 800px;
+$screen-width-small: 600px;
+$screen-width-tiny: 350px;

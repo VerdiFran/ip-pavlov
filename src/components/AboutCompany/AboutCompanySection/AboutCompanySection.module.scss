@@ -1,0 +1,30 @@
+@import "../../../common-scss/variables";
+
+.textBlock {
+    padding: 0;
+    margin: 40px 0 0 0;
+    line-height: 30px;
+    /*column-count: 2;
+    column-gap: 34px;
+    column-width: 300px;
+    column-fill: balance;*/
+    text-align: justify;
+
+    h1 {
+        margin-bottom: 44px;
+        -webkit-column-span: all;
+        column-span:all;
+    }
+
+    p {
+        margin: 60px 0 60px;
+        padding: 0 60px;
+        text-align: center;
+    }
+
+    hr {
+        height: 1px;
+        border: none;
+        background: linear-gradient(to right, transparent, $second-color 20%, $second-color 80%, transparent);
+    }
+}

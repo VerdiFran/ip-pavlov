@@ -1,19 +1,87 @@
+@import "src/common-scss/variables";
 
 .representativesContainer {
-  margin-top: 40px;
-  display: grid;
-  justify-items: center;
-  grid-row-gap: 20px;
-  grid-template-columns: 20% auto 20%;
-  grid-template-areas:
+    margin-top: 60px;
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 20px;
+    grid-template-columns: 30% auto 30%;
+    grid-template-areas:
           'rep1 map rep5'
           'rep2 map rep6'
           'rep3 map rep7'
-          'rep4 map .'
+          'rep4 map .';
+    gap: 6px;
+
+
+    @media screen and (max-width: $screen-width-large) {
+        grid-template-columns: 30% auto 30%;
+        grid-template-areas:
+          'rep1 map rep5'
+          'rep2 map rep6'
+          'rep3 map rep7'
+          'rep4 map .';
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        grid-template-columns: 35% auto;
+        grid-template-areas:
+          'rep1 map'
+          'rep2 map'
+          'rep3 map'
+          'rep4 map'
+          'rep5 map'
+          'rep6 map'
+          'rep7 map';
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        grid-template-columns: 35% auto;
+        grid-template-areas:
+          'rep1 map'
+          'rep2 map'
+          'rep3 map'
+          'rep4 map'
+          'rep5 map'
+          'rep6 map'
+          'rep7 map';
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'rep1'
+            'rep2'
+            'rep3'
+            'rep4'
+            'rep5'
+            'rep6'
+            'rep7'
+            'map';
+    }
 }
 
 .map {
-  height: 100%;
-  width: 100%;
-  grid-area: map;
+    height: 100%;
+    width: 100%;
+    min-width: 250px;
+    grid-area: map;
+
+    @media screen and (max-width: $screen-width-big) {
+        height: 60vh;
+        position: sticky;
+        top: $header-height;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        height: 300px;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        height: 200px;
+    }
+}
+
+.rep {
+    width: 100%;
 }

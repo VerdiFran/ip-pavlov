@@ -1,8 +1,8 @@
+@import "src/common-scss/variables";
 
 .factContainer {
   display: grid;
   grid-template-columns: 70% auto;
-  grid-template-rows: 256px;
   grid-template-areas: "desc image";
   box-sizing: border-box;
   justify-items: center;
@@ -23,4 +23,59 @@
   width: 100%;
   grid-area: image;
   justify-self: flex-end;
+}
+
+@media screen and (max-width: $screen-width-large) {
+  .factContainer {
+    grid-template-columns: 70% auto;
+  }
+
+  .factDescription {
+    padding-right: 20px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: $screen-width-big) {
+  .factContainer {
+    grid-template-columns: 70% auto;
+  }
+
+  .factDescription {
+    padding-right: 20px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: $screen-width-medium) {
+  .factContainer {
+    grid-template-columns: 70% auto;
+  }
+
+  .factDescription {
+    padding-right: 20px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: $screen-width-small) {
+  .factContainer {
+    grid-template-columns: 100%;
+    grid-template-areas: "desc";
+  }
+
+  .factDescription {
+    padding-right: 20px;
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: $screen-width-tiny) {
+  .factContainer {
+  }
+
+  .factDescription {
+    padding-right: 20px;
+    font-size: 10px;
+  }
 }

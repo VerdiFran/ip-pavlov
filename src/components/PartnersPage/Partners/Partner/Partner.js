@@ -19,12 +19,6 @@ const Partner = ({partnerInfo, image}) => {
             <div className={styles.partnerDescription}>
                 {partnerInfo.description}
             </div>
-            <div
-                onClick={() => window.open(partnerInfo.link)}
-                className={styles.partnerLinkButton}
-            >
-                <span data-text="перейти на сайт">перейти на сайт</span>
-            </div>
         </div>
     )
 }

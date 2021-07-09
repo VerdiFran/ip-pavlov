@@ -10,47 +10,49 @@ import CatalogSubmenuContainer from './CatalogSubmenu/CatalogSubmenuContainer'
  * @returns {JSX.Element}
  * @constructor
  */
-const Menu = () => {
+const Menu = ({style}) => {
     const {ref, isVisible, setIsVisible} = useVisible(false, 'mouseout')
 
+    const menuStyles = style ?? styles
+
     return (
-        <nav className={styles.navPanelContainer}>
-            <div className={styles.navButton}>
+        <nav className={menuStyles.navPanelContainer}>
+            <div className={menuStyles.navButton}>
                 <NavLink
                     to={TO_HOME}
-                    activeClassName={styles.active}
+                    activeClassName={menuStyles.active}
                     data-text="Главная"
                     exact
                 >Главная</NavLink>
             </div>
-            <div className={styles.navButton}>
+            <div className={menuStyles.navButton}>
                 <NavLink
                     to={TO_ABOUT_COMPANY}
-                    activeClassName={styles.active}
+                    activeClassName={menuStyles.active}
                     data-text="О компании"
-                >О компании</NavLink>
+                >О&nbsp;компании</NavLink>
             </div>
-            <div className={styles.navButton} ref={ref} onMouseOver={() => {setIsVisible(true)}}>
+            <div className={menuStyles.navButton} ref={ref} onMouseOver={() => {setIsVisible(true)}}>
                 <NavLink
                     to={TO_CATALOG}
-                    activeClassName={styles.active}
+                    activeClassName={menuStyles.active}
                     data-text="Каталог"
                 >Каталог</NavLink>
                 {
                     isVisible && <CatalogSubmenuContainer/>
                 }
             </div>
-            <div className={styles.navButton}>
+            <div className={menuStyles.navButton}>
                 <NavLink
                     to={TO_CONTACTS}
-                    activeClassName={styles.active}
+                    activeClassName={menuStyles.active}
                     data-text="Контакты"
                 >Контакты</NavLink>
             </div>
-            <div className={styles.navButton}>
+            <div className={menuStyles.navButton}>
                 <NavLink
                     to={TO_PARTNERS}
-                    activeClassName={styles.active}
+                    activeClassName={menuStyles.active}
                     data-text="Партнеры"
                 >Партнеры</NavLink>
             </div>

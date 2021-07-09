@@ -2,8 +2,8 @@
 
 .navPanelContainer {
     display: flex;
-    flex-direction: row;
-    margin-right: $nav-button-margin;
+    flex-flow: row nowrap;
+    margin-right: 40px;
 }
 
 .navButton {
@@ -11,6 +11,14 @@
     height: 100%;
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: $screen-width-large) {
+        margin: auto $nav-button-margin - 6px;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        margin: auto $nav-button-margin - 10px;
+    }
 }
 
 .navButton a {
@@ -18,6 +26,8 @@
     color: $main-font-color;
     font-weight: 400;
     text-decoration: none;
+    word-wrap: normal;
+    font-size: 16px;
 
     &::before {
         content: attr(data-text);
@@ -43,6 +53,14 @@
         &::before {
             color: $active-link-color;
         }
+    }
+
+    @media screen and (max-width: $screen-width-large) {
+        font-size: 14px;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        font-size: 12px;
     }
 }
 

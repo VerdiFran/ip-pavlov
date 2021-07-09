@@ -14,6 +14,7 @@ import AboutCompany from './components/AboutCompany/AboutCompany'
 import Contacts from './components/Contacts/Contacts'
 import PartnersPage from './components/PartnersPage/PartnersPage'
 import CatalogPageContainer from './components/CatalogPage/CatalogPageContainer'
+import ContactUs from './components/ContactUs/ContactUs'
 
 const App = ({initialized, messageInfo: {status, text, visible}, initializeApp}) => {
     useEffect(() => {
@@ -32,6 +33,7 @@ const App = ({initialized, messageInfo: {status, text, visible}, initializeApp})
                 </div>
             }
             <Header/>
+            <div className="content">
                 <Switch>
                     <Route
                         exact
@@ -55,6 +57,8 @@ const App = ({initialized, messageInfo: {status, text, visible}, initializeApp})
                         render={() => <Contacts/>}
                     />
                 </Switch>
+            </div>
+            <ContactUs/>
             <Footer/>
         </div>
     )

@@ -56,7 +56,7 @@ const Representatives = ({representatives}) => {
         return polygon.description.id === currentDistrict.description.id ? 1 : 0.4
     }
 
-    return polygons?.length &&
+    return polygons?.length > 0 &&
         (
             <div>
                 <h1 className="heading">наши агенты</h1>
@@ -64,21 +64,23 @@ const Representatives = ({representatives}) => {
                     <div className={styles.map}>
                         <Map zoom={10} polygons={polygons} mapContainerId={'representatives-map'}/>
                     </div>
-                    {polygons.map((polygon, idx) => {
-                        const style = {
-                            justifySelf: idx % 2 === 0 ? 'end' : 'start'
-                        }
-                        return (
-                            <div style={style} className={`rep${idx + 1}`}>
-                                <Representative
-                                    side={idx % 2 === 0 ? 'left' : 'right'}
-                                    color={polygon.description.style.color}
-                                    agents={polygon.description.agents}
-                                    opacity={getOpacity(polygon)}
-                                />
-                            </div>
-                        )
-                    })}
+                    {
+                        polygons.map((polygon, idx) => {
+                            const style = {
+                                // justifySelf: idx % 2 === 0 ? 'end' : 'start'
+                            }
+                            return (
+                                <div style={style} className={[styles.rep, `rep${idx + 1}`].join(' ')}>
+                                    <Representative
+                                        side={idx % 2 === 0 ? 'left' : 'right'}
+                                        color={polygon.description.style.color}
+                                        agents={polygon.description.agents}
+                                        opacity={getOpacity(polygon)}
+                                    />
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         )
