@@ -1,5 +1,9 @@
 @import './../../../common-scss/variables';
 
+.formWrapper {
+    animation: form-in 0.3s ease-out forwards;
+}
+
 .formContainer {
     width: 270px;
     padding: 20px 30px 20px 20px;
@@ -31,25 +35,13 @@
 }
 
 .contactUsPolygon {
-    shape-outside: polygon(
-                    calc(100% - 170px) 0,
-                    calc(100%) 0,
-                    calc(100%) $header-height,
-                    calc(100% - 270px) $header-height
-    );
-    clip-path: polygon(
-                    calc(100% - 170px) 0,
-                    calc(100%) 0,
-                    calc(100%) $header-height,
-                    calc(100% - 270px) $header-height
-    );
     width: 270px;
     height: $header-height;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    padding-left: 50px;
+    justify-content: space-between;
+    padding: 20px;
     box-sizing: border-box;
     background: linear-gradient(to right, #{$main-color}, #{$dark-main-color});
     color: $logo-font-color;
@@ -58,39 +50,30 @@
     transition-duration: 0.5s;
 
     @media screen and (max-width: $screen-width-large) {
-        shape-outside: polygon(
-                        calc(100% - 230px + 83px) 0,
-                        calc(100%) 0,
-                        calc(100%) $large-header-height,
-                        calc(100% - 230px) $large-header-height
-        );
-        clip-path: polygon(
-                        calc(100% - 230px + 83px) 0,
-                        calc(100%) 0,
-                        calc(100%) $large-header-height,
-                        calc(100% - 230px) $large-header-height
-        );
-        width: 230px;
         height: $large-header-height;
         font-size: 16px;
     }
 
     @media screen and (max-width: $screen-width-big) {
-        shape-outside: polygon(
-                        calc(100% - 180px + 73px) 0,
-                        calc(100%) 0,
-                        calc(100%) $big-header-height,
-                        calc(100% - 180px) $big-header-height
-        );
-        clip-path: polygon(
-                        calc(100% - 180px + 73px) 0,
-                        calc(100%) 0,
-                        calc(100%) $big-header-height,
-                        calc(100% - 180px) $big-header-height
-        );
-        width: 180px;
         height: $big-header-height;
         font-size: 14px;
+    }
+}
+
+.closeButton {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    & > img {
+        width: 20px;
+        height: 20px;
     }
 }
 
@@ -216,4 +199,13 @@
 .errorMessage {
     color: $error-color;
     font-size: 11px;
+}
+
+@keyframes form-in {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }

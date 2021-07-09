@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styles from './ContactUs.module.scss'
 import useVisible from '../../hooks/useVisible'
 import ContactUsFormContainer from './ContactUsForm/ContactUsFormContainer'
@@ -11,11 +11,14 @@ const ContactUs = () => {
 
     const close = () => setIsVisible(false)
 
+    useEffect(() => {
+        setTimeout(() => {
+            setIsVisible(true)
+        }, 1000)
+    }, [])
+
     return (
         <div ref={ref} className={styles.contactUsWrapper}>
-            {/*<div className={styles.contactUsPolygon} onClick={() => setIsVisible(!isVisible)}>
-                <span>Связаться с нами</span>
-            </div>*/}
             {
                 !isVisible && <button
                     className={styles.contactUsButton}

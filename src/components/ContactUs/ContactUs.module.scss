@@ -18,4 +18,15 @@
     color: $background-color;
     cursor: pointer;
     box-shadow: 0 4px 4px $shadow-color;
+    animation: radial-pulse 1s infinite;
+}
+
+@keyframes radial-pulse {
+    0% {
+        box-shadow: 0 4px 4px $shadow-color, 0 0 0 0 $shadow-color;
+    }
+
+    100% {
+        box-shadow: 0 4px 4px $shadow-color, 0 0 6px 20px transparent;
+    }
 }

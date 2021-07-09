@@ -2,11 +2,12 @@ import React from 'react'
 import * as yup from 'yup'
 import {Form, Formik, Field, ErrorMessage, getIn} from 'formik'
 import styles from './ContactUsForm.module.scss'
+import closeImage from '../../../assets/images/close-button.svg'
 
 /**
  * Contact form.
  */
-const ContactUsForm = ({handleSubmit}) => {
+const ContactUsForm = ({handleSubmit, close}) => {
     const contactUsSchema = yup.object().shape({
         name: yup.string().required('Это поле обзательно для заполнения.'),
         email: yup.string().required('Это поле обзательно для заполнения.').email('Некорректный email.'),
@@ -23,9 +24,13 @@ const ContactUsForm = ({handleSubmit}) => {
     }
 
     return (
-        <div>
+        <div className={styles.formWrapper}>
             <div className={styles.contactUsPolygon}>
                 <span>Связаться с нами</span>
+                <button
+                    className={styles.closeButton}
+                    onClick={close}
+                ><img src={closeImage} alt=""/></button>
             </div>
             <div className={styles.formContainer}>
                 <div className={styles.extraMessage}>

@@ -21,7 +21,7 @@ const ContactUsFormContainer = ({close, showMessage}) => {
         }
     }
 
-    return <ContactUsForm handleSubmit={handleSubmit}/>
+    return <ContactUsForm handleSubmit={handleSubmit} close={close}/>
 }
 
 export default connect(null, {showMessage})(ContactUsFormContainer)
