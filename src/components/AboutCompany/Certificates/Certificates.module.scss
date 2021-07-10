@@ -1,7 +1,7 @@
 .certificatesContainer {
     margin-top: 60px;
     display: flex;
-    justify-content: space-evenly;
-    column-gap: 20px;
-    row-gap: 40px;
+    justify-content: space-around;
+    gap: 10px;
+    min-height: 220px;
 }

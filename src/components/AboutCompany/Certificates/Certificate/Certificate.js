@@ -1,6 +1,7 @@
 import styles from './Certificate.module.scss'
 import useVisible from '../../../../hooks/useVisible'
 import {useEffect} from 'react'
+import Preloader from '../../../common/Preloader/Preloader'
 
 /**
  * Certificate
@@ -8,7 +9,7 @@ import {useEffect} from 'react'
  * @param image Certificate image
  * @returns {JSX.Element}
  */
-const Certificate = ({certificate, images, downloadNormalSizeImage}) => {
+const Certificate = ({certificate, images, loading, downloadNormalSizeImage}) => {
     const {ref, isVisible, setIsVisible} = useVisible(false, 'click')
 
     useEffect(() => {
@@ -32,6 +33,9 @@ const Certificate = ({certificate, images, downloadNormalSizeImage}) => {
             {
                 isVisible && <div className={styles.openedCertificateBackground}>
                     <div className={styles.openedCertificateWrapper}>
+                        {
+                            loading && <Preloader/>
+                        }
                         <img
                             ref={ref}
                             src={images?.normal ? URL.createObjectURL(images?.normal) : ''}

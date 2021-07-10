@@ -10,10 +10,15 @@ import {imagesApi} from '../../../../api/imagesApi'
  */
 const CertificateContainer = ({certificate}) => {
     const [certificateImages, setCertificateImages] = useState()
+    const [loading, setLoading] = useState(false)
 
     const downloadImage = (size) => {
+        setLoading(true)
         imagesApi.downloadImage(certificate.image.id, size)
-            .then(result => setCertificateImages(images => ({...images, [size]: result})))
+            .then(result => {
+                setCertificateImages(images => ({...images, [size]: result}))
+                setLoading(false)
+            })
     }
 
     const downloadNormalSizeImage = () => {
@@ -27,6 +32,7 @@ const CertificateContainer = ({certificate}) => {
     return <Certificate
         certificate={certificate}
         images={certificateImages}
+        loading={loading}
         downloadNormalSizeImage={downloadNormalSizeImage}
     />
 }

@@ -14,7 +14,9 @@
 .certificateImage {
     max-height: 90%;
     max-width: 90%;
+    min-height: 200px;
     object-fit: contain;
+    cursor: pointer;
 }
 
 .openedCertificateBackground {
