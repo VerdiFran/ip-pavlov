@@ -24,8 +24,8 @@
     }
 
     @media screen and (max-width: $screen-width-big) {
-        width: 180px;
-        padding: 12px 22px 12px 12px;
+        width: 250px;
+        padding: 18px 28px 18px 18px;
     }
 
     @media screen and (max-width: $screen-width-medium) {
@@ -35,7 +35,7 @@
 }
 
 .contactUsPolygon {
-    width: 270px;
+    width: 100%;
     height: $header-height;
     display: flex;
     flex-direction: row;

@@ -1,24 +1,47 @@
 import styles from './Certificate.module.scss'
+import useVisible from '../../../../hooks/useVisible'
+import {useEffect} from 'react'
 
 /**
  * Certificate
  * @param certificate Information about certificate
  * @param image Certificate image
  * @returns {JSX.Element}
- * @constructor
  */
-const Certificate = ({certificate, image}) => {
+const Certificate = ({certificate, images, downloadNormalSizeImage}) => {
+    const {ref, isVisible, setIsVisible} = useVisible(false, 'click')
+
+    useEffect(() => {
+        if (!images?.normal && isVisible) {
+            downloadNormalSizeImage()
+        }
+    }, [isVisible])
+
     return (
-        <div key={certificate.id} className={styles.certificateContainer}>
-            <div className={styles.imageWrapper}>
-                <img src={image ? URL.createObjectURL(image) : ''} alt="" className={styles.certificateImage}/>
+        <>
+            <div key={certificate.id} className={styles.certificateContainer}>
+                <div className={styles.imageWrapper}>
+                    <img
+                        src={images?.mini ? URL.createObjectURL(images?.mini) : ''}
+                        alt=""
+                        className={styles.certificateImage}
+                        onClick={() => setIsVisible(true)}
+                    />
+                </div>
             </div>
-            <div className={styles.certificateDescription}>
-                {
-                    certificate?.description
-                }
-            </div>
-        </div>
+            {
+                isVisible && <div className={styles.openedCertificateBackground}>
+                    <div className={styles.openedCertificateWrapper}>
+                        <img
+                            ref={ref}
+                            src={images?.normal ? URL.createObjectURL(images?.normal) : ''}
+                            alt=""
+                            className={styles.openedCertificate}
+                        />
+                    </div>
+                </div>
+            }
+        </>
     )
 }
 

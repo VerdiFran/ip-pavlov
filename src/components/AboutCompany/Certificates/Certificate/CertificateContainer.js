@@ -9,18 +9,26 @@ import {imagesApi} from '../../../../api/imagesApi'
  * @constructor
  */
 const CertificateContainer = ({certificate}) => {
-    const [certificateImage, setCertificateImage] = useState()
+    const [certificateImages, setCertificateImages] = useState()
 
-    const downloadImage = () => {
-        imagesApi.downloadImage(certificate.image.id, 'Certificates')
-            .then(result => setCertificateImage(result))
+    const downloadImage = (size) => {
+        imagesApi.downloadImage(certificate.image.id, size)
+            .then(result => setCertificateImages(images => ({...images, [size]: result})))
+    }
+
+    const downloadNormalSizeImage = () => {
+        downloadImage('normal')
     }
 
     useEffect(() => {
-        downloadImage()
+        downloadImage('mini')
     }, [])
 
-    return <Certificate certificate={certificate} image={certificateImage}/>
+    return <Certificate
+        certificate={certificate}
+        images={certificateImages}
+        downloadNormalSizeImage={downloadNormalSizeImage}
+    />
 }
 
 export default CertificateContainer

@@ -1,14 +1,6 @@
 @import "../../../../common-scss/variables";
 
 .certificateContainer {
-    width: 240px;
-    display: grid;
-    grid-template-rows: 240px auto;
-    grid-template-areas:
-            'image'
-            'description';
-    justify-items: center;
-    row-gap: 20px;
 }
 
 .imageWrapper {
@@ -20,15 +12,35 @@
 }
 
 .certificateImage {
-    grid-area: image;
-    align-self: center;
     max-height: 90%;
     max-width: 90%;
     object-fit: contain;
 }
 
-.certificateDescription {
-    grid-area: description;
-    text-align: center;
-    font-size: 14px;
+.openedCertificateBackground {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    background-color: $shadow-color;
+}
+
+.openedCertificateWrapper {
+    width: 80vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.openedCertificate {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
 }
