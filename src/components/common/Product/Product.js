@@ -8,11 +8,9 @@ import styles from './Product.module.scss'
  * @param quantity Quantity of product
  * @param price Price of product
  * @param unit Unit of product quantity
- * @param selectProduct
  * @returns {JSX.Element}
- * @constructor
  */
-const Product = ({productInfo: {description, quantity, price, unit}, image, onClick}) => {
+const Product = ({productInfo: {description, quantity, unit}, image, onClick}) => {
     return (
         <div onClick={onClick} className={styles.productContainer}>
             <div className={styles.productImageContainer}>
@@ -22,9 +20,6 @@ const Product = ({productInfo: {description, quantity, price, unit}, image, onCl
             <div className={styles.productDescription}>
                 <span>{description}</span>
                 <span> ({quantity} {unit}.)</span>
-            </div>
-            <div className={styles.productPrice}>
-                {(Math.round(price * 100) / 100).toFixed(2)}&nbsp;₽
             </div>
         </div>
     )

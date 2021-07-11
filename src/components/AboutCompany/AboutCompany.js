@@ -1,5 +1,4 @@
 import PageWrapper from '../PageWrapper/PageWrapper'
-import Facts from './Facts/Facts'
 import BlockWrapper from '../BlockWrapper/BlockWrapper'
 import CertificatesContainer from './Certificates/CertificatesContainer'
 import AboutCompanySection from './AboutCompanySection/AboutCompanySection'
@@ -12,9 +11,6 @@ const AboutCompany = () => {
         <PageWrapper>
             <BlockWrapper wrapperType="light">
                 <AboutCompanySection/>
-            </BlockWrapper>
-            <BlockWrapper>
-                <Facts/>
             </BlockWrapper>
             <BlockWrapper wrapperType="dark" dividerType="long">
                 <CertificatesContainer/>

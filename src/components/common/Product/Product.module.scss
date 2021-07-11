@@ -5,12 +5,11 @@
     height: 300px;
     padding: 12px;
     display: grid;
-    grid-template-rows: 182px 1px auto 24px;
+    grid-template-rows: 182px 1px auto;
     grid-template-areas:
         'image'
         'line'
-        'title'
-        'price';
+        'title';
     align-items: center;
     justify-items: center;
     background-color: $second-color;
@@ -26,7 +25,7 @@
         height: 300px;
         padding: 12px;
         display: grid;
-        grid-template-rows: 182px 1px auto 24px;
+        grid-template-rows: 182px 1px auto;
     }
 
     @media screen and (max-width: $screen-width-big) {
@@ -34,7 +33,7 @@
         height: 260px;
         padding: 10px;
         display: grid;
-        grid-template-rows: 142px 1px auto 24px;
+        grid-template-rows: 142px 1px auto;
     }
 
     @media screen and (max-width: $screen-width-medium) {
@@ -42,7 +41,7 @@
         height: 220px;
         padding: 10px;
         display: grid;
-        grid-template-rows: 122px 1px auto 24px;
+        grid-template-rows: 122px 1px auto;
     }
 
     @media screen and (max-width: $screen-width-small) {
@@ -50,7 +49,7 @@
         height: 200px;
         padding: 8px;
         display: grid;
-        grid-template-rows: 112px 1px auto 24px;
+        grid-template-rows: 112px 1px auto;
     }
 }
 

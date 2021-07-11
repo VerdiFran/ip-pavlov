@@ -44,7 +44,6 @@ const ProductInfo = ({product, productInfoVisible, onClose, productImage}) => {
                 <div className={styles.productInfoContainer}>
                     <span className={styles.productDescription}>{product?.description}</span>
                     <span className={styles.producer}>Производитель: {product?.producer?.name}</span>
-                    <span className={styles.price}>{product?.price}₽</span>
                 </div>
             </div>
         </div>
