@@ -2,11 +2,16 @@ import PageWrapper from '../PageWrapper/PageWrapper'
 import BlockWrapper from '../BlockWrapper/BlockWrapper'
 import CertificatesContainer from './Certificates/CertificatesContainer'
 import AboutCompanySection from './AboutCompanySection/AboutCompanySection'
+import {useEffect} from 'react'
 
 /**
  * Component with information about company.
  */
 const AboutCompany = () => {
+    useEffect(() => {
+        document.title = 'О компании · ИП Павлов'
+    }, [])
+
     return (
         <PageWrapper>
             <BlockWrapper wrapperType="light">

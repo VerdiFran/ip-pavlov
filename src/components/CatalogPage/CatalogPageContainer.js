@@ -12,6 +12,10 @@ const CatalogPageContainer = (props) => {
         match: {params: {categoryName}}
     } = props
 
+    useEffect(() => {
+        document.title = 'Каталог товаров · ИП Павлов'
+    }, [])
+
     const [specificCategoryName, setSpecificCategoryName] = useState()
     const [specificCategoryId, setSpecificCategoryId] = useState()
     const [categoryIsSpecified, setCategoryIsSpecified] = useState(categoryName !== undefined)

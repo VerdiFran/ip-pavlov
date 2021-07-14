@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import BlockWrapper from '../BlockWrapper/BlockWrapper'
 import AboutSite from './AboutSite/AboutSite'
 import PageWrapper from '../PageWrapper/PageWrapper'
@@ -11,6 +11,10 @@ import SalesLeadersContainer from './SalesLeaders/SalesLeadersContainer'
  * @constructor
  */
 const Home = () => {
+    useEffect(() => {
+        document.title = 'Главная · ИП Павлов'
+    }, [])
+
     return (
         <>
             <AboutSite/>
