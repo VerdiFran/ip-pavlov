@@ -63,7 +63,8 @@ const deleteMessage = () => ({type: DELETE_MESSAGE})
 export const initializeApp = () => async (dispatch) => {
     const promises = []
 
-    // await downloadCategories('')(dispatch)
+    await downloadCategories('')(dispatch)
+
     Promise.all(promises)
         .then(() => {
             dispatch(initializedSuccess())

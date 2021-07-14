@@ -16,7 +16,7 @@ const Product = ({productInfo: {description, quantity, unit}, image, onClick}) =
             <div className={styles.productImageContainer}>
                 <img src={image ? URL.createObjectURL(image) : ''} alt="" className={styles.productImage}/>
             </div>
-            <div className={styles.line}/>
+            {/*<div className={styles.line}/>*/}
             <div className={styles.productDescription}>
                 <span>{description}</span>
                 <span> ({quantity} {unit}.)</span>

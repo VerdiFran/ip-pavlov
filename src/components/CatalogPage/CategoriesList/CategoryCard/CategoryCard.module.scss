@@ -1,43 +1,65 @@
 @import '../../../../common-scss/variables';
 
 .navLink {
-    height: 190px;
-    width: 170px;
-    display: grid;
-    grid-template-areas: 'card';
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
+    width: 100%;
+    padding: 0;
     overflow: hidden;
     box-shadow: 0 4px 4px $shadow-color;
     text-decoration: none;
 }
 
 .categoryCard {
-    height: 190px;
-    width: 170px;
-    padding: 12px;
+    height: 100%;
+    width: 100%;
+    padding: 4px;
     grid-area: card;
     box-sizing: border-box;
     background-color: $second-color;
     box-shadow: 0 4px 4px $shadow-color;
     display: grid;
-    grid-template-rows: 110px auto;
-    grid-template-areas:
-                'image'
-                'title';
+    grid-template-columns: 26% auto;
+    grid-template-areas: 'image title';
     align-items: center;
-    justify-items: center;
 }
 
 .categoryImageContainer {
-    height: 80%;
-    width: 80%;
+    height: 32px;
+    width: 32px;
     grid-area: image;
+    justify-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: $screen-width-large) {
+        $image-size: 26px;
+        height: $image-size;
+        width: $image-size;
+    }
+
+    @media screen and (max-width: $screen-width-big) {
+        $image-size: 22px;
+        height: $image-size;
+        width: $image-size;
+    }
+
+    @media screen and (max-width: $screen-width-medium) {
+        $image-size: 20px;
+        height: $image-size;
+        width: $image-size;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        $image-size: 18px;
+        height: $image-size;
+        width: $image-size;
+    }
+
+    @media screen and (max-width: $screen-width-tiny) {
+        $image-size: 16px;
+        height: $image-size;
+        width: $image-size;
+    }
 }
 
 .categoryImage {
@@ -48,12 +70,13 @@
 
 .categoryName {
     z-index: 20;
-    bottom: 50px;
-    position: relative;
     grid-area: title;
-    font-size: 16px;
+    font-size: 80%;
     color: $main-font-color;
     text-transform: uppercase;
-    text-align: center;
     font-weight: bold;
+
+    @media screen and (max-width: $screen-width-medium) {
+        font-size: 70%;
+    }
 }

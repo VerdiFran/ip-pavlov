@@ -39,37 +39,41 @@ const CatalogPage = (props) => {
         <div>
             <PageWrapper>
                 <div className={styles.catalogWrapper}>
-                    <div className={styles.heading}>
-                        <NavLink to={TO_CATALOG} className={styles.toCatalog}>
+                    <div className={styles.header}>
+                        <div className={styles.heading}>
+                            <NavLink to={TO_CATALOG} className={styles.toCatalog}>
+                                {
+                                    specificCategoryName && <Arrow type="left" height="14px" width="14px"/>
+                                }
+                                <span data-text="Каталог">Каталог</span>
+                            </NavLink>
                             {
-                                specificCategoryName && <Arrow type="left" height="14px" width="14px"/>
+                                specificCategoryName &&
+                                <>
+                                    <div className={styles.headingDivider}/>
+                                    <span>{specificCategoryName}</span>
+                                </>
                             }
-                            <span data-text="Каталог">Каталог</span>
-                        </NavLink>
-                        {
-                            specificCategoryName &&
-                            <>
-                                <div className={styles.headingDivider}/>
-                                <span>{specificCategoryName}</span>
-                            </>
-                        }
+                        </div>
+                        <CatalogHeaderContainer
+                            setDebouncedSearchTerm={setSearchTerm}
+                            setDebouncedProducerIds={setProducerIds}
+                            specificCategoryName={specificCategoryName}
+                        />
                     </div>
-                    <CatalogHeaderContainer
-                        setDebouncedSearchTerm={setSearchTerm}
-                        setDebouncedProducerIds={setProducerIds}
-                        specificCategoryName={specificCategoryName}
-                    />
-                    {
-                        (!categoryIsSpecified) &&
+                    <div className={styles.categoriesWrapper}>
                         <CategoriesListContainer searchTerm={searchTerm}/>
-                    }
-                    <ProductsContainer
-                        onClick={handleSetCurrent}
-                        categoryIsSpecified={categoryIsSpecified}
-                        specificCategoryId={specificCategoryId}
-                        searchTerm={searchTerm}
-                        producerIds={producerIds}
-                    /></div>
+                    </div>
+                    <div className={styles.productsWrapper}>
+                        <ProductsContainer
+                            onClick={handleSetCurrent}
+                            categoryIsSpecified={categoryIsSpecified}
+                            specificCategoryId={specificCategoryId}
+                            searchTerm={searchTerm}
+                            producerIds={producerIds}
+                        />
+                    </div>
+                </div>
             </PageWrapper>
             {
                 currentProductVisible &&

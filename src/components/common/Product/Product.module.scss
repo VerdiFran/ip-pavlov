@@ -1,14 +1,13 @@
 @import '../../../common-scss/variables';
 
 .productContainer {
-    width: 170px;
-    height: 300px;
+    width: 160px;
+    height: 260px;
     padding: 12px;
     display: grid;
-    grid-template-rows: 182px 1px auto;
+    grid-template-rows: 170px auto;
     grid-template-areas:
         'image'
-        'line'
         'title';
     align-items: center;
     justify-items: center;
@@ -25,7 +24,7 @@
         height: 300px;
         padding: 12px;
         display: grid;
-        grid-template-rows: 182px 1px auto;
+        grid-template-rows: 182px auto;
     }
 
     @media screen and (max-width: $screen-width-big) {
@@ -33,7 +32,7 @@
         height: 260px;
         padding: 10px;
         display: grid;
-        grid-template-rows: 142px 1px auto;
+        grid-template-rows: 142px auto;
     }
 
     @media screen and (max-width: $screen-width-medium) {
@@ -41,7 +40,7 @@
         height: 220px;
         padding: 10px;
         display: grid;
-        grid-template-rows: 122px 1px auto;
+        grid-template-rows: 122px auto;
     }
 
     @media screen and (max-width: $screen-width-small) {
@@ -49,7 +48,7 @@
         height: 200px;
         padding: 8px;
         display: grid;
-        grid-template-rows: 112px 1px auto;
+        grid-template-rows: 112px auto;
     }
 }
 
@@ -105,6 +104,13 @@
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        color: $main-color;
+        font-weight: bolder;
+        word-break: break-word;
+    }
+
+    & > span:last-of-type {
+        color: $product-info-background-color;
     }
 
     @media screen and (max-width: $screen-width-large) {
@@ -125,30 +131,5 @@
 
     @media screen and (max-width: $screen-width-tiny) {
         font-size: 10px;
-    }
-}
-
-.productPrice {
-    grid-area: price;
-    font-size: 22px;
-
-    @media screen and (max-width: $screen-width-large) {
-        font-size: 20px;
-    }
-
-    @media screen and (max-width: $screen-width-big) {
-        font-size: 18px;
-    }
-
-    @media screen and (max-width: $screen-width-medium) {
-        font-size: 16px;
-    }
-
-    @media screen and (max-width: $screen-width-small) {
-        font-size: 14px;
-    }
-
-    @media screen and (max-width: $screen-width-tiny) {
-        font-size: 12px;
     }
 }

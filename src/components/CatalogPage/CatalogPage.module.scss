@@ -5,7 +5,16 @@
 }
 
 .catalogWrapper {
+    width: 100%;
+    height: 100%;
     padding: 60px 120px;
+    display: grid;
+    grid-template-columns: 24% auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        'header header'
+        'categories products';
+    gap: 20px;
 
     @media screen and (max-width: $screen-width-big) {
         padding: 50px 80px 50px 110px;
@@ -17,6 +26,12 @@
 
     @media screen and (max-width: $screen-width-small) {
         padding: 40px 50px 40px 80px;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            'header'
+            'categories'
+            'products';
     }
 }
 
@@ -79,4 +94,16 @@
     height: 20px;
     margin: 0 14px;
     background-color: $dark-second-color;
+}
+
+.header {
+    grid-area: header;
+}
+
+.categoriesWrapper {
+    grid-area: categories;
+}
+
+.productsWrapper {
+    grid-area: products;
 }
