@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import PageWrapper from '../PageWrapper/PageWrapper'
 import CatalogHeaderContainer from './CatalogHeader/CatalogHeaderContainer'
 import CategoriesListContainer from './CategoriesList/CategoriesListContainer'
@@ -25,6 +25,22 @@ const CatalogPage = (props) => {
     const [producerIds, setProducerIds] = useState()
     const [searchTerm, setSearchTerm] = useState()
 
+    const [specificStyle, setSpecificStyle] = useState({})
+
+    useEffect(() => {
+        if (searchTerm?.length) {
+            setSpecificStyle({
+                gridTemplateColumns: 'auto',
+                gridTemplateAreas: `
+                    'header'
+                    'products'
+                `
+            })
+        } else {
+            setSpecificStyle({})
+        }
+    }, [searchTerm])
+
     const handleClose = () => {
         setCurrentProduct(null)
         setCurrentProductVisible(false)
@@ -38,7 +54,7 @@ const CatalogPage = (props) => {
     return (
         <div>
             <PageWrapper>
-                <div className={styles.catalogWrapper}>
+                <div className={styles.catalogWrapper} style={specificStyle}>
                     <div className={styles.header}>
                         <div className={styles.heading}>
                             <NavLink to={TO_CATALOG} className={styles.toCatalog}>
@@ -61,7 +77,7 @@ const CatalogPage = (props) => {
                             specificCategoryName={specificCategoryName}
                         />
                     </div>
-                    <div className={styles.categoriesWrapper}>
+                    <div className={styles.categoriesWrapper} style={searchTerm?.length ? {display: 'none'} : {}}>
                         <CategoriesListContainer searchTerm={searchTerm}/>
                     </div>
                     <div className={styles.productsWrapper}>

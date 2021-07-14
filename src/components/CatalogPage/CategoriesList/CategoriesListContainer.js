@@ -6,22 +6,15 @@ import {compose} from 'redux'
 import {connect} from 'react-redux'
 
 const mapStateToProps = (state) => ({
-    getCategoriesByName: (name) => getCategories(state, name)
+    categories: getCategories(state)
 })
 
 /**
  * Container for CategoryList component.
  * @param categories List of categories.
- * @param searchTerm Term for searching.
  */
-const CategoriesListContainer = ({searchTerm, getCategoriesByName}) => {
+const CategoriesListContainer = ({categories}) => {
     const [images, setImages] = useState([])
-    const [categories, setCategories] = useState([])
-
-    useEffect(() => {
-        const newCategories = getCategoriesByName(searchTerm)
-        setCategories(newCategories)
-    }, [searchTerm])
 
     useEffect(() => {
         categories?.forEach(category => {
