@@ -4,7 +4,6 @@
     width: 100%;
     padding: 0;
     overflow: hidden;
-    box-shadow: 0 4px 4px $shadow-color;
     text-decoration: none;
 }
 
@@ -15,7 +14,6 @@
     grid-area: card;
     box-sizing: border-box;
     background-color: $second-color;
-    box-shadow: 0 4px 4px $shadow-color;
     display: grid;
     grid-template-columns: 26% auto;
     grid-template-areas: 'image title';

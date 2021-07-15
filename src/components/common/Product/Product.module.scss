@@ -2,17 +2,18 @@
 
 .productContainer {
     width: 160px;
-    height: 260px;
+    height: 290px;
     padding: 12px;
     display: grid;
-    grid-template-rows: 170px auto;
+    grid-template-rows: 170px auto 30px;
     grid-template-areas:
         'image'
-        'title';
+        'title'
+        'button';
+    align-content: space-between;
     align-items: center;
     justify-items: center;
-    background-color: $second-color;
-    box-shadow: 0 4px 4px $shadow-color;
+    border: 1px solid $second-color;
     cursor: pointer;
 
     & > *:not(:last-child) {
@@ -37,7 +38,7 @@
 
     @media screen and (max-width: $screen-width-medium) {
         width: 120px;
-        height: 220px;
+        height: 240px;
         padding: 10px;
         display: grid;
         grid-template-rows: 122px auto;
@@ -132,4 +133,9 @@
     @media screen and (max-width: $screen-width-tiny) {
         font-size: 10px;
     }
+}
+
+.button {
+    @include button($accent-color, $main-color);
+    grid-area: button;
 }

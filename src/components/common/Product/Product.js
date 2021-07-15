@@ -12,15 +12,18 @@ import styles from './Product.module.scss'
  */
 const Product = ({productInfo: {description, quantity, unit}, image, onClick}) => {
     return (
-        <div onClick={onClick} className={styles.productContainer}>
-            <div className={styles.productImageContainer}>
+        <div className={styles.productContainer}>
+            <div className={styles.productImageContainer} onClick={onClick}>
                 <img src={image ? URL.createObjectURL(image) : ''} alt="" className={styles.productImage}/>
             </div>
-            {/*<div className={styles.line}/>*/}
-            <div className={styles.productDescription}>
+            <div className={styles.productDescription} onClick={onClick}>
                 <span>{description}</span>
                 <span> ({quantity} {unit}.)</span>
             </div>
+            <button
+                className={styles.button}
+                onClick={() => console.log('click')}
+            >Узнать цену</button>
         </div>
     )
 }

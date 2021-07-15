@@ -159,41 +159,7 @@
 }
 
 .button {
-    width: 100px;
-    height: 30px;
-    background-color: $main-color;
-    border: none;
-    outline: none;
-    color: $background-color;
-    font-size: 14px;
-    cursor: pointer;
-    transition-duration: 200ms;
-
-    @media screen and (max-width: $screen-width-large) {
-        width: 100px;
-        height: 24px;
-        font-size: 12px;
-    }
-
-    @media screen and (max-width: $screen-width-big) {
-        width: 100px;
-        height: 20px;
-        font-size: 10px;
-    }
-
-    @media screen and (max-width: $screen-width-medium) {
-        width: 100px;
-        height: 30px;
-        font-size: 14px;
-    }
-
-    &:hover {
-        box-shadow: 2px 2px 2px $shadow-color;
-    }
-
-    &:active {
-        background-color: $dark-main-color;
-    }
+    @include button($main-color, $dark-main-color);
 }
 
 .errorMessage {
