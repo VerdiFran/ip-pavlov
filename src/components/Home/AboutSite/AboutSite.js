@@ -1,16 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react'
 import ideal from '../../../assets/images/distributors/ideal.png'
-import goldenSeed from '../../../assets/images/distributors/golden_seed.png'
-import bear from '../../../assets/images/distributors/bear.svg'
-import barko from '../../../assets/images/distributors/barko.jpg'
 import box from '../../../assets/images/distributorsProducts/box.png'
 import bearProduct from '../../../assets/images/distributorsProducts/bearProduct.png'
 import barkoProduct from '../../../assets/images/distributorsProducts/barkoProduct.png'
 import goldenSeedProduct from '../../../assets/images/distributorsProducts/goldenSeedProduct.png'
 import idealProduct from '../../../assets/images/distributorsProducts/idealProduct.jpg'
 import styles from './AboutSite.module.scss'
-import useDebounce from '../../../hooks/useDebounce'
 import useWindowDimensions from '../../../hooks/useWindowDimensions'
+import {NavLink} from 'react-router-dom'
+import {TO_CATALOG} from '../../../routes'
 
 /**
  * Component with information about site
@@ -82,17 +80,16 @@ const AboutSite = () => {
                 </p>
                 <p>
                     Просто посмотрите товары
-                    <a href={'/catalog'} className={styles.catalogButton}>в&nbsp;каталоге</a>,
+                    <NavLink
+                        to={TO_CATALOG}
+                        className={styles.catalogButton}
+                    >в&nbsp;каталоге</NavLink>,
                 </p>
                 <p>
                     позвоните по номеру 8 (391) 240-12-22 и ждите ваш заказ!
                 </p>
             </div>
             <div className={styles.distributorsContainer}>
-                {/*<img src={ideal} alt='Ideal' width="137px"/>
-                <img src={goldenSeed} alt='Золотая Семечка' width="116px"/>
-                <img src={bear} alt='Медведь Любимый' width="156px"/>
-                <img src={barko} alt='Барко' width="140px"/>*/}
                 {
                     distributors.map(distributor => <img src={distributor.default} alt=''/>)
                 }

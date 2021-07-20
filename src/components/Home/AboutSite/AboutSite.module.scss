@@ -3,8 +3,8 @@
 .aboutSiteSection {
     width: 100%;
     height: calc(100vh - #{$header-height});
-    max-height: 1000px;
-    min-height: 700px;
+    max-height: 730px;
+    min-height: 500px;
     display: grid;
     padding: 40px 60px 0 40px;
     margin-bottom: 3px;
@@ -24,28 +24,20 @@
     background-blend-mode: color;
 
     @media screen and (max-width: $screen-width-large) {
-        grid-template-columns: auto 350px;
-        height: calc(100vh - #{$header-height} - 100px);
+        height: 800px;
+        max-height: 900px;
     }
 
     @media screen and (max-width: $screen-width-big) {
         height: calc(100vh - #{$header-height} - 200px);
-    }
-
-    @media screen and (max-width: $screen-width-medium) {
-        height: calc(100vh - #{$header-height} - 250px);
         grid-template-columns: auto;
         grid-template-areas:
             "info"
             "distributors";
     }
 
-    @media screen and (max-width: $screen-width-small) {
-        height: calc(100vh - #{$header-height} - 300px);
-    }
-
-    @media screen and (max-width: $screen-width-tiny) {
-        height: calc(100vh - #{$header-height} - 320px);
+    @media screen and (max-width: $screen-width-medium) {
+        height: auto;
     }
 }
 
@@ -54,8 +46,6 @@
     width: 100%;
     padding: 60px;
     box-sizing: border-box;
-
-    //background-color: #cb000050;
 
     p {
         font-size: 20px;
@@ -114,19 +104,12 @@
 }
 
 .catalogButton {
-    width: 146px;
-    height: 40px;
     margin: 10px 0 10px 10px;
-    padding: 2px 30px 8px;
-    box-sizing: border-box;
-    text-align: center;
-    vertical-align: center;
+    display: inline-block;
     text-decoration: none;
-    color: $logo-font-color;
+    text-align: center;
     font-weight: bold;
-    font-size: 20px;
-    background-color: $main-color;
-    cursor: pointer;
+    @include button($main-color, $dark-main-color);
 }
 
 .distributorsContainer {
@@ -203,16 +186,4 @@
     bottom: 70px;
     margin-left: 24px;
     z-index: 10;
-
-    @media screen and (max-width: $screen-width-large) {
-        width: 300px;
-    }
-
-    @media screen and (max-width: $screen-width-big) {
-        width: 200px;
-    }
-
-    @media screen and (max-width: $screen-width-medium) {
-        width: 130px;
-    }
 }
