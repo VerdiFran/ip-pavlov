@@ -8,6 +8,8 @@ import Arrow from '../common/Arrow/Arrow'
 import {NavLink} from 'react-router-dom'
 import {TO_CATALOG} from '../../routes'
 import ProductInfoContainer from '../ProductInfo/ProductInfoContainer'
+import CooperationFormContainer from './CooperationForm/CooperationFormContainer'
+import useVisible from '../../hooks/useVisible'
 
 /**
  * Page that contains catalog
@@ -40,6 +42,8 @@ const CatalogPage = (props) => {
             setSpecificStyle({})
         }
     }, [searchTerm])
+
+    const {ref, isVisible, setIsVisible} = useVisible(false, 'click')
 
     const handleClose = () => {
         setCurrentProduct(null)
@@ -87,10 +91,18 @@ const CatalogPage = (props) => {
                             specificCategoryId={specificCategoryId}
                             searchTerm={searchTerm}
                             producerIds={producerIds}
+                            openCooperation={() => setIsVisible(true)}
                         />
                     </div>
                 </div>
             </PageWrapper>
+            {
+                isVisible &&
+                <CooperationFormContainer
+                    objRef={ref}
+                    close={() => setIsVisible(false)}
+                />
+            }
             {
                 currentProductVisible &&
                 <ProductInfoContainer

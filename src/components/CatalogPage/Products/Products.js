@@ -13,7 +13,8 @@ const Products = (props) => {
         loading,
         appendLoading,
         handleNextPage,
-        onClick
+        onClick,
+        openCooperation
     } = props
 
     const emptyRef = useRef(null)
@@ -68,6 +69,7 @@ const Products = (props) => {
                                 productInfo={product}
                                 key={product.id}
                                 onClick={() => onClick(product)}
+                                openCooperation={openCooperation}
                             />
                         )
                     }

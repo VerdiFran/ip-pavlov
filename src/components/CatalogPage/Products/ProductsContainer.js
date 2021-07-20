@@ -20,7 +20,8 @@ const ProductsContainer = (props) => {
         specificCategoryId,
         categoryIsSpecified,
         searchTerm,
-        producerIds
+        producerIds,
+        openCooperation
     } = props
 
     const [appendLoading, setAppendLoading] = useState(false)
@@ -55,6 +56,7 @@ const ProductsContainer = (props) => {
             loading={productsLoading}
             appendLoading={appendLoading}
             handleNextPage={handleNextPage}
+            openCooperation={openCooperation}
         />
     )
 }

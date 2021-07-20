@@ -10,7 +10,7 @@ import closeImage from '../../../assets/images/close-button.svg'
 const ContactUsForm = ({handleSubmit, close}) => {
     const contactUsSchema = yup.object().shape({
         name: yup.string().required('Это поле обзательно для заполнения.'),
-        email: yup.string().required('Это поле обзательно для заполнения.').email('Некорректный email.'),
+        email: yup.string().required('Это поле обзательно для заполнения.').email('Некорректный эл. адрес.'),
         message: yup.string().required('Это поле обзательно для заполнения.'),
     })
 
@@ -54,7 +54,7 @@ const ContactUsForm = ({handleSubmit, close}) => {
                                     id="name"
                                     style={getStyles(errors, 'name')}
                                 />
-                                <div className={styles.errorMessage}>
+                                <div className="errorMessage">
                                     <ErrorMessage name="name"/>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@ const ContactUsForm = ({handleSubmit, close}) => {
                                     id="email"
                                     style={getStyles(errors, 'email')}
                                 />
-                                <div className={styles.errorMessage}>
+                                <div className="errorMessage">
                                     <ErrorMessage name="email"/>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@ const ContactUsForm = ({handleSubmit, close}) => {
                                     className={styles.questionField}
                                     style={getStyles(errors, 'message')}
                                 />
-                                <div className={styles.errorMessage}>
+                                <div className="errorMessage">
                                     <ErrorMessage name="message"/>
                                 </div>
                             </div>

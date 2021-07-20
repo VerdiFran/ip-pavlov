@@ -7,7 +7,7 @@ import {imagesApi} from '../../../api/imagesApi'
  * @returns {JSX.Element}
  * @constructor
  */
-const ProductContainer = ({productInfo, onClick}) => {
+const ProductContainer = ({productInfo, onClick, openCooperation}) => {
     const [imageBlob, setImageBlob] = useState(null)
 
     const {image} = productInfo
@@ -19,7 +19,12 @@ const ProductContainer = ({productInfo, onClick}) => {
         }
     }, [image])
 
-    return <Product onClick={onClick} productInfo={productInfo} image={imageBlob}/>
+    return <Product
+        onClick={onClick}
+        productInfo={productInfo}
+        image={imageBlob}
+        openCooperation={openCooperation}
+    />
 }
 
 export default ProductContainer

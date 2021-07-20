@@ -162,11 +162,6 @@
     @include button($main-color, $dark-main-color);
 }
 
-.errorMessage {
-    color: $error-color;
-    font-size: 11px;
-}
-
 @keyframes form-in {
     0% {
         transform: translateY(100%);

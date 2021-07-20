@@ -10,7 +10,7 @@ import styles from './Product.module.scss'
  * @param unit Unit of product quantity
  * @returns {JSX.Element}
  */
-const Product = ({productInfo: {description, quantity, unit}, image, onClick}) => {
+const Product = ({productInfo: {description, quantity, unit}, image, onClick, openCooperation}) => {
     return (
         <div className={styles.productContainer}>
             <div className={styles.productImageContainer} onClick={onClick}>
@@ -22,7 +22,7 @@ const Product = ({productInfo: {description, quantity, unit}, image, onClick}) =
             </div>
             <button
                 className={styles.button}
-                onClick={() => console.log('click')}
+                onClick={openCooperation}
             >Узнать цену</button>
         </div>
     )
