@@ -57,6 +57,7 @@
   background-color: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
 
   & > img {
     width: 100%;
@@ -72,6 +73,10 @@
     width: 8vw;
     height: 8vw;
   }
+}
+
+.text {
+  text-align: center;
 }
 
 @keyframes form-in {

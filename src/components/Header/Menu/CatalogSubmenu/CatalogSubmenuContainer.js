@@ -7,17 +7,7 @@ const mapStateToProps = (state) => ({
 })
 
 const CatalogSubmenuContainer = ({categories}) => {
-    const downloadingPriceListLink = 'http://176.119.158.143:9090/api/v1/files/price-list'
-
-    const priceListMenuItem = {
-        title: 'скачать прайс-лист',
-        special: true,
-        action: () => window.open(downloadingPriceListLink)
-    }
-
-    const submenuItems = [priceListMenuItem].concat(categories)
-
-    return <CatalogSubmenu submenuItems={submenuItems}/>
+    return <CatalogSubmenu submenuItems={categories}/>
 }
 
 export default connect(mapStateToProps)(CatalogSubmenuContainer)

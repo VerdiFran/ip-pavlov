@@ -2,11 +2,9 @@ import styles from './CompactMenu.module.scss'
 import {NavLink} from 'react-router-dom'
 import {TO_ABOUT_COMPANY, TO_CATALOG, TO_CONTACTS, TO_HOME, TO_PARTNERS} from '../../../routes'
 import React, {useState} from 'react'
-import useVisible from '../../../hooks/useVisible'
 
 const CompactMenu = () => {
     const [checked, setChecked] = useState(false)
-    const {ref, isVisible, setIsVisible} = useVisible(false, 'click')
 
     return <>
         <nav className={styles.compactMenu}>
@@ -75,34 +73,8 @@ const CompactMenu = () => {
                         >Партнеры</NavLink>
                     </button>
                 </li>
-                <li className={[styles.compactMenuItem, styles.specialItem].join(' ')}>
-                    <button
-                        onClick={() => {
-                            window.open('http://176.119.158.143:9090/api/v1/files/price-list')
-                            setChecked(false)
-                        }}
-                    >Скачать прайс-лист
-                    </button>
-                </li>
-                {/*<li className={[styles.compactMenuItem, styles.specialItem].join(' ')}>
-                    <button
-                        onClick={() => {
-                            setIsVisible(true)
-                            setChecked(false)
-                        }}
-                    >Связаться с нами
-                    </button>
-                </li>*/}
             </ul>
         </nav>
-        {/*{
-            isVisible &&
-            <div className={styles.modalContainer}>
-                <div ref={ref} className={styles.modalWindow}>
-                    <ContactUsFormContainer close={() => setIsVisible(false)}/>
-                </div>
-            </div>
-        }*/}
     </>
 }
 

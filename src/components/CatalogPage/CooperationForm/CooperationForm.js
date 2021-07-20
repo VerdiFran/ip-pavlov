@@ -52,6 +52,9 @@ const CooperationForm = ({objRef, handleSubmit, close}) => {
                         <h1 className={[styles.title, 'heading'].join(' ')}>
                             Заполните форму, чтобы начать сотрудничество
                         </h1>
+                        <p className={styles.text}>
+                            Пришлите нам свои данные, и мы вышлем прайс-лист
+                        </p>
                         <div className={formStyles.fieldContainer}>
                             <label htmlFor="companyName">Название компании</label>
                             <Field
