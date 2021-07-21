@@ -1,10 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react'
-import ideal from '../../../assets/images/distributors/ideal.png'
-import box from '../../../assets/images/distributorsProducts/box.png'
-import bearProduct from '../../../assets/images/distributorsProducts/bearProduct.png'
-import barkoProduct from '../../../assets/images/distributorsProducts/barkoProduct.png'
-import goldenSeedProduct from '../../../assets/images/distributorsProducts/goldenSeedProduct.png'
-import idealProduct from '../../../assets/images/distributorsProducts/idealProduct.jpg'
+import React, {useEffect, useState} from 'react'
+import box from '../../../assets/images/box.png'
 import styles from './AboutSite.module.scss'
 import useWindowDimensions from '../../../hooks/useWindowDimensions'
 import {NavLink} from 'react-router-dom'
@@ -15,12 +10,11 @@ import {TO_CATALOG} from '../../../routes'
  */
 const AboutSite = () => {
     function importAll(r) {
-        return r.keys().map(r);
+        return r.keys().map(r)
     }
 
     const distributors = importAll(require.context('../../../assets/images/distributors', false, /\.(png|jpe?g|svg)$/))
-
-    console.log(ideal, distributors)
+    const distributorsProducts = importAll(require.context('../../../assets/images/distributorsProducts', false, /\.(png|jpe?g|svg)$/))
 
     const {width} = useWindowDimensions()
     const [boxVisible, setBoxVisible] = useState()
@@ -35,7 +29,7 @@ const AboutSite = () => {
     const handleScroll = () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
-        const scrolled = (winScroll / height) * 600 - 30
+        const scrolled = (winScroll / height) * 200 - 30
 
         setScrolledHeight(() => scrolled > 0 ? 0 : scrolled)
         setScrolledWidth(() => scrolled > 0 ? 0 : scrolled)
@@ -53,21 +47,26 @@ const AboutSite = () => {
         transitionDuration: '0.3s'
     }
 
-    const product1Style = {
-        transform: `translate(${scrolledWidth}%, ${scrolledHeight}%) rotate(-18deg)`
-    }
-
-    const product2Style = {
-        transform: `translate(${scrolledWidth}%, ${scrolledHeight}%) rotate(-6deg)`
-    }
-
-    const product3Style = {
-        transform: `translate(${-scrolledWidth / 3}%, ${scrolledHeight}%) rotate(6deg)`
-    }
-
-    const product4Style = {
-        transform: `translate(${-scrolledWidth}%, ${scrolledHeight}%) rotate(20deg)`
-    }
+    const productsStyles = [
+        {
+            transform: `translate(${scrolledWidth / 0.3}%, ${scrolledHeight / 0.5}%) rotate(${scrolledHeight / 5 - 25}deg)`
+        },
+        {
+            transform: `translate(${scrolledWidth / 0.6}%, ${scrolledHeight / 0.8}%) rotate(${scrolledHeight / 5 - 15}deg)`
+        },
+        {
+            transform: `translate(${scrolledWidth / 0.5}%, ${scrolledHeight / 0.5}%) rotate(${scrolledHeight / 2}deg)`
+        },
+        {
+            transform: `translate(${-scrolledWidth}%, ${scrolledHeight / 0.6}%) rotate(${scrolledHeight / -5 + 5}deg)`
+        },
+        {
+            transform: `translate(${-scrolledWidth / 0.8}%, ${scrolledHeight - 20}%) rotate(${scrolledHeight / -5 + 20}deg)`
+        },
+        {
+            transform: `translate(${-scrolledWidth / 0.5}%, ${scrolledHeight / 0.8}%) rotate(${scrolledHeight / -5 + 25}deg)`
+        }
+    ]
 
     return (
         <section className={styles.aboutSiteSection}>
@@ -98,12 +97,17 @@ const AboutSite = () => {
                 boxVisible
                 && <div className={styles.productsInBox}>
                     <div className={styles.productsContainer}>
-                        <img src={bearProduct} alt='' width="166px" className={styles.product} style={product1Style}/>
-                        <img src={goldenSeedProduct} alt='' width="92px" className={styles.product} style={product2Style}/>
-                        <img src={barkoProduct} alt='' width="134px" className={styles.product} style={product3Style}/>
-                        <img src={idealProduct} alt='' width="84px" className={styles.product} style={product4Style}/>
+                        {
+                            distributorsProducts.map((product, index) =>
+                                <img
+                                    src={product.default}
+                                    alt=''
+                                    className={styles.product}
+                                    style={productsStyles[index]}
+                                />)
+                        }
                     </div>
-                    <img src={box} alt='' width="400px" className={styles.box} style={boxStyle}/>
+                    <img src={box} alt='' className={styles.box} style={boxStyle}/>
                 </div>
             }
         </section>

@@ -47,6 +47,10 @@
     padding: 60px;
     box-sizing: border-box;
 
+    @media screen and (max-width: $screen-width-large) {
+        padding: 40px;
+    }
+
     p {
         font-size: 20px;
         line-height: 24px;
@@ -83,7 +87,7 @@
     text-transform: uppercase;
 
     @media screen and (max-width: $screen-width-large) {
-        font-size: 32px;
+        font-size: 28px;
     }
 
     @media screen and (max-width: $screen-width-big) {
@@ -128,16 +132,12 @@
         max-height: 80px;
         object-fit: contain;
     }
-
-    //background-color: #556b2f50;
 }
 
 .productsInBox {
     grid-area: box;
     width: 100%;
     height: 100%;
-
-    //background-color: #d2691e50;
 }
 
 .productsContainer {
@@ -146,44 +146,65 @@
 
 .product {
     position: absolute;
+    width: 130px;
+    height: 300px;
+    object-fit: contain;
     transition-duration: 0.3s;
 
     &:first-of-type {
-        top: 120px;
-        left: 50px;
+        top: 70px;
+        left: 0;
         right: 0;
         bottom: 0;
         z-index: 5;
     }
 
     &:nth-of-type(2) {
-        top: 50px;
-        left: 150px;
+        top: 140px;
+        left: 90px;
         right: 0;
         bottom: 0;
         z-index: 7;
     }
 
     &:nth-of-type(3) {
-        top: 130px;
-        left: 190px;
+        top: 70px;
+        left: 170px;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
+    }
+
+    &:nth-of-type(4) {
+        top: 100px;
+        left: 170px;
+        right: 0;
+        bottom: 0;
+        z-index: 8;
+    }
+
+    &:nth-of-type(5) {
+        top: 180px;
+        left: 260px;
         right: 0;
         bottom: 0;
         z-index: 6;
     }
 
     &:last-of-type {
-        top: 80px;
-        left: 316px;
+        top: 70px;
+        left: 370px;
         right: 0;
         bottom: 0;
-        z-index: 8;
+        z-index: 7;
     }
 }
 
 .box {
+    width: 500px;
+    height: 500px;
     position: absolute;
-    bottom: 70px;
-    margin-left: 24px;
+    bottom: -20px;
+    margin-left: -8px;
     z-index: 10;
 }
