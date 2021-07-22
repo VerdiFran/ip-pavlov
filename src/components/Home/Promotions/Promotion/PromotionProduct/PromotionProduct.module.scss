@@ -1,0 +1,43 @@
+@import "src/common-scss/variables";
+
+.imageWrapper {
+    $size: 10vw;
+    width: $size;
+    height: $size;
+    position: relative;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: $second-color;
+    border: 4px solid $background-color;
+    cursor: pointer;
+    transition-duration: 0.5s;
+    z-index: 1;
+
+    &:not(:first-of-type) {
+        margin-left: -4vw;
+    }
+
+    &:hover {
+        box-shadow: 0 4px 4px $shadow-color;
+        z-index: 2;
+    }
+
+    &:active, &:focus {
+        background-color: $dark-second-color;
+    }
+
+    @media screen and (max-width: $screen-width-small) {
+        $size: 15vw;
+        width: $size;
+        height: $size;
+    }
+}
+
+.image {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}

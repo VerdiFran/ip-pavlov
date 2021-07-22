@@ -3,7 +3,7 @@ import BlockWrapper from '../BlockWrapper/BlockWrapper'
 import AboutSite from './AboutSite/AboutSite'
 import PageWrapper from '../PageWrapper/PageWrapper'
 import CatalogSectionContainer from './CatalogSection/CatalogSectionContainer'
-import SalesLeadersContainer from './SalesLeaders/SalesLeadersContainer'
+import PromotionsContainer from './Promotions/PromotionsContainer'
 
 /**
  * Home page
@@ -20,7 +20,7 @@ const Home = () => {
             <AboutSite/>
             <PageWrapper>
                 <BlockWrapper wrapperType="light" dividerType="short">
-                    <SalesLeadersContainer/>
+                    <PromotionsContainer/>
                 </BlockWrapper>
                 <BlockWrapper wrapperType="dark" dividerType="long">
                     <CatalogSectionContainer/>

@@ -1,0 +1,36 @@
+@import "../../../../common-scss/variables";
+
+.promotion {
+    display: grid;
+    grid-template-columns: auto 40%;
+    align-items: center;
+    gap: 40px;
+
+    @media screen and (max-width: $screen-width-small) {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+.text {
+    font-size: 1.6vw;
+    text-align: center;
+
+    @media screen and (max-width: $screen-width-small) {
+        font-size: 3vw;
+    }
+}
+
+.relatedProducts {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+
+    @media screen and (max-width: $screen-width-small) {
+        justify-content: center;
+    }
+}
