@@ -1,23 +1,40 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import box from '../../../assets/images/box.png'
 import styles from './AboutSite.module.scss'
 import useWindowDimensions from '../../../hooks/useWindowDimensions'
-import {NavLink} from 'react-router-dom'
-import {TO_CATALOG} from '../../../routes'
+import {getPartners} from '../../../utils/selectors/catalogSelectors'
+import { NavLink, useHistory, useParams } from 'react-router-dom'
+import { TO_CATALOG } from '../../../routes'
+import {connect} from 'react-redux'
+
+const mapStateToProps = (state) => ({
+    producers: getPartners(state)
+})
 
 /**
  * Component with information about site
  */
-const AboutSite = () => {
+const AboutSite = (props) => {
     function importAll(r) {
         return r.keys().map(r)
     }
 
     const distributors = importAll(require.context('../../../assets/images/distributors', false, /\.(png|jpe?g|svg)$/))
     const distributorsProducts = importAll(require.context('../../../assets/images/distributorsProducts', false, /\.(png|jpe?g|svg)$/))
+    const imageNamesToDistributorNames = {
+        'agro_master': 'Агромастер',
+        'barko': 'Барко',
+        'bear': 'Медведь любимый',
+        'domat': 'Домат',
+        'golden_seed': 'Золотая семечка',
+        'ideal': 'Бунге',
+        'tovarnoe_hozaystvo': 'Товарное хозяйство'
+    }
 
-    const {width} = useWindowDimensions()
+    const { width } = useWindowDimensions()
     const [boxVisible, setBoxVisible] = useState()
+
+    const history = useHistory()
 
     useEffect(() => {
         setBoxVisible(() => width >= 1000)
@@ -90,7 +107,26 @@ const AboutSite = () => {
             </div>
             <div className={styles.distributorsContainer}>
                 {
-                    distributors.map(distributor => <img src={distributor.default} alt=''/>)
+                    distributors.map(distributor => { 
+                    const imageName = distributor.default.split('/').pop().split('.')[0]
+                    const distributorName = imageNamesToDistributorNames[imageName]
+                    if (!distributorName || !props.producers) {
+                        return <></>
+                    }
+
+                    const producer = props.producers.find(producer => producer.name === distributorName)
+                    if (!producer) {
+                        return <></>
+                    }
+
+                    return <img 
+                        src={distributor.default} 
+                        alt=''
+                        onClick={() => {
+                            history.push(`/catalog?producerId=${producer.id}`)
+                        }}
+                        />
+                    })
                 }
             </div>
             {
@@ -104,14 +140,15 @@ const AboutSite = () => {
                                     alt=''
                                     className={styles.product}
                                     style={productsStyles[index]}
-                                />)
+                                />
+                            )
                         }
                     </div>
-                    <img src={box} alt='' className={styles.box} style={boxStyle}/>
+                    <img src={box} alt='' className={styles.box} style={boxStyle} />
                 </div>
             }
         </section>
     )
 }
 
-export default AboutSite
+export default connect(mapStateToProps)(AboutSite)

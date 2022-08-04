@@ -76,6 +76,7 @@ const CatalogPage = (props) => {
                             }
                         </div>
                         <CatalogHeaderContainer
+                            producers={producerIds}
                             setDebouncedSearchTerm={setSearchTerm}
                             setDebouncedProducerIds={setProducerIds}
                             specificCategoryName={specificCategoryName}
