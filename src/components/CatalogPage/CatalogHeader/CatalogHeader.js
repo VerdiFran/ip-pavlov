@@ -1,16 +1,29 @@
 import React, {useEffect, useRef, useState} from 'react'
 import styles from './CatalogHeader.module.scss'
 import filtersImage from '../../../assets/images/filters.png'
+import {useLocation} from 'react-router-dom'
 
-/**
- * Header of catalog page
- */
 const CatalogHeader = ({producers, searchTerm, setSearchTerm, setProducerIds}) => {
     const [filtersIsOpened, setFiltersIsOpened] = useState(false)
 
-    const [activeProducers, setActiveProducers] = useState(
-        Object.fromEntries(producers.map(manufacturer => [manufacturer.id, false]))
-    )
+    const { search } = useLocation()
+
+    const [activeProducers, setActiveProducers] = useState()
+
+    useEffect(() => {
+        console.log({search})
+
+        const query = new URLSearchParams(search)
+        const producerId = query.get('producerId')
+
+        setActiveProducers(Object.fromEntries(producers.map(manufacturer => {
+            return [manufacturer.id, manufacturer.id == producerId]
+        })))
+    }, [search, producers])
+
+    useEffect(() => {
+        console.log(activeProducers);
+    }, [activeProducers])
 
     const activeProducersRef = useRef()
 
