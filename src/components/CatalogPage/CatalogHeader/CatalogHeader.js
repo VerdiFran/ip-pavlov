@@ -11,8 +11,6 @@ const CatalogHeader = ({producers, searchTerm, setSearchTerm, setProducerIds}) =
     const [activeProducers, setActiveProducers] = useState()
 
     useEffect(() => {
-        console.log({search})
-
         const query = new URLSearchParams(search)
         const producerId = query.get('producerId')
 
@@ -20,10 +18,6 @@ const CatalogHeader = ({producers, searchTerm, setSearchTerm, setProducerIds}) =
             return [manufacturer.id, manufacturer.id == producerId]
         })))
     }, [search, producers])
-
-    useEffect(() => {
-        console.log(activeProducers);
-    }, [activeProducers])
 
     const activeProducersRef = useRef()
 

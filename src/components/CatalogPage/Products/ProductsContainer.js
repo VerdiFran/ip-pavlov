@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {getProducts} from '../../../utils/selectors/catalogSelectors'
 import Products from './Products'
-import {downloadProducts, removeProducts} from '../../../redux/reducers/catalogReducer'
+import {downloadProducts, initProducts, removeProducts} from '../../../redux/reducers/catalogReducer'
 
 const mapStateToProps = (state) => ({
     products: getProducts(state)
@@ -21,7 +21,8 @@ const ProductsContainer = (props) => {
         categoryIsSpecified,
         searchTerm,
         producerIds,
-        openCooperation
+        openCooperation,
+        initProducts
     } = props
 
     const [appendLoading, setAppendLoading] = useState(false)
@@ -34,7 +35,7 @@ const ProductsContainer = (props) => {
 
         removeProducts()
         setProductsLoading(true)
-        downloadProducts(searchTerm, producerIds, specificCategoryId ? [specificCategoryId] : [])
+        initProducts(searchTerm, producerIds, specificCategoryId ? [specificCategoryId] : [])
             .then(() => setProductsLoading(false))
     }, [specificCategoryId, searchTerm, producerIds])
 
@@ -61,4 +62,4 @@ const ProductsContainer = (props) => {
     )
 }
 
-export default connect(mapStateToProps, {downloadProducts, removeProducts})(ProductsContainer)
+export default connect(mapStateToProps, {downloadProducts, initProducts, removeProducts})(ProductsContainer)

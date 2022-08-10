@@ -1,20 +1,12 @@
 import React from 'react'
 import styles from './Product.module.scss'
+import {baseURL} from "../../../api/instances";
 
-/**
- * Product card
- * @param image Image of product
- * @param description Description of product
- * @param quantity Quantity of product
- * @param price Price of product
- * @param unit Unit of product quantity
- * @returns {JSX.Element}
- */
-const Product = ({productInfo: {description, quantity, unit}, image, onClick, openCooperation}) => {
+const Product = ({description, quantity, unit, imageId, onClick, openCooperation}) => {
     return (
         <div className={styles.productContainer}>
             <div className={styles.productImageContainer} onClick={onClick}>
-                <img src={image ? URL.createObjectURL(image) : ''} alt="" className={styles.productImage}/>
+                <img src={`${baseURL}/images/${imageId}/mini`} alt="" className={styles.productImage}/>
             </div>
             <div className={styles.productDescription} onClick={onClick}>
                 <span>{description}</span>

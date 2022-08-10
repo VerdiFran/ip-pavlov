@@ -3,7 +3,6 @@ import * as routes from './../../routes'
 
 const SET_CATEGORIES = 'CATALOG/SET-CATEGORIES'
 const SET_PARTNERS = 'CATALOG/SET-PARTNERS'
-const NEXT_PAGE = 'CATALOG/NEXT-PAGE'
 const ADD_PRODUCTS = 'CATALOG/ADD_PRODUCTS'
 const SET_TOTAL_PAGES = 'CATALOG/SET-TOTAL-PAGES'
 const REMOVE_PRODUCTS = 'CATALOG/REMOVE-PRODUCTS'
@@ -41,17 +40,13 @@ const catalogReducer = (state = initialState, action) => {
         case ADD_PRODUCTS:
             return {
                 ...state,
-                products: [...state.products, ...action.products]
+                products: [...state.products, ...action.products],
+                currentPage: state.currentPage + 1
             }
         case SET_TOTAL_PAGES:
             return {
                 ...state,
                 totalPages: action.totalPages
-            }
-        case NEXT_PAGE:
-            return {
-                ...state,
-                currentPage: state.currentPage + 1
             }
         case REMOVE_PRODUCTS:
             return {
@@ -65,8 +60,8 @@ const catalogReducer = (state = initialState, action) => {
         case SET_PRODUCTS:
             return {
                 ...state,
-                products: action.products,
-                currentPage: 1,
+                products: action.payload,
+                currentPage: 2,
                 pageSize: 20
             }
         default: {
@@ -79,7 +74,7 @@ const setCategories = (categories) => ({type: SET_CATEGORIES, categories})
 const setPartners = (partners) => ({type: SET_PARTNERS, partners})
 const addProducts = (products) => ({type: ADD_PRODUCTS, products})
 const setTotalPages = (totalPages) => ({type: SET_TOTAL_PAGES, totalPages})
-const nextPage = () => ({type: NEXT_PAGE})
+const setProducts = (products) => ({type: SET_PRODUCTS, payload: products})
 
 export const removeProducts = () => ({type: REMOVE_PRODUCTS})
 
@@ -87,6 +82,7 @@ export const removeProducts = () => ({type: REMOVE_PRODUCTS})
  * Get categories from server and set categoryMenuItem to state.
  */
 export const downloadCategories = (name) => async (dispatch) => {
+    console.log('downloadCategories')
     const {data} = await catalogAPI.getCategoriesNames(name)
 
     dispatch(setCategories(data.map(category => ({
@@ -116,17 +112,24 @@ const getProducts = async (name, producerIds, currentPage, totalPages, pageSize,
     } else return []
 }
 
+export const initProducts = (name, producerIds, categoryIds) => async (dispatch, getState) => {
+    const {currentPage, totalPages, pageSize} = getState().catalog
+    const [products, total] = await getProducts(
+      name?.toString(), producerIds, currentPage, totalPages, pageSize, categoryIds
+    )
+
+    dispatch(setProducts(products || []))
+    dispatch(setTotalPages(total ?? totalPages))
+}
+
 export const downloadProducts = (name, producerIds, categoryIds) => async (dispatch, getState) => {
-    const currentPage = getState().catalog.currentPage
-    const totalPages = getState().catalog.totalPages
-    const pageSize = getState().catalog.pageSize
+    const {currentPage, totalPages, pageSize} = getState().catalog
     const [products, total] = await getProducts(
         name?.toString(), producerIds, currentPage, totalPages, pageSize, categoryIds
     )
 
     dispatch(addProducts(products || []))
     dispatch(setTotalPages(total ?? totalPages))
-    dispatch(nextPage())
 }
 
 export default catalogReducer

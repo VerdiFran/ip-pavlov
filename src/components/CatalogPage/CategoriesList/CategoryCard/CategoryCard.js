@@ -1,21 +1,19 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import styles from './CategoryCard.module.scss'
+import {baseURL} from "../../../../api/instances";
 
 /**
  * Category of products in catalog
- * @param title Name of category
- * @param path Path to product of this category
- * @param image Image of category
  */
-const CategoryCard = ({categoryInfo: {title, path, image}}) => {
+const CategoryCard = ({title, path, imageId}) => {
     return (
         <NavLink to={path} className={styles.navLink}>
             <div className={styles.categoryCard}>
                 <div className={styles.categoryImageContainer}>
                     <img
-                        src={image ? URL.createObjectURL(image) : ''}
-                        alt=""
+                        src={`${baseURL}/images/${imageId}/normal`}
+                        alt={title}
                         className={styles.categoryImage}
                     />
                 </div>

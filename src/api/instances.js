@@ -1,6 +1,6 @@
 import * as axios from 'axios'
 
-const baseURL = 'http://' + process.env.REACT_APP_SERVER_HOST + ':' +
+export const baseURL = 'http://' + process.env.REACT_APP_SERVER_HOST + ':' +
     process.env.REACT_APP_SERVER_PORT + '/api/v1'
 
 /**

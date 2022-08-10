@@ -3,7 +3,7 @@ import box from '../../../assets/images/box.png'
 import styles from './AboutSite.module.scss'
 import useWindowDimensions from '../../../hooks/useWindowDimensions'
 import {getPartners} from '../../../utils/selectors/catalogSelectors'
-import { NavLink, useHistory, useParams } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { TO_CATALOG } from '../../../routes'
 import {connect} from 'react-redux'
 
@@ -122,6 +122,7 @@ const AboutSite = (props) => {
                     return <img 
                         src={distributor.default} 
                         alt=''
+                        className={styles.distributorImage}
                         onClick={() => {
                             history.push(`/catalog?producerId=${producer.id}`)
                         }}

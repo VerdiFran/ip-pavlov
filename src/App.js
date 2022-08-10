@@ -19,7 +19,7 @@ import ContactUs from './components/ContactUs/ContactUs'
 const App = ({initialized, messageInfo: {status, text, visible}, initializeApp}) => {
     useEffect(() => {
         initializeApp()
-    }, [])
+    }, [initializeApp])
 
     if (!initialized) {
         return <div>loading</div>
