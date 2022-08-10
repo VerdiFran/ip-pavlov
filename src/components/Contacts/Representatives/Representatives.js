@@ -56,6 +56,8 @@ const Representatives = ({representatives}) => {
         return polygon.description.id === currentDistrict.description.id ? 1 : 0.4
     }
 
+    console.log(polygons)
+
     return polygons?.length > 0 &&
         (
             <div>
@@ -70,7 +72,7 @@ const Representatives = ({representatives}) => {
                                 // justifySelf: idx % 2 === 0 ? 'end' : 'start'
                             }
                             return (
-                                <div style={style} className={[styles.rep, `rep${idx + 1}`].join(' ')}>
+                                <div key={idx} style={style} className={[styles.rep, `rep${idx + 1}`].join(' ')}>
                                     <Representative
                                         side={idx % 2 === 0 ? 'left' : 'right'}
                                         color={polygon.description.style.color}
