@@ -13,12 +13,6 @@ const HowToFindUs = () => {
                     <p>
                         Адрес: <span className={styles.street}>ул. Красноярская, д 23</span>.
                     </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    </p>
                 </div>
                 <div className={styles.box}>
                     <div className={styles.map}>
