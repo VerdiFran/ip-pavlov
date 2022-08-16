@@ -17,6 +17,8 @@ const CatalogHeader = ({producers, searchTerm, setSearchTerm, setProducerIds}) =
         setActiveProducers(Object.fromEntries(producers.map(manufacturer => {
             return [manufacturer.id, manufacturer.id == producerId]
         })))
+
+        setProducerIds([producerId])
     }, [search, producers])
 
     const activeProducersRef = useRef()

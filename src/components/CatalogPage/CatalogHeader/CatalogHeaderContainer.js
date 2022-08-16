@@ -3,6 +3,7 @@ import CatalogHeader from './CatalogHeader'
 import {getPartners} from '../../../utils/selectors/catalogSelectors'
 import {connect} from 'react-redux'
 import useDebounce from '../../../hooks/useDebounce'
+import {useLocation} from 'react-router-dom'
 
 const mapStateToProps = (state) => ({
     producers: getPartners(state)
@@ -16,8 +17,15 @@ const CatalogHeaderContainer = (props) => {
         specificCategoryName
     } = props
 
+    const { search } = useLocation()
+    const getUrlProducerId = () => {
+        const query = new URLSearchParams(search)
+        const producerId = query.get('producerId')
+        return producerId
+    }
+
     const [searchTerm, setSearchTerm] = useState()
-    const [producerIds, setProducerIds] = useState()
+    const [producerIds, setProducerIds] = useState([getUrlProducerId()])
 
     const debouncedSearchTerm = useDebounce(searchTerm, 500)
     const debouncedProducerIds = useDebounce(producerIds, 500)
