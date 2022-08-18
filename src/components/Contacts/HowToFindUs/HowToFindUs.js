@@ -11,12 +11,18 @@ const HowToFindUs = () => {
             <div className={styles.locationContainer}>
                 <div className={styles.locationInfo}>
                     <p>
-                        Адрес: <span className={styles.street}>ул. Красноярская, д 23</span>.
+                        Адрес: <span className={styles.street}>ул. Калинина, д. 169, ст. 4</span>.
+                    </p>
+                    <p>
+                        Заезд во вторые ворота базы, до конца через железнодорожные пути и налево. Склад будет посередине
                     </p>
                 </div>
                 <div className={styles.box}>
                     <div className={styles.map}>
-                        <Map mapContainerId={'how-to-find-map'}/>
+                        <Map mapContainerId={'how-to-find-map'} 
+                            marker={[56.052979, 92.743777]}
+                            center={[56.052979, 92.743777]}
+                            zoom={16}/>
                     </div>
                 </div>
             </div>

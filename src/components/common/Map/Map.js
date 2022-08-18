@@ -5,13 +5,19 @@ import DG from '2gis-maps'
 /**
  * Component with map.
  */
-const Map = ({center, zoom, polygons ,mapContainerId}) => {
+const Map = ({center, zoom, polygons, marker, mapContainerId}) => {
 
     useEffect(() => {
         const map = DG.map(mapContainerId, {
             'center': center ?? [56.010052, 92.852600],
             'zoom': zoom ?? 11
         })
+
+        if (marker) {
+            DG.then(() => {
+                DG.marker(marker).addTo(map)
+            })
+        }
 
         if (polygons) {
             DG.then(() => {
