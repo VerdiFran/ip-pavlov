@@ -5,7 +5,6 @@ import styles from './CooperationForm.module.scss'
 import closeImage from '../../../assets/images/close-button.svg'
 
 const CooperationForm = ({objRef, handleSubmit, close}) => {
-    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const cooperationSchema = yup.object().shape({
         companyName: yup.string()
@@ -15,8 +14,7 @@ const CooperationForm = ({objRef, handleSubmit, close}) => {
             .required('Это поле обязательно для заполнения.')
             .max(70, ''),
         phoneNumber: yup.string()
-            .required('Это поле обязательно для заполнения.')
-            .matches(phoneRegExp, 'Phone number is not valid'),
+            .required('Это поле обязательно для заполнения.'),
         email: yup.string()
             .required('Это поле обязательно для заполнения.')
             .email('Некорректный эл. адрес.')
