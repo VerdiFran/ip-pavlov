@@ -5,7 +5,7 @@ import styles from './Footer.module.scss'
  */
 const Footer = () => {
 
-    const footerInfoText = 'ИП Павлов работает с хххх года, занимается поставкой продукции от различных производителей'
+    const footerInfoText = 'ИП Павлов работает с 1996 года, занимается поставкой продукции от различных производителей'
 
     return (
         <div className={styles.footerContainer}>
