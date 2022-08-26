@@ -22,19 +22,15 @@ const Home = ({promotions}) => {
         document.title = 'Главная · ИП Павлов'
     }, [])
 
-    const promotionsSection = !promotions
-        ? (<></>)
-        : (
-        <BlockWrapper wrapperType="light" dividerType="short">
-            <PromotionsContainer/>
-        </BlockWrapper>
-        )
-
     return (
         <>
             <AboutSite/>
             <PageWrapper>
-                {promotionsSection}
+                {!!promotions.lenght && (
+                    <BlockWrapper wrapperType="light" dividerType="short">
+                    <PromotionsContainer/>
+                </BlockWrapper>
+                )}
                 <BlockWrapper wrapperType="dark" dividerType="long">
                     <CatalogSectionContainer/>
                 </BlockWrapper>
